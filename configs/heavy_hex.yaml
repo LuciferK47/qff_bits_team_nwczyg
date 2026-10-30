@@ -1,0 +1,24 @@
+# Benchmark family fixed by the problem statement (heavy-hex). Do not change between patch sizes.
+geometry: heavy_hex
+backend: ibm_fez
+J: 1.0
+hx: 1.25
+hz: -0.60
+dt: 0.10          # J*dt  (FROZEN 2026-10-29; was 0.20, see dt_rationale)
+times_Jt: [0.0, 0.4, 1.0, 2.0, 3.0, 4.0, 5.0]
+hardware_times_Jt: [0.0, 0.4, 1.0, 2.0, 3.0]   # N = Jt/0.1 = 0, 4, 10, 20, 30
+shots: 16384
+seed: 20261029
+patch_targets:
+  P12: {n: 12, kind: tree}
+  P18: {n: 18, kind: ring_plus_pendants}
+  P24: {n: 24, kind: nested_in_P18}
+  P40: {n: 40, kind: nested_in_P24}
+faulty:
+  cz_error_max: 0.05
+  readout_error_max: 0.08
+dt_rationale: >
+  Trotter error vs exp(-iHt), worst observable on P12/P18: 0.0553/0.0550 at J*dt=0.20 (misses the 0.02 target)
+  but 0.0139/0.0138 at J*dt=0.10. Compiled depth doubles (Jt=3: 90 layers, within the aim of 100); QPU minutes are
+  shot-dominated and unchanged. ZNE moves to shallower times (5x fold at Jt=2 would sit exactly at the 300 ceiling).
+exploratory_dt0.2_location: raw/exploratory_dt0.2

@@ -1,0 +1,6 @@
+patch,n,edges,cycle_rank,diameter,radius,mean_degree,n_stars,mps_max_cut,mean_cz_error,physical_id
+P12,12,11,0,7,4,1.833,3,2,0.00316,e31d81a30dad2807
+P18,18,18,1,8,6,2.0,6,3,0.00388,d8d2727881dd5868
+P24,24,24,1,11,6,2.0,7,4,0.00601,eaf5cde45994422e
+P40,40,41,2,22,11,2.05,9,4,0.00556,69e6b78287585c1e
+P40c,40,42,3,14,7,2.1,11,4,0.00527,e64bf8a0779c8dd2

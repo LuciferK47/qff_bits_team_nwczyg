@@ -1,0 +1,60 @@
+kind,graph_id,physical_id,n,dt,method,setting,error_status,exit_reason,wall_s,cpu_s,peak_tree_rss_bytes,max_processes,workers,term_count_or_bond_dim,max_Jt_completed,host_cpu,logical_cores,gpu,compiled_2q_count,compiled_2q_depth,shots,estimated_qpu_s,observed_qpu_s,job_id,run_hash,experiment_id
+classical,P12,e31d81a30dad2807,12.0,0.1,mps,chi128,ok,ok,20.99958896636963,141.03,2148806656.0,13.0,1.0,48.0,5.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,5bb0f6035daab4f2,
+classical,P12,e31d81a30dad2807,12.0,0.1,mps,chi256,ok,ok,22.66651439666748,135.9,2146705408.0,13.0,1.0,48.0,5.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,1aecadefbf407a83,
+classical,P12,e31d81a30dad2807,12.0,0.1,mps,chi32,ok,ok,15.139508724212646,99.44999999999999,2146418688.0,13.0,1.0,32.0,5.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,7ee6e36c30f0ab0c,
+classical,P12,e31d81a30dad2807,12.0,0.1,mps,chi64,ok,ok,20.37142062187195,146.5,2147553280.0,13.0,1.0,48.0,5.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,b9f71bdf7edcca36,
+classical,P12,e31d81a30dad2807,12.0,0.1,pauli_prop,coarse,ok,ok,44.449129819869995,430.21,2335387648.0,13.0,12.0,4074.0,5.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,3216f2d1f2b0b4ea,
+classical,P12,e31d81a30dad2807,12.0,0.1,pauli_prop,fine,timed_out,timed_out_killed,1200.865196943283,11530.11,4161208320.0,13.0,12.0,262144.0,2.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,3150193e7977a6e0,
+classical,P12,e31d81a30dad2807,12.0,0.1,pauli_prop,medium,ok,ok,217.62971091270447,2132.8,2637443072.0,13.0,12.0,32768.0,5.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,4253c66cd1e1b559,
+classical,P18,d8d2727881dd5868,18.0,0.1,mps,chi128,ok,ok,799.7492668628693,8660.39,2191314944.0,13.0,1.0,128.0,5.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,fae858a5afa094ba,
+classical,P18,d8d2727881dd5868,18.0,0.1,mps,chi256,ok,ok,1162.925507068634,12462.220000000001,2285166592.0,13.0,1.0,256.0,5.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,ef5a27ee539f6648,
+classical,P18,d8d2727881dd5868,18.0,0.1,mps,chi32,ok,ok,45.922186613082886,364.7,2155151360.0,13.0,1.0,32.0,5.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,ef2cfe6270f247f1,
+classical,P18,d8d2727881dd5868,18.0,0.1,mps,chi64,ok,ok,517.7089264392853,5647.740000000001,2163621888.0,13.0,1.0,64.0,5.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,da755ea99f1c5b62,
+classical,P18,d8d2727881dd5868,18.0,0.1,pauli_prop,coarse,ok,ok,107.08009696006775,896.0699999999999,2375667712.0,13.0,12.0,4096.0,5.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,2d11180a0597c581,
+classical,P18,d8d2727881dd5868,18.0,0.1,pauli_prop,fine,timed_out,timed_out_killed,1200.806188583374,11727.67,4778278912.0,13.0,12.0,262144.0,1.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,e355acc110d719c0,
+classical,P18,d8d2727881dd5868,18.0,0.1,pauli_prop,medium,ok,ok,372.030775308609,3528.3399999999997,2762715136.0,13.0,12.0,32768.0,5.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,7b20ac2608f2ad83,
+classical,P24,eaf5cde45994422e,24.0,0.1,mps,chi128,timed_out,timed_out_killed,1200.2506029605865,12892.300000000001,2247991296.0,13.0,1.0,128.0,2.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,6ab61b360226ac75,
+classical,P24,eaf5cde45994422e,24.0,0.1,mps,chi256,timed_out,timed_out_killed,1200.23286485672,12431.869999999999,2353795072.0,13.0,1.0,256.0,2.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,f6d258667ebe1021,
+classical,P24,eaf5cde45994422e,24.0,0.1,mps,chi32,ok,ok,82.67107248306274,846.11,2186518528.0,13.0,1.0,32.0,5.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,58d4f383821cb62a,
+classical,P24,eaf5cde45994422e,24.0,0.1,mps,chi64,timed_out,timed_out_killed,1200.291764497757,13043.54,2204160000.0,13.0,1.0,64.0,3.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,1e5fe681308cf34a,
+classical,P24,eaf5cde45994422e,24.0,0.1,pauli_prop,coarse,ok,ok,130.10045433044434,1292.51,2391175168.0,13.0,12.0,4096.0,5.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,b146daa15c0d61e6,
+classical,P24,eaf5cde45994422e,24.0,0.1,pauli_prop,fine,timed_out,timed_out_killed,1200.412254333496,12372.76,5425733632.0,13.0,12.0,262144.0,1.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,be43fb9994eaf709,
+classical,P24,eaf5cde45994422e,24.0,0.1,pauli_prop,medium,ok,ok,479.6785273551941,4792.17,2814701568.0,13.0,12.0,32768.0,5.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,68a27a5b19043e17,
+classical,P40,69e6b78287585c1e,40.0,0.1,mps,chi128,timed_out,timed_out_killed,1200.4675946235657,12390.09,2301374464.0,13.0,1.0,79.0,1.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,8a2960a43a49ff30,
+classical,P40,69e6b78287585c1e,40.0,0.1,mps,chi256,timed_out,timed_out_killed,1200.6301171779633,12378.369999999999,2410278912.0,13.0,1.0,79.0,1.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,aa4a96cdc43f01f8,
+classical,P40,69e6b78287585c1e,40.0,0.1,mps,chi32,ok,ok,242.48766231536865,2368.37,2251169792.0,13.0,1.0,32.0,3.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,cc21f3448e79d345,
+classical,P40,69e6b78287585c1e,40.0,0.1,mps,chi64,timed_out,timed_out_killed,1200.5243105888367,12394.48,2259783680.0,13.0,1.0,64.0,2.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,e4a2da0110a5f114,
+classical,P40,69e6b78287585c1e,40.0,0.1,pauli_prop,coarse,ok,ok,178.43501496315002,1859.25,2427584512.0,13.0,12.0,4096.0,3.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,7b6643e5b52a22a6,
+classical,P40,69e6b78287585c1e,40.0,0.1,pauli_prop,fine,timed_out,timed_out_killed,1200.4704818725586,11389.52,7171108864.0,13.0,12.0,262144.0,1.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,0ef1beb12f1fb911,
+classical,P40,69e6b78287585c1e,40.0,0.1,pauli_prop,medium,ok,ok,670.9240252971649,6414.72,3055935488.0,13.0,12.0,32768.0,3.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,7b4dc204c6f84e69,
+compile,P18,d8d2727881dd5868,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,db7924fcf8512b2e
+compile,P18,d8d2727881dd5868,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,5f5c6a393cad7819
+compile,P18,d8d2727881dd5868,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,a761618fe21eacfb
+compile,P18,d8d2727881dd5868,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,08936640c336fa97
+compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,0.0,0.0,16384.0,,,,,13ee50eba10babb3
+compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,72.0,12.0,16384.0,,,,,9daa83d83f066a9e
+compile,P18,d8d2727881dd5868,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,144.0,24.0,16384.0,,,,,70c128c48b0f01dc
+compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,144.0,24.0,16384.0,,,,,f811664c4049cec7
+compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,180.0,30.0,16384.0,,,,,336793e85df36689
+compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,360.0,60.0,16384.0,,,,,a139625b2cb8af44
+compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,540.0,90.0,16384.0,,,,,173f14d5e6bce724
+compile,P40,69e6b78287585c1e,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,d12317a5660cd1fc
+compile,P40,69e6b78287585c1e,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,f48fd8718f744111
+compile,P40,69e6b78287585c1e,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,acf294ef7fa0671f
+compile,P40,69e6b78287585c1e,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,760583b01970dc6c
+compile,P40,69e6b78287585c1e,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,0.0,0.0,16384.0,,,,,aa00b284b7f95a3d
+compile,P40,69e6b78287585c1e,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,164.0,12.0,16384.0,,,,,f0bb05fbb45e7d05
+compile,P40,69e6b78287585c1e,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,410.0,30.0,16384.0,,,,,a920a53b251174cf
+compile,P40,69e6b78287585c1e,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,820.0,60.0,16384.0,,,,,65e87bc30beb79d2
+compile,P40,69e6b78287585c1e,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,1230.0,90.0,16384.0,,,,,9375ceb48bce66fa
+compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,216.0,36.0,16384.0,,,,,f7e39c64b6512280
+compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,360.0,60.0,16384.0,,,,,44ae878b61768fc7
+compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,432.0,72.0,16384.0,,,,,1e8b13129fbeb2f1
+compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,720.0,120.0,16384.0,,,,,c8d6804cf089d6d0
+compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,540.0,90.0,16384.0,,,,,df3f64708b1741f1
+compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,900.0,150.0,16384.0,,,,,3c6390daf92f9ee0
+compile,P40,69e6b78287585c1e,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,1230.0,90.0,16384.0,,,,,d532976b9c2fbd25
+compile,P40,69e6b78287585c1e,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,2050.0,150.0,16384.0,,,,,3a838352798f5834
+job_estimate,,,,0.1,1_pilot,,dry_run_not_submitted,,,,,,,,,,,,,,65536.0,18.557703168,,,,
+job_estimate,,,,0.1,2_forward,,dry_run_not_submitted,,,,,,,,,,,,,,163840.0,43.919741952,,,,
+job_estimate,,,,0.1,3_zne,,dry_run_not_submitted,,,,,,,,,,,,,,131072.0,36.282668032000004,,,,

@@ -1,0 +1,20 @@
+{
+ "1_pilot": {
+  "executions": 65536,
+  "detailed_s": 18.522412032000002,
+  "ibm_quick_rule_s": 24.9376,
+  "pdf_rate_s": 32.768
+ },
+ "2_forward": {
+  "executions": 147456,
+  "detailed_s": 39.404672000000005,
+  "ibm_quick_rule_s": 53.6096,
+  "pdf_rate_s": 73.72800000000001
+ },
+ "3_zne": {
+  "executions": 98304,
+  "detailed_s": 27.75368192,
+  "ibm_quick_rule_s": 36.4064,
+  "pdf_rate_s": 49.152
+ }
+}

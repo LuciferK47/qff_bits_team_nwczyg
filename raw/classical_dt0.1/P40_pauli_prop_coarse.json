@@ -1,0 +1,88 @@
+{
+ "graph_id": "P40",
+ "physical_id": "69e6b78287585c1e",
+ "n": 40,
+ "dt": 0.1,
+ "J": 1.0,
+ "hx": 1.25,
+ "hz": -0.6,
+ "reference": "lightcone_exact",
+ "reference_times": [
+  0,
+  4,
+  5
+ ],
+ "host": {
+  "cpu": "12th Gen Intel(R) Core(TM) i7-1255U",
+  "logical_cores": 12,
+  "gpu": "none used",
+  "platform": "Linux-7.2.10-100.fc43.x86_64-x86_64-with-glibc2.42",
+  "python": "3.12.15"
+ },
+ "setting": "coarse",
+ "max_terms": 4096,
+ "atol": 0.001,
+ "workers": 12,
+ "elapsed_s": 174.28005480766296,
+ "budget_s": null,
+ "timed_out": false,
+ "completed_N": [
+  0,
+  4,
+  5,
+  10,
+  20,
+  30
+ ],
+ "max_terms_retained": {
+  "0": 1,
+  "4": 3313,
+  "5": 3873,
+  "10": 4096,
+  "20": 3983,
+  "30": 3862
+ },
+ "mean_terms_retained": {
+  "0": 1.0,
+  "4": 595.1327433628319,
+  "5": 982.4601769911504,
+  "10": 3321.336283185841,
+  "20": 3148.8407079646017,
+  "30": 961.2035398230089
+ },
+ "max_truncated_l1": {
+  "0": 0.0,
+  "4": 18.069794004632865,
+  "5": 38.022940663935145,
+  "10": 283.64633349949185,
+  "20": 665.6193096380672,
+  "30": 683.8063041926213
+ },
+ "cap_hit": {
+  "0": false,
+  "4": false,
+  "5": false,
+  "10": true,
+  "20": false,
+  "30": false
+ },
+ "method": "pauli_prop",
+ "run_hash": "7b6643e5b52a22a6",
+ "error_status": "ok",
+ "supervision": {
+  "wall_s": 178.43501496315002,
+  "cpu_s": 1859.25,
+  "peak_tree_rss_bytes": 2427584512,
+  "max_processes": 13,
+  "n_samples": 319,
+  "exit_reason": "ok",
+  "budget_s": 1200.0,
+  "sample_s": 0.5,
+  "workers": 12
+ },
+ "wall_s": 178.43501496315002,
+ "cpu_s": 1859.25,
+ "peak_tree_rss_bytes": 2427584512,
+ "max_processes": 13,
+ "exit_reason": "ok"
+}

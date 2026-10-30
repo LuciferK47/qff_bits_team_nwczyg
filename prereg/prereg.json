@@ -1,0 +1,246 @@
+{
+ "prereg_sha": "5360308738170cc5410562cb971a3050",
+ "created_utc": "2026-10-30T08:18:57Z",
+ "dt": 0.1,
+ "backend": "ibm_fez",
+ "files": {
+  "configs/trust_policy.yaml": "37f70117421ba1a669367d2e150a4c6f987148d2b3cb26e9b13406131ec2a9da",
+  "configs/heavy_hex.yaml": "67b7b77b57ccfe0331eea05536d6c6c9960f2421f82f6ad1ae7216a4db7cc922",
+  "src/qtrust/rehearsal.py": "e73595ffd3b401caa5ea44194b182ccd896b8f1eca026cb03a254ae1f52dcf7e",
+  "src/qtrust/mitigation.py": "944ae0e0932d8f75060ef57a652537315ad334bc7943d2c5e7383f56abd55e83",
+  "src/qtrust/trust.py": "ccee18e16da66d7a02fe2dc35a18981345b7c20db07f9859f1844153cba3aae2",
+  "src/qtrust/bootstrap.py": "45cc4af5beb113ec4561a5b4e086f3ee0e187c9d72d441d6c7452cea803e972d",
+  "src/qtrust/manifest.py": "fe8c30ce9536c15dc434b924d18a257b15f61116ac1718352c8a9aa32e34aa30",
+  "src/qtrust/hardware.py": "46fc6328d74c17d8c9add10fb7a0b86260fbd55f42420959fcac125b640fddcd",
+  "src/qtrust/submit.py": "99c35b6351d53c0aab2250e5f1c0afcc8fbc33eeebe8d896b6c87a1c2a478514",
+  "raw/circuits/dt0.1/manifest_circuits.csv": "7ea549e3b7fc1c6a8f57490306987027e6e582f7e3dca1608474ffac434dca31",
+  "raw/circuits/dt0.1/manifest_usage.json": "d523b18372b51e67ce4913f1c237c1d242d90c469cdcc499c746b6c9ca2b4b60",
+  "raw/circuits/dt0.1/P18_Jt0.0_fractional.qpy": "058a5d70182690f5d8caa9316522f0e4acecc06b29809ec189d48b9961aa49b1",
+  "raw/circuits/dt0.1/P18_Jt0.4_cz.qpy": "c46a36cf96e5f1e0a2ead9de96be90f6e8606c83ce87f92b101e2bf68130d76e",
+  "raw/circuits/dt0.1/P18_Jt0.4_fold1.qpy": "e919c74d32c441707b5d803c9a4e1eab87edc103c162b956fb7a4e4f1aecc6ac",
+  "raw/circuits/dt0.1/P18_Jt0.4_fold2.qpy": "6237b04c144839f8320c1a8b9d98f79291ade4ebbf3e3e176183d7b4205a6d32",
+  "raw/circuits/dt0.1/P18_Jt0.4_fractional.qpy": "57b17e3c2c0d2253e92058770fa80265d8f49419bc04753492c0ea4b4a59a141",
+  "raw/circuits/dt0.1/P18_Jt0.8_fold1.qpy": "5d776e926f641ed41e1cfab75e75eb9114a8ef004b7da4fbfe9be2fee6e53a99",
+  "raw/circuits/dt0.1/P18_Jt0.8_fold2.qpy": "f63d797dfb3aedc34dbb456189362cb1cd19a28dddf9242ac06fe16a1ce65c56",
+  "raw/circuits/dt0.1/P18_Jt0.8_fractional.qpy": "8cd0ac743069c15b63bb656b7cbb07c838905ffecba912625fc3b6a42fd3848e",
+  "raw/circuits/dt0.1/P18_Jt1.0_fold1.qpy": "f88003be35cb06a3a196e7e3e85edb15f9839d3f88d56e9d4f3e15c1292ea520",
+  "raw/circuits/dt0.1/P18_Jt1.0_fold2.qpy": "07d3797d9360f065fc3427957a5cdedf2aab9ef87f7aef4ed43b904ebf5c9fb1",
+  "raw/circuits/dt0.1/P18_Jt1.0_fractional.qpy": "573f2aa8fe6496e71df7e25efd5e12cc1cc4e0949ddbfca15942f8ed3326a42c",
+  "raw/circuits/dt0.1/P18_Jt2.0_fractional.qpy": "f58dae3f0e880168835b31a4029b57108a026fb9525384c46b67868f3c3d149f",
+  "raw/circuits/dt0.1/P18_Jt3.0_fractional.qpy": "3f1f71148f537b77b91953959f5011c6717dccf96f52f43141b173b72d76902c",
+  "raw/circuits/dt0.1/P18_cal0.qpy": "fd8ae99605c4a2d8769d8356d0557f34e43c781993e5194dbe14007a9f7f0309",
+  "raw/circuits/dt0.1/P18_cal1.qpy": "c2a7c0b772901242c8ff2722e0fc5a41f93c445914eb21cb40137b4065fff49c",
+  "raw/circuits/dt0.1/P18_cal2.qpy": "06babe1ddaded5cbe8490872b43c0ced98ea3509acd9e47cc81fefd56f137848",
+  "raw/circuits/dt0.1/P18_cal3.qpy": "0bd8767b8d92a22d8620b645d54b4d0e3472a19000a327c8882928972144e104",
+  "raw/circuits/dt0.1/P40_Jt0.0_fractional.qpy": "ff731e510f14e72946cb13854aecaf17772e4a8b2ae20c2f5e73245ea103dcd2",
+  "raw/circuits/dt0.1/P40_Jt0.4_fractional.qpy": "079eaefe020219bea7a0545aa86f94599db61879b0c5921a299b4634395a464f",
+  "raw/circuits/dt0.1/P40_Jt1.0_fold1.qpy": "bd48a27aaff9003cf470ef2313cd131654e350521ef81c0804b027bc4032ac8e",
+  "raw/circuits/dt0.1/P40_Jt1.0_fold2.qpy": "45527000fcf14116a5582f992ce568053600bd7edca3c98854e38bf71395fbb4",
+  "raw/circuits/dt0.1/P40_Jt1.0_fractional.qpy": "f82af762b8ef2f44ea33009de904479120ce9810981269a4c045fa913b939122",
+  "raw/circuits/dt0.1/P40_Jt2.0_fractional.qpy": "4f27d3d8b6306dcf6ecc28b4e96b17c17a0ae9814d818b00aa7cf1e59145885c",
+  "raw/circuits/dt0.1/P40_Jt3.0_fractional.qpy": "e145246406a9fcb40a14c270ae3c2b0757281070994eb173cf29aababb65268e",
+  "raw/circuits/dt0.1/P40_cal0.qpy": "5080fe89481d15c471835e3dbeca6d9f5dc5c31ecfc214bcc66b1660f5c97f33",
+  "raw/circuits/dt0.1/P40_cal1.qpy": "9856966f91acdaddd27a3c1eaa2da03865d72d26554d3c1383bb28c61b6f99d4",
+  "raw/circuits/dt0.1/P40_cal2.qpy": "62881f6128dfc8cc41ba4f556d46a4e965ae93b8e284746db18bd7d69d8a244f",
+  "raw/circuits/dt0.1/P40_cal3.qpy": "c256e3325d22259eb1b4f4c775d877fbbbf0808fd59f69e68ee5a874347b5b16"
+ },
+ "planned_circuits": [
+  {
+   "job": "1_pilot",
+   "circuit": "P18_cal0",
+   "variant": "cz",
+   "shots": 4096,
+   "qpy_sha": "fd8ae99605c4a2d8"
+  },
+  {
+   "job": "1_pilot",
+   "circuit": "P18_cal1",
+   "variant": "cz",
+   "shots": 4096,
+   "qpy_sha": "c2a7c0b772901242"
+  },
+  {
+   "job": "1_pilot",
+   "circuit": "P18_cal2",
+   "variant": "cz",
+   "shots": 4096,
+   "qpy_sha": "06babe1ddaded5cb"
+  },
+  {
+   "job": "1_pilot",
+   "circuit": "P18_cal3",
+   "variant": "cz",
+   "shots": 4096,
+   "qpy_sha": "0bd8767b8d92a22d"
+  },
+  {
+   "job": "1_pilot",
+   "circuit": "P18_Jt0.0_fractional",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "058a5d70182690f5"
+  },
+  {
+   "job": "1_pilot",
+   "circuit": "P18_Jt0.4_fractional",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "57b17e3c2c0d2253"
+  },
+  {
+   "job": "1_pilot",
+   "circuit": "P18_Jt0.4_cz",
+   "variant": "cz",
+   "shots": 16384,
+   "qpy_sha": "c46a36cf96e5f1e0"
+  },
+  {
+   "job": "2_forward",
+   "circuit": "P18_Jt0.8_fractional",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "8cd0ac743069c15b"
+  },
+  {
+   "job": "2_forward",
+   "circuit": "P18_Jt1.0_fractional",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "573f2aa8fe6496e7"
+  },
+  {
+   "job": "2_forward",
+   "circuit": "P18_Jt2.0_fractional",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "f58dae3f0e880168"
+  },
+  {
+   "job": "2_forward",
+   "circuit": "P18_Jt3.0_fractional",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "3f1f71148f537b77"
+  },
+  {
+   "job": "2_forward",
+   "circuit": "P40_cal0",
+   "variant": "cz",
+   "shots": 4096,
+   "qpy_sha": "5080fe89481d15c4"
+  },
+  {
+   "job": "2_forward",
+   "circuit": "P40_cal1",
+   "variant": "cz",
+   "shots": 4096,
+   "qpy_sha": "9856966f91acdadd"
+  },
+  {
+   "job": "2_forward",
+   "circuit": "P40_cal2",
+   "variant": "cz",
+   "shots": 4096,
+   "qpy_sha": "62881f6128dfc8cc"
+  },
+  {
+   "job": "2_forward",
+   "circuit": "P40_cal3",
+   "variant": "cz",
+   "shots": 4096,
+   "qpy_sha": "c256e3325d22259e"
+  },
+  {
+   "job": "2_forward",
+   "circuit": "P40_Jt0.0_fractional",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "ff731e510f14e729"
+  },
+  {
+   "job": "2_forward",
+   "circuit": "P40_Jt0.4_fractional",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "079eaefe020219be"
+  },
+  {
+   "job": "2_forward",
+   "circuit": "P40_Jt1.0_fractional",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "f82af762b8ef2f44"
+  },
+  {
+   "job": "2_forward",
+   "circuit": "P40_Jt2.0_fractional",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "4f27d3d8b6306dcf"
+  },
+  {
+   "job": "2_forward",
+   "circuit": "P40_Jt3.0_fractional",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "e145246406a9fcb4"
+  },
+  {
+   "job": "3_zne",
+   "circuit": "P18_Jt0.4_fold1",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "e919c74d32c44170"
+  },
+  {
+   "job": "3_zne",
+   "circuit": "P18_Jt0.4_fold2",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "6237b04c144839f8"
+  },
+  {
+   "job": "3_zne",
+   "circuit": "P18_Jt0.8_fold1",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "5d776e926f641ed4"
+  },
+  {
+   "job": "3_zne",
+   "circuit": "P18_Jt0.8_fold2",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "f63d797dfb3aedc3"
+  },
+  {
+   "job": "3_zne",
+   "circuit": "P18_Jt1.0_fold1",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "f88003be35cb06a3"
+  },
+  {
+   "job": "3_zne",
+   "circuit": "P18_Jt1.0_fold2",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "07d3797d9360f065"
+  },
+  {
+   "job": "3_zne",
+   "circuit": "P40_Jt1.0_fold1",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "bd48a27aaff9003c"
+  },
+  {
+   "job": "3_zne",
+   "circuit": "P40_Jt1.0_fold2",
+   "variant": "fractional",
+   "shots": 16384,
+   "qpy_sha": "45527000fcf14116"
+  }
+ ],
+ "note": "dry-run compilation on the FakeFez snapshot with ASSUMED fractional-gate timing; live circuits are recompiled by `live-check` and their shas recorded then"
+}

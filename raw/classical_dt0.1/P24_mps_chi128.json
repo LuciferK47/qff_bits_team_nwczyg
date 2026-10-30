@@ -1,0 +1,75 @@
+{
+ "graph_id": "P24",
+ "physical_id": "eaf5cde45994422e",
+ "n": 24,
+ "dt": 0.1,
+ "J": 1.0,
+ "hx": 1.25,
+ "hz": -0.6,
+ "reference": "full_exact",
+ "reference_times": [
+  0,
+  4,
+  10,
+  20,
+  30,
+  40,
+  50
+ ],
+ "host": {
+  "cpu": "12th Gen Intel(R) Core(TM) i7-1255U",
+  "logical_cores": 12,
+  "gpu": "none used",
+  "platform": "Linux-7.2.10-100.fc43.x86_64-x86_64-with-glibc2.42",
+  "python": "3.12.15"
+ },
+ "chi": 128,
+ "cutoff": 1e-12,
+ "elapsed_s": 1200.2506029605865,
+ "budget_s": 1200.0,
+ "completed_N": [
+  0,
+  4,
+  10,
+  20
+ ],
+ "fidelity_estimate": {
+  "0": 1.0,
+  "4": 0.9999999999299556,
+  "10": 0.9999999996472706,
+  "20": 0.9993353189043601
+ },
+ "error_estimate": {
+  "0": 0.0,
+  "4": 7.004441471281098e-11,
+  "10": 3.5272940124286833e-10,
+  "20": 0.0006646810956398852
+ },
+ "max_bond": {
+  "0": 1,
+  "4": 16,
+  "10": 79,
+  "20": 128
+ },
+ "timed_out": true,
+ "method": "mps",
+ "setting": "chi128",
+ "run_hash": "6ab61b360226ac75",
+ "error_status": "timed_out",
+ "supervision": {
+  "wall_s": 1200.2506029605865,
+  "cpu_s": 12892.300000000001,
+  "peak_tree_rss_bytes": 2247991296,
+  "max_processes": 13,
+  "n_samples": 2138,
+  "exit_reason": "timed_out_killed",
+  "budget_s": 1200.0,
+  "sample_s": 0.5,
+  "workers": 1
+ },
+ "wall_s": 1200.2506029605865,
+ "cpu_s": 12892.300000000001,
+ "peak_tree_rss_bytes": 2247991296,
+ "max_processes": 13,
+ "exit_reason": "timed_out_killed"
+}

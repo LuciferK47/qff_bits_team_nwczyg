@@ -1,0 +1,6 @@
+                          case               sector   dim  n_levels  n_degenerate_gaps    mean_r  commutator_norm
+0    hz=0 chain, full spectrum                  all  4096      4096                  0  0.413229              NaN
+1  hz=0 chain, symmetry sector  parity=+1,mirror=+1  1056      1056                  0  0.380614     1.797322e-14
+2  hz=0 chain, symmetry sector  parity=+1,mirror=-1   992       992                  0  0.399712     1.758744e-14
+3  hz=0 chain, symmetry sector  parity=-1,mirror=+1  1024      1024                  0  0.390042     1.780235e-14
+4  hz=0 chain, symmetry sector  parity=-1,mirror=-1  1024      1024                  0  0.390042     1.774396e-14

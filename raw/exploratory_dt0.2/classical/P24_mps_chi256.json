@@ -1,0 +1,48 @@
+{
+ "graph_id": "P24",
+ "n": 24,
+ "dt": 0.2,
+ "reference": "full_exact",
+ "host": {
+  "cpu": "12th Gen Intel(R) Core(TM) i7-1255U",
+  "logical_cores": 12,
+  "gpu": "none used",
+  "platform": "Linux-7.2.10-100.fc43.x86_64-x86_64-with-glibc2.42",
+  "python": "3.12.15"
+ },
+ "chi": 256,
+ "cutoff": 1e-12,
+ "order": "bfs",
+ "elapsed_s": 321.7728626728058,
+ "peak_rss_bytes": 1983488000,
+ "timed_out": true,
+ "budget_s": 300.0,
+ "completed_N": [
+  0,
+  2,
+  5
+ ],
+ "fidelity_estimate": {
+  "0": 1.0,
+  "2": 0.9999999999670499,
+  "5": 0.9999999998341662
+ },
+ "error_estimate": {
+  "0": 0.0,
+  "2": 3.2950087103245096e-11,
+  "5": 1.658337911436547e-10
+ },
+ "max_bond": {
+  "0": 1,
+  "2": 14,
+  "5": 77
+ },
+ "min_marginal_norm": {
+  "0": 1.0,
+  "2": 0.9999999999670501,
+  "5": 0.9999999998341614
+ },
+ "method": "mps",
+ "setting": "chi256",
+ "error_status": "timed_out"
+}

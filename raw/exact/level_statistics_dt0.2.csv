@@ -1,0 +1,4 @@
+case,n,mean_r,seconds,poisson,goe
+"P12 tree, table params, hz x1.2 on site 0",12,0.5178582063375861,205.5,0.386,0.53
+"12-site chain, hz=0 (integrable control)",12,0.42789969029067665,263.6,0.386,0.53
+"12-site chain, table params, hz x1.2 on end site",12,0.5197679023721036,249.5,0.386,0.53

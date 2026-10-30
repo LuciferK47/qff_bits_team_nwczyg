@@ -1,0 +1,77 @@
+{
+ "graph_id": "P18",
+ "physical_id": "d8d2727881dd5868",
+ "n": 18,
+ "dt": 0.1,
+ "J": 1.0,
+ "hx": 1.25,
+ "hz": -0.6,
+ "reference": "full_exact",
+ "reference_times": [
+  0,
+  4,
+  10,
+  20,
+  30,
+  40,
+  50
+ ],
+ "host": {
+  "cpu": "12th Gen Intel(R) Core(TM) i7-1255U",
+  "logical_cores": 12,
+  "gpu": "none used",
+  "platform": "Linux-7.2.10-100.fc43.x86_64-x86_64-with-glibc2.42",
+  "python": "3.12.15"
+ },
+ "setting": "fine",
+ "max_terms": 262144,
+ "atol": 1e-05,
+ "workers": 12,
+ "elapsed_s": 1200.806188583374,
+ "budget_s": 1200.0,
+ "timed_out": true,
+ "completed_N": [
+  0,
+  4,
+  10
+ ],
+ "max_terms_retained": {
+  "0": 1,
+  "4": 90934,
+  "10": 262144
+ },
+ "mean_terms_retained": {
+  "0": 1.0,
+  "4": 22697.264705882353,
+  "10": 241676.4705882353
+ },
+ "max_truncated_l1": {
+  "0": 0.0,
+  "4": 2.6267132716344284,
+  "10": 394.02091561246016
+ },
+ "cap_hit": {
+  "0": false,
+  "4": false,
+  "10": true
+ },
+ "method": "pauli_prop",
+ "run_hash": "e355acc110d719c0",
+ "error_status": "timed_out",
+ "supervision": {
+  "wall_s": 1200.806188583374,
+  "cpu_s": 11727.67,
+  "peak_tree_rss_bytes": 4778278912,
+  "max_processes": 13,
+  "n_samples": 2004,
+  "exit_reason": "timed_out_killed",
+  "budget_s": 1200.0,
+  "sample_s": 0.5,
+  "workers": 12
+ },
+ "wall_s": 1200.806188583374,
+ "cpu_s": 11727.67,
+ "peak_tree_rss_bytes": 4778278912,
+ "max_processes": 13,
+ "exit_reason": "timed_out_killed"
+}

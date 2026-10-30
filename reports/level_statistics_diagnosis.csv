@@ -1,0 +1,6 @@
+case,sector,dim,n_levels,n_degenerate_gaps,mean_r,commutator_norm
+"hz=0 chain, full spectrum",all,4096,4096,0,0.41322897040007023,
+"hz=0 chain, symmetry sector","parity=+1,mirror=+1",1056,1056,0,0.38061449172604095,1.7973223867260254e-14
+"hz=0 chain, symmetry sector","parity=+1,mirror=-1",992,992,0,0.3997117641410119,1.758743548969948e-14
+"hz=0 chain, symmetry sector","parity=-1,mirror=+1",1024,1024,0,0.39004151425526806,1.7802345563880518e-14
+"hz=0 chain, symmetry sector","parity=-1,mirror=-1",1024,1024,0,0.39004151425535916,1.774395924129541e-14

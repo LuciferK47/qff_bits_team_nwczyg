@@ -1,0 +1,33 @@
+== rehearsal P12 Thu 29 Oct 14:43:03 IST 2026
+  ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  ret = ret.dtype.type(ret / rcount)
+                        rmse  coverage
+method  observable                    
+raw     C           0.030246  0.454545
+        G           0.038689  0.083333
+        M           0.020223  0.000000
+        kappa       0.014976  0.750000
+        m           0.024533  0.187500
+readout C           0.027011  0.454545
+        G           0.023218  0.333333
+        M           0.013855  0.250000
+        kappa       0.011945  0.750000
+        m           0.018824  0.583333
+zne_exp C           0.011172  0.909091
+        G           0.016249  1.000000
+        M           0.005840  0.500000
+        kappa       0.004803  0.666667
+        m           0.016306  0.916667
+== classical P18 Thu 29 Oct 14:49:27 IST 2026
+/home/kushagrasingh/Downloads/IBM_quant/quantum-trust/.venv/lib64/python3.12/site-packages/cotengra/hyperoptimizers/hyper.py:36: UserWarning: Couldn't import `kahypar` - skipping from default hyper optimizer and using basic `labels` method instead. `kahypar` is highly recommended for the best quality contraction paths.
+  warnings.warn(
+done P18
+== classical P24 Thu 29 Oct 15:14:56 IST 2026
+/home/kushagrasingh/Downloads/IBM_quant/quantum-trust/.venv/lib64/python3.12/site-packages/cotengra/hyperoptimizers/hyper.py:36: UserWarning: Couldn't import `kahypar` - skipping from default hyper optimizer and using basic `labels` method instead. `kahypar` is highly recommended for the best quality contraction paths.
+  warnings.warn(
+done P24
+== classical P40 Thu 29 Oct 15:45:24 IST 2026
+/home/kushagrasingh/Downloads/IBM_quant/quantum-trust/.venv/lib64/python3.12/site-packages/cotengra/hyperoptimizers/hyper.py:36: UserWarning: Couldn't import `kahypar` - skipping from default hyper optimizer and using basic `labels` method instead. `kahypar` is highly recommended for the best quality contraction paths.
+  warnings.warn(
+done P40
+== queue finished Thu 29 Oct 16:38:50 IST 2026

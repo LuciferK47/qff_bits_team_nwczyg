@@ -1,0 +1,49 @@
+      job              circuit    variant  n_2q  depth_2q  low_headroom
+  1_pilot             P18_cal0         cz     0         0         False
+  1_pilot             P18_cal1         cz     0         0         False
+  1_pilot             P18_cal2         cz     0         0         False
+  1_pilot             P18_cal3         cz     0         0         False
+  1_pilot P18_Jt0.0_fractional fractional     0         0         False
+  1_pilot P18_Jt0.4_fractional fractional    72        12         False
+  1_pilot         P18_Jt0.4_cz         cz   144        24         False
+2_forward P18_Jt0.8_fractional fractional   144        24         False
+2_forward P18_Jt1.0_fractional fractional   180        30         False
+2_forward P18_Jt2.0_fractional fractional   360        60         False
+2_forward P18_Jt3.0_fractional fractional   540        90         False
+2_forward             P40_cal0         cz     0         0         False
+2_forward             P40_cal1         cz     0         0         False
+2_forward             P40_cal2         cz     0         0         False
+2_forward             P40_cal3         cz     0         0         False
+2_forward P40_Jt0.0_fractional fractional     0         0         False
+2_forward P40_Jt0.4_fractional fractional   164        12         False
+2_forward P40_Jt1.0_fractional fractional   410        30         False
+2_forward P40_Jt2.0_fractional fractional   820        60         False
+2_forward P40_Jt3.0_fractional fractional  1230        90         False
+    3_zne      P18_Jt0.4_fold1 fractional   216        36         False
+    3_zne      P18_Jt0.4_fold2 fractional   360        60         False
+    3_zne      P18_Jt0.8_fold1 fractional   432        72         False
+    3_zne      P18_Jt0.8_fold2 fractional   720       120         False
+    3_zne      P18_Jt1.0_fold1 fractional   540        90         False
+    3_zne      P18_Jt1.0_fold2 fractional   900       150         False
+    3_zne      P40_Jt1.0_fold1 fractional  1230        90         False
+    3_zne      P40_Jt1.0_fold2 fractional  2050       150         False
+{
+ "1_pilot": {
+  "executions": 65536,
+  "detailed_s": 18.557703168,
+  "ibm_quick_rule_s": 24.9376,
+  "pdf_rate_s": 32.768
+ },
+ "2_forward": {
+  "executions": 163840,
+  "detailed_s": 43.919741952,
+  "ibm_quick_rule_s": 59.344,
+  "pdf_rate_s": 81.92
+ },
+ "3_zne": {
+  "executions": 131072,
+  "detailed_s": 36.282668032000004,
+  "ibm_quick_rule_s": 47.8752,
+  "pdf_rate_s": 65.536
+ }
+}

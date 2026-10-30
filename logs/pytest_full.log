@@ -1,0 +1,23 @@
+........................................................................ [ 47%]
+........................................................................ [ 94%]
+........                                                                 [100%]
+=============================== warnings summary ===============================
+tests/test_bench.py::test_run_all_end_to_end_saves_records_and_rows
+  /home/kushagrasingh/Downloads/IBM_quant/quantum-trust/.venv/lib64/python3.12/site-packages/cotengra/hyperoptimizers/hyper.py:36: UserWarning: Couldn't import `kahypar` - skipping from default hyper optimizer and using basic `labels` method instead. `kahypar` is highly recommended for the best quality contraction paths.
+    warnings.warn(
+
+tests/test_figures.py::test_figures_render_from_saved_data_only
+  /home/kushagrasingh/Downloads/IBM_quant/quantum-trust/src/qtrust/figures.py:116: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+    ax[0].set_ylabel("max |error| vs exact fixed circuit"); ax[-1].legend(fontsize=6, ncol=2)
+
+tests/test_pauli.py::test_untruncated_pauli_propagation_is_exact_on_small_tree
+tests/test_pauli.py::test_untruncated_pauli_propagation_is_exact_on_small_tree
+tests/test_pauli.py::test_truncation_reports_loss_and_degrades_gracefully
+tests/test_pauli.py::test_truncation_reports_loss_and_degrades_gracefully
+tests/test_pauli.py::test_budget_exhaustion_returns_only_completed_times_and_flags_timeout
+tests/test_pauli.py::test_budget_exhaustion_returns_only_completed_times_and_flags_timeout
+  /usr/lib64/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=389997) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    self.pid = os.fork()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+exit=0

@@ -1,0 +1,612 @@
+{
+ "account": 1,
+ "backend": "ibm_fez",
+ "checked_utc": "2026-10-30T10:38:21Z",
+ "ok": true,
+ "problems": [],
+ "num_qubits": 156,
+ "operation_names": [
+  "cz",
+  "delay",
+  "id",
+  "if_else",
+  "measure",
+  "measure_2",
+  "measure_reset",
+  "measure_reset_2",
+  "reset",
+  "reset_2",
+  "rx",
+  "rz",
+  "rzz",
+  "sx",
+  "x",
+  "xslow"
+ ],
+ "fractional_available": true,
+ "P18_physical_nodes": [
+  16,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  36,
+  37,
+  40,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  56
+ ],
+ "P18_cz_error": {
+  "16-23": 0.0037016738454341835,
+  "20-21": 0.007812971535657742,
+  "21-22": 0.0019820361750684523,
+  "21-36": 0.007384454609526553,
+  "22-23": 0.0015992109441547442,
+  "23-24": 0.0022771886388782137,
+  "24-25": 0.0022229776140980095,
+  "25-26": 0.0020002318444826417,
+  "25-37": 0.0017368532603777853,
+  "36-41": 0.0020974260009423706,
+  "37-45": 0.0019782828122450746,
+  "40-41": 0.002009947114608529,
+  "41-42": 0.0022485948264409084,
+  "42-43": 0.004215382674764012,
+  "43-44": 0.0034093871358434336,
+  "43-56": 0.0034366071320970915,
+  "44-45": 0.002293291874076675,
+  "45-46": 0.00296730049499902
+ },
+ "P40_physical_nodes": [
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  16,
+  17,
+  18,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  29,
+  30,
+  31,
+  36,
+  37,
+  38,
+  40,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  56,
+  60,
+  61,
+  62,
+  63,
+  64
+ ],
+ "P40_cz_error": {
+  "2-3": 0.0019263062410402043,
+  "3-4": 0.0016255258389713534,
+  "3-16": 0.0020914643394035204,
+  "4-5": 0.0024143523310048154,
+  "5-6": 0.011201995636816064,
+  "6-7": 0.0033067100037402763,
+  "7-8": 0.002570566708885169,
+  "7-17": 0.002716543631719498,
+  "8-9": 0.0019999840734630236,
+  "9-10": 0.0017473392567816382,
+  "10-11": 0.010374604132703247,
+  "11-18": 0.019463645128308782,
+  "16-23": 0.0037016738454341835,
+  "17-27": 0.02484755357721466,
+  "18-31": 0.004347549841521081,
+  "20-21": 0.007812971535657742,
+  "21-22": 0.0019820361750684523,
+  "21-36": 0.007384454609526553,
+  "22-23": 0.0015992109441547442,
+  "23-24": 0.0022771886388782137,
+  "24-25": 0.0022229776140980095,
+  "25-26": 0.0020002318444826417,
+  "25-37": 0.0017368532603777853,
+  "26-27": 0.024690458624475775,
+  "29-30": 0.0017665202829257043,
+  "29-38": 0.0018121106813636378,
+  "30-31": 0.0023063218962719734,
+  "36-41": 0.0020974260009423706,
+  "37-45": 0.0019782828122450746,
+  "40-41": 0.002009947114608529,
+  "41-42": 0.0022485948264409084,
+  "42-43": 0.004215382674764012,
+  "43-44": 0.0034093871358434336,
+  "43-56": 0.0034366071320970915,
+  "44-45": 0.002293291874076675,
+  "45-46": 0.00296730049499902,
+  "56-63": 0.005471295089060524,
+  "60-61": 0.002121948934733081,
+  "61-62": 0.002333436746433465,
+  "62-63": 0.005253672218250405,
+  "63-64": 0.037894004090364364
+ },
+ "jobs": {
+  "1_pilot": [
+   {
+    "label": "P18_cal0",
+    "shots": 4096,
+    "qpy_sha": "8148d4fc253f8870",
+    "depth_2q": 0,
+    "experiment_id": "db7924fcf8512b2e",
+    "patch": "P18",
+    "variant": "cz"
+   },
+   {
+    "label": "P18_cal1",
+    "shots": 4096,
+    "qpy_sha": "d609478ed22cb51b",
+    "depth_2q": 0,
+    "experiment_id": "d5e4fd1aa1556416",
+    "patch": "P18",
+    "variant": "cz"
+   },
+   {
+    "label": "P18_cal2",
+    "shots": 4096,
+    "qpy_sha": "06babe1ddaded5cb",
+    "depth_2q": 0,
+    "experiment_id": "a761618fe21eacfb",
+    "patch": "P18",
+    "variant": "cz"
+   },
+   {
+    "label": "P18_cal3",
+    "shots": 4096,
+    "qpy_sha": "0bd8767b8d92a22d",
+    "depth_2q": 0,
+    "experiment_id": "08936640c336fa97",
+    "patch": "P18",
+    "variant": "cz"
+   },
+   {
+    "label": "P18_Jt0.0_fractional",
+    "shots": 16384,
+    "qpy_sha": "058a5d70182690f5",
+    "depth_2q": 0,
+    "experiment_id": "13ee50eba10babb3",
+    "patch": "P18",
+    "variant": "fractional"
+   },
+   {
+    "label": "P18_Jt0.4_fractional",
+    "shots": 16384,
+    "qpy_sha": "525ca0c2c22f9456",
+    "depth_2q": 12,
+    "experiment_id": "398118b60411f6b8",
+    "patch": "P18",
+    "variant": "fractional"
+   },
+   {
+    "label": "P18_Jt0.4_cz",
+    "shots": 16384,
+    "qpy_sha": "17a38318702e7a89",
+    "depth_2q": 12,
+    "experiment_id": "68a8ef805acc8bf3",
+    "patch": "P18",
+    "variant": "cz"
+   }
+  ],
+  "2_forward": [
+   {
+    "label": "P18_Jt0.8_fractional",
+    "shots": 16384,
+    "qpy_sha": "09f9c70a34108fdd",
+    "depth_2q": 24,
+    "experiment_id": "7075b8ff61456d6a",
+    "patch": "P18",
+    "variant": "fractional"
+   },
+   {
+    "label": "P18_Jt1.0_fractional",
+    "shots": 16384,
+    "qpy_sha": "5291dba996fb20de",
+    "depth_2q": 30,
+    "experiment_id": "c31cfce25aa66f99",
+    "patch": "P18",
+    "variant": "fractional"
+   },
+   {
+    "label": "P18_Jt2.0_fractional",
+    "shots": 16384,
+    "qpy_sha": "4f0da4d9383eeac0",
+    "depth_2q": 60,
+    "experiment_id": "56d932ed141d626f",
+    "patch": "P18",
+    "variant": "fractional"
+   },
+   {
+    "label": "P18_Jt3.0_fractional",
+    "shots": 16384,
+    "qpy_sha": "f481dfbd096f24fe",
+    "depth_2q": 90,
+    "experiment_id": "c3d8cd3a62f85246",
+    "patch": "P18",
+    "variant": "fractional"
+   },
+   {
+    "label": "P40_cal0",
+    "shots": 4096,
+    "qpy_sha": "5080fe89481d15c4",
+    "depth_2q": 0,
+    "experiment_id": "b0210a6ad16bbffa",
+    "patch": "P40",
+    "variant": "cz"
+   },
+   {
+    "label": "P40_cal1",
+    "shots": 4096,
+    "qpy_sha": "3c29c6432edd23a4",
+    "depth_2q": 0,
+    "experiment_id": "43fa16c1f19604e5",
+    "patch": "P40",
+    "variant": "cz"
+   },
+   {
+    "label": "P40_cal2",
+    "shots": 4096,
+    "qpy_sha": "62881f6128dfc8cc",
+    "depth_2q": 0,
+    "experiment_id": "acf294ef7fa0671f",
+    "patch": "P40",
+    "variant": "cz"
+   },
+   {
+    "label": "P40_cal3",
+    "shots": 4096,
+    "qpy_sha": "edd137a024c54f47",
+    "depth_2q": 0,
+    "experiment_id": "8bf7dfb3c1109682",
+    "patch": "P40",
+    "variant": "cz"
+   },
+   {
+    "label": "P40_Jt0.0_fractional",
+    "shots": 16384,
+    "qpy_sha": "ff731e510f14e729",
+    "depth_2q": 0,
+    "experiment_id": "aa00b284b7f95a3d",
+    "patch": "P40",
+    "variant": "fractional"
+   },
+   {
+    "label": "P40_Jt0.4_fractional",
+    "shots": 16384,
+    "qpy_sha": "82f906bda6a3357d",
+    "depth_2q": 12,
+    "experiment_id": "1f5adae62f119841",
+    "patch": "P40",
+    "variant": "fractional"
+   },
+   {
+    "label": "P40_Jt1.0_fractional",
+    "shots": 16384,
+    "qpy_sha": "9c422bd76375eb8e",
+    "depth_2q": 30,
+    "experiment_id": "2af413549f7c40c7",
+    "patch": "P40",
+    "variant": "fractional"
+   },
+   {
+    "label": "P40_Jt2.0_fractional",
+    "shots": 16384,
+    "qpy_sha": "b9aefd756d445902",
+    "depth_2q": 60,
+    "experiment_id": "3412bb6ae612045e",
+    "patch": "P40",
+    "variant": "fractional"
+   },
+   {
+    "label": "P40_Jt3.0_fractional",
+    "shots": 16384,
+    "qpy_sha": "4968e784f48ac357",
+    "depth_2q": 90,
+    "experiment_id": "c978cf3dd7987432",
+    "patch": "P40",
+    "variant": "fractional"
+   }
+  ],
+  "3_zne": [
+   {
+    "label": "P18_Jt0.4_fold1",
+    "shots": 16384,
+    "qpy_sha": "1813ac9539fe9098",
+    "depth_2q": 36,
+    "experiment_id": "f2e1451982728fbd",
+    "patch": "P18",
+    "variant": "fractional"
+   },
+   {
+    "label": "P18_Jt0.4_fold2",
+    "shots": 16384,
+    "qpy_sha": "bd90fb0fef56f053",
+    "depth_2q": 60,
+    "experiment_id": "401037e163de71ba",
+    "patch": "P18",
+    "variant": "fractional"
+   },
+   {
+    "label": "P18_Jt0.8_fold1",
+    "shots": 16384,
+    "qpy_sha": "c00bd4a9f698f0d8",
+    "depth_2q": 72,
+    "experiment_id": "67abc895491ccf25",
+    "patch": "P18",
+    "variant": "fractional"
+   },
+   {
+    "label": "P18_Jt0.8_fold2",
+    "shots": 16384,
+    "qpy_sha": "53ab73533026ce9a",
+    "depth_2q": 120,
+    "experiment_id": "f377897b3a38b82e",
+    "patch": "P18",
+    "variant": "fractional"
+   },
+   {
+    "label": "P18_Jt1.0_fold1",
+    "shots": 16384,
+    "qpy_sha": "ebbf0764ca08b336",
+    "depth_2q": 90,
+    "experiment_id": "48e2453b3cd0cace",
+    "patch": "P18",
+    "variant": "fractional"
+   },
+   {
+    "label": "P18_Jt1.0_fold2",
+    "shots": 16384,
+    "qpy_sha": "8a728a578200557a",
+    "depth_2q": 150,
+    "experiment_id": "fc5fdb3933417120",
+    "patch": "P18",
+    "variant": "fractional"
+   },
+   {
+    "label": "P40_Jt1.0_fold1",
+    "shots": 16384,
+    "qpy_sha": "7076fef16cdfda5f",
+    "depth_2q": 90,
+    "experiment_id": "3868e531af4ac3e4",
+    "patch": "P40",
+    "variant": "fractional"
+   },
+   {
+    "label": "P40_Jt1.0_fold2",
+    "shots": 16384,
+    "qpy_sha": "4a1bd6a0e8871679",
+    "depth_2q": 150,
+    "experiment_id": "ad3505546b96b9ea",
+    "patch": "P40",
+    "variant": "fractional"
+   }
+  ]
+ },
+ "depth_diffs": [
+  {
+   "circuit": "P18_cal0",
+   "dry_depth_2q": 0,
+   "live_depth_2q": 0,
+   "qpy_sha_live": "8148d4fc253f8870",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_cal1",
+   "dry_depth_2q": 0,
+   "live_depth_2q": 0,
+   "qpy_sha_live": "d609478ed22cb51b",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_cal2",
+   "dry_depth_2q": 0,
+   "live_depth_2q": 0,
+   "qpy_sha_live": "06babe1ddaded5cb",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_cal3",
+   "dry_depth_2q": 0,
+   "live_depth_2q": 0,
+   "qpy_sha_live": "0bd8767b8d92a22d",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_Jt0.0_fractional",
+   "dry_depth_2q": 0,
+   "live_depth_2q": 0,
+   "qpy_sha_live": "058a5d70182690f5",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_Jt0.4_fractional",
+   "dry_depth_2q": 12,
+   "live_depth_2q": 12,
+   "qpy_sha_live": "525ca0c2c22f9456",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_Jt0.4_cz",
+   "dry_depth_2q": 24,
+   "live_depth_2q": 12,
+   "qpy_sha_live": "17a38318702e7a89",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_Jt0.8_fractional",
+   "dry_depth_2q": 24,
+   "live_depth_2q": 24,
+   "qpy_sha_live": "09f9c70a34108fdd",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_Jt1.0_fractional",
+   "dry_depth_2q": 30,
+   "live_depth_2q": 30,
+   "qpy_sha_live": "5291dba996fb20de",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_Jt2.0_fractional",
+   "dry_depth_2q": 60,
+   "live_depth_2q": 60,
+   "qpy_sha_live": "4f0da4d9383eeac0",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_Jt3.0_fractional",
+   "dry_depth_2q": 90,
+   "live_depth_2q": 90,
+   "qpy_sha_live": "f481dfbd096f24fe",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P40_cal0",
+   "dry_depth_2q": 0,
+   "live_depth_2q": 0,
+   "qpy_sha_live": "5080fe89481d15c4",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P40_cal1",
+   "dry_depth_2q": 0,
+   "live_depth_2q": 0,
+   "qpy_sha_live": "3c29c6432edd23a4",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P40_cal2",
+   "dry_depth_2q": 0,
+   "live_depth_2q": 0,
+   "qpy_sha_live": "62881f6128dfc8cc",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P40_cal3",
+   "dry_depth_2q": 0,
+   "live_depth_2q": 0,
+   "qpy_sha_live": "edd137a024c54f47",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P40_Jt0.0_fractional",
+   "dry_depth_2q": 0,
+   "live_depth_2q": 0,
+   "qpy_sha_live": "ff731e510f14e729",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P40_Jt0.4_fractional",
+   "dry_depth_2q": 12,
+   "live_depth_2q": 12,
+   "qpy_sha_live": "82f906bda6a3357d",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P40_Jt1.0_fractional",
+   "dry_depth_2q": 30,
+   "live_depth_2q": 30,
+   "qpy_sha_live": "9c422bd76375eb8e",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P40_Jt2.0_fractional",
+   "dry_depth_2q": 60,
+   "live_depth_2q": 60,
+   "qpy_sha_live": "b9aefd756d445902",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P40_Jt3.0_fractional",
+   "dry_depth_2q": 90,
+   "live_depth_2q": 90,
+   "qpy_sha_live": "4968e784f48ac357",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_Jt0.4_fold1",
+   "dry_depth_2q": 36,
+   "live_depth_2q": 36,
+   "qpy_sha_live": "1813ac9539fe9098",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_Jt0.4_fold2",
+   "dry_depth_2q": 60,
+   "live_depth_2q": 60,
+   "qpy_sha_live": "bd90fb0fef56f053",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_Jt0.8_fold1",
+   "dry_depth_2q": 72,
+   "live_depth_2q": 72,
+   "qpy_sha_live": "c00bd4a9f698f0d8",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_Jt0.8_fold2",
+   "dry_depth_2q": 120,
+   "live_depth_2q": 120,
+   "qpy_sha_live": "53ab73533026ce9a",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_Jt1.0_fold1",
+   "dry_depth_2q": 90,
+   "live_depth_2q": 90,
+   "qpy_sha_live": "ebbf0764ca08b336",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P18_Jt1.0_fold2",
+   "dry_depth_2q": 150,
+   "live_depth_2q": 150,
+   "qpy_sha_live": "8a728a578200557a",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P40_Jt1.0_fold1",
+   "dry_depth_2q": 90,
+   "live_depth_2q": 90,
+   "qpy_sha_live": "7076fef16cdfda5f",
+   "depth_grew": false
+  },
+  {
+   "circuit": "P40_Jt1.0_fold2",
+   "dry_depth_2q": 150,
+   "live_depth_2q": 150,
+   "qpy_sha_live": "4a1bd6a0e8871679",
+   "depth_grew": false
+  }
+ ],
+ "any_depth_grew": false,
+ "backend_rep_delay": 0.00025
+}

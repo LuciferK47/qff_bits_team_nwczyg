@@ -1,0 +1,36 @@
+# Empirical trust policy. DECLARED BEFORE ANY HARDWARE DATA EXISTS (declared_on below); change it only
+# before hardware results are viewed, and say so in the report. This is a transparent empirical policy,
+# NOT a mathematical certification of correctness.
+version: 2
+declared_on: "2026-10-29"
+amended_on: "2026-10-30"   # v2 adds the `systematics` block below; still before any hardware data exists
+hardware_data_seen_when_declared: false
+
+tolerances_abs:
+  trotter_dt_halving: 0.02        # problem statement target for max |obs(dt) - obs(dt/2)|
+  classical_vs_exact: 0.02        # approximate classical method vs exact fixed circuit
+  hardware_vs_exact: 0.05         # PROPOSED team tolerance for |corrected hardware - exact fixed circuit|
+
+# status of (hardware - reference) for one observable at one (patch, time):
+#   supported     the whole 95% bootstrap CI of (hardware - reference) lies inside [-eps, +eps]
+#                 AND the signal is resolved (see below)
+#   inconsistent  the whole CI lies outside [-eps, +eps]
+#   inconclusive  the CI straddles an edge of the acceptance band, or the signal is unresolved,
+#                 or the reference itself is not validated
+#   mitigation_failed  the estimator gave a non-finite point/interval (never supported / inconsistent)
+#   classical_only / no_reference / no_hardware  : the comparison could not be made
+signal_resolved:
+  rule: "reference |value| >= eps_hardware OR hardware 95% CI excludes 0"
+  why: "a near-zero cumulant would otherwise count as 'supported' by an uninformative estimate of 0"
+
+bootstrap:
+  min_valid_fraction: 0.99   # added 2026-10-29 (audit CRITICAL 01): below this, or a non-finite point, NO interval/verdict
+  replicates: 2000
+  seed: 20261029
+  resample: "multinomial over unique bitstrings within each execution block, calibration included"
+  interval: "percentile 95%"
+
+systematics:                    # added 2026-10-30 (v2), pre-hardware: gates for systematics_validated on hardware rows
+  readout_independence_z_max: 4.0   # every coupled pair's flip-correlation |z| must stay below this
+  heldout_rmse_max: 0.05            # ZNE rows need the selected model's RMSE vs exact at the held-out time <= this (= hardware_vs_exact)
+  drift_z_max: 4.0                  # account 2 vs account 1 on the identical manifest: |z| above this demotes `supported` to `inconclusive`

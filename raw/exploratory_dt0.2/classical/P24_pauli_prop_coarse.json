@@ -1,0 +1,68 @@
+{
+ "graph_id": "P24",
+ "n": 24,
+ "dt": 0.2,
+ "reference": "full_exact",
+ "host": {
+  "cpu": "12th Gen Intel(R) Core(TM) i7-1255U",
+  "logical_cores": 12,
+  "gpu": "none used",
+  "platform": "Linux-7.2.10-100.fc43.x86_64-x86_64-with-glibc2.42",
+  "python": "3.12.15"
+ },
+ "setting": "coarse",
+ "max_terms": 4096,
+ "atol": 0.001,
+ "workers": 12,
+ "elapsed_s": 66.23092937469482,
+ "budget_s": 300.0,
+ "timed_out": false,
+ "completed_N": [
+  0,
+  2,
+  5,
+  10,
+  15,
+  20,
+  25
+ ],
+ "peak_rss_bytes_per_worker": 1983488000,
+ "max_terms_retained": {
+  "0": 1,
+  "2": 3096,
+  "5": 4096,
+  "10": 4096,
+  "15": 4047,
+  "20": 3071,
+  "25": 1184
+ },
+ "mean_terms_retained": {
+  "0": 1.0,
+  "2": 834.475,
+  "5": 3618.5875,
+  "10": 3298.4875,
+  "15": 1208.7125,
+  "20": 469.525,
+  "25": 160.625
+ },
+ "max_truncated_l1": {
+  "0": 0.0,
+  "2": 8.437115479083982,
+  "5": 162.4309705379702,
+  "10": 471.00504911987287,
+  "15": 489.17504795005107,
+  "20": 532.9337401956303,
+  "25": 553.5096103373089
+ },
+ "cap_hit": {
+  "0": false,
+  "2": false,
+  "5": true,
+  "10": true,
+  "15": false,
+  "20": false,
+  "25": false
+ },
+ "method": "pauli_prop",
+ "error_status": "ok"
+}

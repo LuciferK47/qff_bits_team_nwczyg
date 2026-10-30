@@ -1,0 +1,97 @@
+{
+ "graph_id": "P18",
+ "physical_id": "d8d2727881dd5868",
+ "n": 18,
+ "dt": 0.1,
+ "J": 1.0,
+ "hx": 1.25,
+ "hz": -0.6,
+ "reference": "full_exact",
+ "reference_times": [
+  0,
+  4,
+  10,
+  20,
+  30,
+  40,
+  50
+ ],
+ "host": {
+  "cpu": "12th Gen Intel(R) Core(TM) i7-1255U",
+  "logical_cores": 12,
+  "gpu": "none used",
+  "platform": "Linux-7.2.10-100.fc43.x86_64-x86_64-with-glibc2.42",
+  "python": "3.12.15"
+ },
+ "setting": "medium",
+ "max_terms": 32768,
+ "atol": 0.0001,
+ "workers": 12,
+ "elapsed_s": 368.6987533569336,
+ "budget_s": null,
+ "timed_out": false,
+ "completed_N": [
+  0,
+  4,
+  10,
+  20,
+  30,
+  40,
+  50
+ ],
+ "max_terms_retained": {
+  "0": 1,
+  "4": 15935,
+  "10": 32768,
+  "20": 32768,
+  "30": 32768,
+  "40": 31473,
+  "50": 26455
+ },
+ "mean_terms_retained": {
+  "0": 1.0,
+  "4": 4611.588235294118,
+  "10": 30027.235294117647,
+  "20": 32245.132352941175,
+  "30": 28637.029411764706,
+  "40": 18589.16176470588,
+  "50": 7878.382352941177
+ },
+ "max_truncated_l1": {
+  "0": 0.0,
+  "4": 6.2214211265340875,
+  "10": 325.82187665532587,
+  "20": 1500.9457676898435,
+  "30": 1795.8746169388814,
+  "40": 1907.557244547268,
+  "50": 2177.084977533268
+ },
+ "cap_hit": {
+  "0": false,
+  "4": false,
+  "10": true,
+  "20": true,
+  "30": true,
+  "40": false,
+  "50": false
+ },
+ "method": "pauli_prop",
+ "run_hash": "7b20ac2608f2ad83",
+ "error_status": "ok",
+ "supervision": {
+  "wall_s": 372.030775308609,
+  "cpu_s": 3528.3399999999997,
+  "peak_tree_rss_bytes": 2762715136,
+  "max_processes": 13,
+  "n_samples": 643,
+  "exit_reason": "ok",
+  "budget_s": 1200.0,
+  "sample_s": 0.5,
+  "workers": 12
+ },
+ "wall_s": 372.030775308609,
+ "cpu_s": 3528.3399999999997,
+ "peak_tree_rss_bytes": 2762715136,
+ "max_processes": 13,
+ "exit_reason": "ok"
+}
