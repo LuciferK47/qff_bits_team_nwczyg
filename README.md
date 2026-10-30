@@ -4,11 +4,12 @@ Validated Trotterised mixed-field Ising dynamics on IBM heavy-hex device patches
 `H = -J Σ_E Z_i Z_j - Σ_i (h_x X_i + h_z Z_i)`, `J=1, h_x=1.25, h_z=-0.60`, start `|0…0⟩`,
 second-order split `U_N = S(δt)^N`, `S = F(δt/2) B(δt) F(δt/2)` (BITS Goa × IBM Qiskit Fall Fest, Problem B).
 
-> **Status (offline phase).** The offline pipeline is implemented and tested at the frozen **J·δt = 0.1**: exact references,
+> **Status (30 Oct 2026).** The offline pipeline is implemented and tested at the frozen **J·δt = 0.1**: exact references,
 > classical baselines under hard 20-minute budgets, a simulated mitigation rehearsal, and an approval-gated hardware path.
-> **No QPU job has been submitted and there are no hardware results**; live-backend checks, the pilot and the hardware
-> analysis are NOT EXECUTED. Offline data come from the `FakeFez` snapshot (labelled *offline, NOT live*; fractional-gate timing
-> is an assumption); noisy-simulation results are labelled `simulated_noisy` and can never be `supported`.
+> **Hardware:** after the signed pre-registration (sha `5360308738170cc5410562cb971a3050`) and a passing live check on `ibm_fez` (fractional gates available),
+> account 1 ran all 28 planned circuits (3 jobs, 101 s of QPU time; raw counts in `raw/hardware/account1/`). **The analysis of these counts, and the
+> account-2 repeat for the drift check, are NOT yet reported here**; until they are, no hardware trust verdict is claimed.
+> Offline data come from the `FakeFez` snapshot (labelled *offline, NOT live*); noisy-simulation results are labelled `simulated_noisy` and can never be `supported`.
 > See `reports/STATUS.md`, `reports/findings.md`, `reports/validation.md` and `reports/audit_response.md`.
 
 ## Team
@@ -83,4 +84,13 @@ Account 2 repeats the identical manifest in a later calibration window as a drif
 
 ## Reused packages and AI assistance
 Qiskit, Qiskit Aer, qiskit-ibm-runtime (FoldRzzAngle, FakeFez), `pauli-prop` (IBM), `quimb`, numpy/scipy/pandas/networkx/matplotlib.
-This repository was written with AI assistance (Claude); the team must be able to explain and reproduce every check above.
+**AI use disclosure.** An AI assistant (Claude) was used extensively for implementation work: writing code, tests, scripts and draft reports.
+After that first implementation, the authors directed the changes that followed (for example freezing J·δt = 0.1, the
+pre-registration and two-person approval gate, the two-account hardware plan and the choice of what to submit). The authors chose the problem setup
+and the policies, ran every hardware job themselves on their own IBM accounts, signed the pre-hardware approval,
+and are responsible for the submission. Every check listed above is a test in `tests/` that can be re-run (`pytest`).
+
+**Review and corrections.** An earlier version of this project was audited, and the audit found real problems (for example NaN mitigation
+estimates receiving trust verdicts, classical benchmarks at a different time step than the hardware plan, and an incomplete trust rule). Each
+finding was fixed, re-tested and documented with its evidence in `reports/audit_response.md`; later corrections found during the work (a missing
+unfolded baseline circuit in the hardware manifest, wrong numbers in a draft findings table) are recorded in the reports as well.

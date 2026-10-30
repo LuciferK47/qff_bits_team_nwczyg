@@ -58,8 +58,9 @@ Held-out time Jt = 0.8, model picked on Jt = 0.4, 1.0 only:
   validates the *pipeline*, not the device.
 
 ## 4. Hardware
-**NOT EXECUTED.** The manifest is compiled and gated (`reports/hardware_manifest.md`), estimated 99–180 s of QPU time per account, but nothing has been
-submitted. The trust map for hardware is therefore empty by design. Trust statuses for simulated rows are `inconclusive`/`inconsistent`/`mitigation_failed` and never `supported`.
+Account 1 ran the pre-registered manifest on `ibm_fez` on 2026-10-30 (pilot, forward, ZNE: 28 circuits, 101 s measured usage; raw counts saved in
+`raw/hardware/account1/`). **The analysis of these counts is NOT yet reported here**, and the account-2 repeat (drift check) has NOT been run. No
+hardware trust statement is made until both are done. Trust statuses for simulated rows are `inconclusive`/`inconsistent`/`mitigation_failed` and never `supported`.
 
 ## 5. What we can honestly claim now
 1. A validated, reproducible pipeline (circuits, exact references, classical baselines with honest resource limits, mitigation with held-out checks, multi-gate trust policy) exists and is tested.
