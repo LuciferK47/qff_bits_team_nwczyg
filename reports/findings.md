@@ -63,7 +63,7 @@ Pre-registered manifest (sha `5360308738170cc5410562cb971a3050`): 28 circuits in
 **Scope limits:** one account and one calibration window, so the cross-account drift gate has NOT been applied and every `supported` below is provisional;
 the account-2 repeat has NOT been run. Exact references exist for P18 at Jt 0, 0.4, 0.8, 1, 2, 3 and for P40 only at Jt 0 and 0.4; P40 at larger Jt has no reference.
 
-- **Raw and readout-corrected estimates.** Of the rows with an exact reference, 247 raw (and 275 readout-corrected, counting `supported` in the log) rows are `supported`. Fraction of `supported`
+- **Raw and readout-corrected estimates.** Of the rows with an exact reference, 247 raw and 271 readout-corrected rows are `supported` (P18 + P40). Fraction of `supported`
   (raw + readout rows together) falls with time: 200/270 at Jt 0, 160/270 at 0.4, then 41/90, 33/90, 44/90, 40/90 at Jt 0.8, 1, 2, 3 (P18 only from 0.8 on).
   P18 RMS error vs exact over all observables, raw / readout: m 0.104 / 0.093, C 0.074 / 0.079, G 0.041 / 0.035, κ 0.026 / 0.025, M 0.046 / 0.037.
   Readout correction changes these only slightly. Median |error| is about 0.02 at Jt 0.4 and 0.03–0.05 beyond, with worst cases up to 0.47 (Jt 1).
