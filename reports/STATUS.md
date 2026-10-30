@@ -1,6 +1,6 @@
 # Project status: "When can we trust a quantum simulation?" (Problem B)
 
-Date: 2026-10-30. Team: TEAM-NWCZYG. Target backend: `ibm_fez`. Account 1 hardware data exist (28 circuits, 101 s, `raw/hardware/account1/`); **their analysis and the account-2 repeat are not yet reported.**
+Date: 2026-10-30. Team: TEAM-NWCZYG. Target backend: `ibm_fez`. Account 1 hardware data exist (28 circuits, 101 s, `raw/hardware/account1/`); **single-account analysis in `findings.md` §4 (ZNE failed its held-out gate); the account-2 repeat is NOT yet run.**
 All data are offline: exact numerics, classical approximations, FakeFez snapshot (offline, NOT live), and `simulated_noisy` runs (calibration-derived noise, not hardware).
 
 ## Decisions fixed

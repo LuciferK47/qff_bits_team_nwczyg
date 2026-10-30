@@ -7,8 +7,8 @@ second-order split `U_N = S(δt)^N`, `S = F(δt/2) B(δt) F(δt/2)` (BITS Goa ×
 > **Status (30 Oct 2026).** The offline pipeline is implemented and tested at the frozen **J·δt = 0.1**: exact references,
 > classical baselines under hard 20-minute budgets, a simulated mitigation rehearsal, and an approval-gated hardware path.
 > **Hardware:** after the signed pre-registration (sha `5360308738170cc5410562cb971a3050`) and a passing live check on `ibm_fez` (fractional gates available),
-> account 1 ran all 28 planned circuits (3 jobs, 101 s of QPU time; raw counts in `raw/hardware/account1/`). **The analysis of these counts, and the
-> account-2 repeat for the drift check, are NOT yet reported here**; until they are, no hardware trust verdict is claimed.
+> account 1 ran all 28 planned circuits (3 jobs, 101 s of QPU time; raw counts in `raw/hardware/account1/`). The single-account analysis is in `reports/findings.md` §4
+> (ZNE did not pass its held-out check and is never `supported`; raw/readout verdicts are provisional because the **account-2 repeat for the drift check has NOT been run**).
 > Offline data come from the `FakeFez` snapshot (labelled *offline, NOT live*); noisy-simulation results are labelled `simulated_noisy` and can never be `supported`.
 > See `reports/STATUS.md`, `reports/findings.md`, `reports/validation.md` and `reports/audit_response.md`.
 
