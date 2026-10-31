@@ -1,0 +1,13 @@
+........................................................................ [ 42%]
+........................................................................ [ 85%]
+........................                                                 [100%]
+results.csv: 10878 rows | resources.csv: 59 rows | metadata.json keys: 17
+source                   validation_status
+classical_approximation  exact_reference      7404
+                         no_reference         1260
+exact_numerics           reference            1194
+simulated_noisy          inconclusive          969
+                         inconsistent           19
+                         mitigation_failed      32
+release verified in /tmp/tmp.3WD3d35NRZ
+exit=0
