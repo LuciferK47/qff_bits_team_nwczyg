@@ -392,6 +392,8 @@ def all_figures():
         trajectories(pid)
     classical_accuracy(); p40_predictions(); resources()
     hardware_figures(); hz_reversal(); cumulant_bias_fig()
+    from .showcase import showcase_figures
+    showcase_figures()
     for pid in ("P12",):
         rehearsal(pid)
 

@@ -28,3 +28,18 @@ def test_figures_never_read_exploratory_dt02_data(mini, tmp_path):
     (raw / "exploratory_dt0.2" / "classical").mkdir(parents=True)
     (raw / "exploratory_dt0.2" / "classical" / "P12_mps_chi64.csv").write_text("graph_id\nP12\n")
     assert F._runs(raw / "classical_dt0.1", "P12") and not F._runs(raw / "classical_dt0.1", "P99")
+
+
+def test_showcase_figures_noop_without_hardware_and_render_with_it(mini, tmp_path, monkeypatch):
+    from pathlib import Path
+
+    from qtrust import showcase as S
+    raw, figs = mini
+    S.showcase_figures()                                   # no hardware table in the mini data: nothing is drawn, nothing fails
+    assert not list(figs.glob("showcase_*"))
+    real = Path(__file__).resolve().parents[1] / "raw"
+    if (real / "hardware" / "hardware_results.csv").exists():
+        monkeypatch.setattr(F, "RAW", real)
+        S.rmse_surface_3d("P18"); S.drift_surface_3d("P18")
+        assert {p.name for p in figs.glob("showcase_*")} == {"showcase_P18_rmse_surface_3d.png", "showcase_P18_drift_3d.png"}
+

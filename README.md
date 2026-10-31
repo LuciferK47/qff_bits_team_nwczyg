@@ -44,6 +44,59 @@ Estimator health: 69 of 4 230 hardware estimates are non-finite and 30 more lack
 
 **Where to read next:** `reports/FINAL_SCIENTIFIC_REPORT.md` (start here) · `reports/SUBMISSION_COMPLIANCE.md` (requirement-by-requirement evidence) · `reports/LIMITATIONS.md` · `reports/REPRODUCIBILITY.md` · `reports/HARDWARE_PROVENANCE.md` · `reports/ESTIMATOR_HEALTH.md` · `reports/findings.md`.
 
+## How it works
+
+```mermaid
+flowchart LR
+    A["Device patch<br/>P12 · P18 · P24 · P40<br/>(ibm_fez couplings)"] --> B["Fixed circuit<br/>S(δt)^N, J·δt = 0.1"]
+    B --> C["Exact reference<br/>sparse expm · light cone"]
+    B --> D["Classical approximation<br/>MPS χ32-256 · Pauli propagation"]
+    B --> E["ibm_fez, 2 accounts<br/>6 jobs · 202 s"]
+    E --> F["Readout correction<br/>+ manual-fold ZNE"]
+    C --> G{"Trust policy<br/>(frozen before hardware)"}
+    D --> G
+    F --> G
+    G --> H["supported · inconsistent · inconclusive<br/>mitigation_failed · no_reference"]
+```
+
+**How a verdict is decided** (`src/qtrust/trust.py`, thresholds in `configs/trust_policy.yaml`, fixed before any hardware data):
+
+```mermaid
+flowchart TD
+    S["one estimate with its 95 % bootstrap interval"] --> R{"exact reference exists?"}
+    R -- no --> NR["no_reference"]
+    R -- yes --> F{"estimate and interval finite?"}
+    F -- no --> MF["mitigation_failed"]
+    F -- yes --> W{"interval of (estimate - reference)<br/>entirely outside ±0.05?"}
+    W -- yes --> IC["inconsistent"]
+    W -- no --> Q{"inside ±0.05 and signal resolved?"}
+    Q -- no --> IN["inconclusive"]
+    Q -- yes --> Y{"systematics gates pass?<br/>readout independence · held-out ZNE · cross-window drift"}
+    Y -- no --> IN
+    Y -- yes --> OK["supported"]
+```
+
+Simulated data can never reach `supported`. "No reference" and "estimator failed" are separate axes (`reports/ESTIMATOR_HEALTH.md`).
+
+## 3-D views of the hardware data
+All heights are measured values from `raw/hardware/hardware_results.csv`; nothing is modelled. Regenerate with `python scripts/reproduce_all.py`.
+
+**P18 patch on `ibm_fez`, Jt = 0.8.** Each stem stands on a qubit of the real heavy-hex patch and its height is the single-site error after readout correction; edge colour is the edge-covariance error. The same circuits in the two windows give visibly different error landscapes.
+
+![P18 patch error in 3-D](figures/showcase_P18_patch_error_3d.png)
+
+**Error by observable class and time.** The red plane is the 0.05 tolerance. Four-site classes (G, κ) have the smaller error but also the smaller signal, which is why they become unresolvable first.
+
+![P18 RMSE surface](figures/showcase_P18_rmse_surface_3d.png)
+
+**Window-to-window disagreement.** The fraction of matched estimates beyond 4 shot-noise SEs (correlated comparisons; account and calibration window are confounded).
+
+<p align="center"><img src="figures/showcase_P18_drift_3d.png" width="60%" alt="P18 drift by class and Jt"></p>
+
+**P40 at Jt = 0 (no entangling gates).** Any deviation from m = 1 here is preparation or readout error. Account 2's largest is 0.48 against 0.16 for account 1.
+
+![P40 Jt=0 raw error in 3-D](figures/showcase_P40_Jt0_3d.png)
+
 ## Team
 
 | member | QFF registration ID | email |
@@ -141,7 +194,7 @@ classical timings are for one laptop CPU; the optional disturbance-spreading ext
 ## Reused packages and AI assistance
 Qiskit, Qiskit Aer, qiskit-ibm-runtime (FoldRzzAngle, FakeFez), `pauli-prop` (IBM), `quimb`, numpy/scipy/pandas/networkx/matplotlib.
 
-**AI use disclosure.** An AI assistant (Claude) was used  for implementation work: tests, scripts and draft reports.
+**AI use disclosure.** An AI assistant (Claude) was used for implementation work: code, tests, scripts and draft reports.
 After that first implementation, the authors directed the changes that followed (for example freezing J·δt = 0.1, the pre-registration and two-person approval gate, the two-account hardware plan and the choice of what to submit). The authors chose the problem setup
 and the policies, ran every hardware job themselves on their own IBM accounts, gave the typed, hash-tied pre-hardware approval, and are responsible for the submission. Every check listed above is a test in `tests/` that can be re-run (`pytest`).
 
