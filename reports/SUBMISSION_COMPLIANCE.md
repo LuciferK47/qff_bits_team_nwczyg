@@ -36,7 +36,7 @@ Each line item of the problem statement ("When can we trust a quantum simulation
 | item | status | evidence / note |
 |---|---|---|
 | Private GitHub repository named `qff_bits_<team_name>` | PASS | `qff_bits_team_nwczyg` (registered name TEAM-NWCZYG, lowercase with underscores as the rulebook recommends); private (checked with the GitHub API on 2026-10-31). |
-| Collaborator `AresTheWarGod42` | HUMAN | invitation sent (shows as pending); the organisers have to accept it. |
+| Collaborator `AresTheWarGod42` | PASS (invited) / HUMAN (acceptance) | rulebook 5.2 step 3 asks to confirm it "shows as invited or added": the invitation shows as pending. Access takes effect when the organisers accept; not claimed as accepted. |
 | Ready before 31 Oct 2026 11:59 PM IST | HUMAN | final push time is the last commit on `main`. |
 | Repository identifies the project and all members with names and registration details | PASS | README Team table (names, QFF IDs, emails). |
 | README: overview, quantum component, setup/run | PASS | `README.md`. |
@@ -44,6 +44,7 @@ Each line item of the problem statement ("When can we trust a quantum simulation
 | Further organiser instructions followed | HUMAN | none were received by the team; the organisers did not answer the team's questions. |
 
 ## Human-only checklist (cannot be done by the code)
+- [ ] Release verification of the exact final archive: `FINAL_RELEASE_VERIFICATION.md` (repository root).
 - [x] Each teammate ran `python -m qtrust.cli verify-jobs --account N` and pushed `raw/hardware/accountN/job_verification.json` (IBM-side confirmation: 6/6 jobs DONE, usage matches; 2026-10-31).
 - [ ] `AresTheWarGod42` has accepted the collaborator invitation (Settings -> Collaborators).
 - [ ] The repository is still **Private**.

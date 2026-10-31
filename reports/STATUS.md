@@ -8,7 +8,7 @@ Offline data: exact numerics, classical approximations, FakeFez snapshot (offlin
 - Hard 20-minute wall-clock limit per (patch, method, setting) classical run.
 - Organisers (2026-10-30): QPU time = each teammate's own free Open Plan account (10 min/month each); any backend/method allowed; mentor reviews after the
   answer is screened; a 100-minute reserve and a high-VRAM machine exist "if needed". Still unanswered: deadlines, upload location, outage fallback, job limits.
-- Approval gate before any QPU job: signed pre-registration (hashes of policy, configs, analysis code, planned circuits) + both teammates' written approval.
+- Approval gate before any QPU job: pre-registration (typed, hash-tied approval, not a cryptographic signature) (hashes of policy, configs, analysis code, planned circuits) + both teammates' written approval.
   Account 1 = pilot + full manifest; account 2 = repeat of the identical manifest in a later calibration window (drift check).
 
 ## Done (offline sections; hardware is in findings.md §4; details in `validation.md`, `findings.md`, `audit_response.md`)

@@ -32,8 +32,9 @@ Running it twice gives identical scientific columns (`tests/test_export.py::test
 ```bash
 python -m pytest            # offline; includes the frozen-evidence, export-consistency and hardware-analysis checks
 ```
-`tests/test_evidence.py` re-hashes every raw hardware file and the signed pre-registration and re-derives 6 jobs / 56 executions / 720 896 shots / 202 s;
+`tests/test_evidence.py` re-hashes every raw hardware file and the pre-registration/approval hash and re-derives 6 jobs / 56 executions / 720 896 shots / 202 s;
 `tests/test_export.py` checks that the 4 230 hardware rows in `results.csv` equal `raw/hardware/hardware_results.csv` row by row and that results, resources and metadata agree;
+`tests/test_verification_evidence.py` checks the supplementary ledger of the two IBM verification files, that no non-finite estimate is `supported`, and that this document names a current clean-room log;
 `tests/test_hwanalysis.py` reproduces the numbers quoted in the reports (held-out RMSEs, the readout pair 16-23 diagnostic, drift counts).
 
 ## Clean-room check
@@ -41,7 +42,9 @@ python -m pytest            # offline; includes the frozen-evidence, export-cons
 python scripts/build_zip.py                      # dist/TEAM-NWCZYG.zip (no credentials, no .venv)
 scripts/verify_release.sh dist/TEAM-NWCZYG.zip   # unzip, fresh venv from the lock, full tests, offline reproduction (needs network only to install wheels)
 ```
-The log of the last run is `logs/verify_release.log`.
+The latest clean-room log is `logs/verify_release3.log` (full hardware build: 15 108 results rows, 121 resources rows, 18 metadata keys, exit 0). `logs/verify_release.log` and `verify_release2.log` are
+older offline-only builds, kept as history. A clean-room run cannot be recorded inside the archive it verifies, so the run on the exact final archive (command, exit code, SHA-256 of the zip) is recorded outside it
+in `FINAL_RELEASE_VERIFICATION.md` at the repository root.
 
 ## Regenerating the hardware analysis from the raw counts
 ```bash

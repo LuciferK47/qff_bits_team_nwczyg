@@ -1,0 +1,9 @@
+account,graph_id,method,reference_kind,finite_estimate,finite_interval,failed_reason,mitigation_valid,trust_status,n_rows
+1,P18,zne_exp,full_exact,False,False,sign_change,False,mitigation_failed,21
+1,P18,zne_exp,full_exact,True,False,insufficient_finite_bootstrap,False,mitigation_failed,7
+1,P40,zne_exp,none,False,False,sign_change,False,no_reference,21
+1,P40,zne_exp,none,True,False,insufficient_finite_bootstrap,False,no_reference,5
+2,P18,zne_exp,full_exact,False,False,sign_change,False,mitigation_failed,16
+2,P18,zne_exp,full_exact,True,False,insufficient_finite_bootstrap,False,mitigation_failed,11
+2,P40,zne_exp,none,False,False,sign_change,False,no_reference,11
+2,P40,zne_exp,none,True,False,insufficient_finite_bootstrap,False,no_reference,7

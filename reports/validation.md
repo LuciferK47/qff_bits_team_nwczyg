@@ -103,4 +103,4 @@ Executed on 2026-10-30/31: 6 jobs, 56 circuit executions, 720 896 shots, 202 s r
 
 ## 7. Estimator check on the exact case
 `reports/cumulant_bias_exact.csv`: sampling the exact P18 distribution at the hardware shot count (200 repetitions per time) and applying the pipeline's raw-moment estimator, the mean bias of every class is at most 0.0013 in absolute value
-(shot-noise SD 0.002-0.008); percentile-bootstrap coverage of the 95 % interval 0.83-0.98 (30 replicates per observable). Validates the estimator, not the device.
+(shot-noise SD 0.002-0.008); percentile-bootstrap coverage of the 95 % interval 0.83-0.98 (30 replicates per observable, so each coverage value is uncertain by about ±0.05). Validates the estimator, not the device.

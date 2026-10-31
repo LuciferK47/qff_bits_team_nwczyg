@@ -23,8 +23,8 @@ from .params import Params, load_params
 ROOT = Path(__file__).resolve().parents[2]
 SEED = 20261029
 AI_DISCLOSURE = ("An AI assistant (Claude, via Claude Code) was used extensively for implementation (code, tests, scripts, draft "
-                 "reports); the authors directed the changes, ran every hardware job on their own accounts and signed the "
-                 "pre-hardware approval. Third-party packages: Qiskit, Qiskit Aer, qiskit-ibm-runtime, "
+                 "reports); the authors directed the changes, ran every hardware job on their own accounts and gave the "
+                 "typed, hash-tied pre-hardware approval. Third-party packages: Qiskit, Qiskit Aer, qiskit-ibm-runtime, "
                  "pauli-prop (IBM), quimb, numpy, scipy, pandas, networkx, matplotlib, psutil.")
 
 

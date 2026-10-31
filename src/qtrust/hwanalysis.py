@@ -163,8 +163,24 @@ def cumulant_bias(root: Path = ROOT, pid: str = "P18", Jts=(0.4, 0.8, 1.0), shot
 
 
 # ------------------------------------------------------------------ driver
+def estimator_health(root: Path = ROOT) -> pd.DataFrame:
+    """Read-only tally of estimator failures in the frozen hardware table.
+
+    "Reference missing" (no validated reference) and "estimator failed" (non-finite estimate or failed interval) are
+    independent axes; the frozen trust_status keeps whichever the policy's precedence picked."""
+    hw = pd.read_csv(root / "raw" / "hardware" / "hardware_results.csv")
+    hw["finite_estimate"] = np.isfinite(hw["estimate"])
+    hw["finite_interval"] = np.isfinite(hw["ci_low"]) & np.isfinite(hw["ci_high"])
+    hw["failed_reason"] = hw["failed_reason"].fillna("none")
+    keys = ["account", "graph_id", "method", "reference_kind", "finite_estimate", "finite_interval", "failed_reason",
+            "mitigation_valid", "trust_status"]
+    out = hw.groupby(keys, dropna=False).size().reset_index(name="n_rows")
+    return out[(~out.finite_estimate) | (~out.finite_interval) | (out.failed_reason != "none")].reset_index(drop=True)
+
+
 def run_all(root: Path = ROOT, with_bias: bool = True) -> dict[str, pd.DataFrame]:
     out: dict[str, pd.DataFrame] = {}
+    out["estimator_health"] = estimator_health(root)
     pairs, qubits = readout_diagnostic(root)
     out["readout_independence"], out["readout_qubit_rates"] = pairs, qubits
     out["hardware_class_table"] = class_table(root)

@@ -48,3 +48,20 @@ for each statistic is **not yet measured**.
 | Not flagged by the audit: cumulant bias on the exact case | added | `reports/cumulant_bias_exact.csv` |
 | Zip delivery and repo access | done / HUMAN | zip committed and attached to a GitHub Release; collaborator invitation pending |
 The audit's numbers (held-out RMSEs, 650/2 115 drift, pair z = 6.6605, 202 s) were re-derived from the raw files and agree.
+
+## Third audit (independent final audit, 2026-10-31)
+| finding | verdict | action |
+|---|---|---|
+| `REPRODUCIBILITY.md` points to the old offline-only clean-room log | confirmed | now `logs/verify_release3.log`; older logs marked historical; a test reads the named log |
+| two `job_verification.json` not in the 68-row evidence ledger | confirmed | append-only `reports/job_verification_hashes.csv` + test; original ledger unchanged; provenance text corrected |
+| 69 non-finite estimates (32 `no_reference`) hidden behind primary status | confirmed; the true count of rows without a valid estimate or interval is 99 (30 more lack an interval) | `ESTIMATOR_HEALTH.md`, `estimator_health.csv`, test; statuses unchanged |
+| clean-room run not on the exact final archive | confirmed | `scripts/verify_release.sh` run on the rebuilt zip, recorded outside it in `FINAL_RELEASE_VERIFICATION.md` |
+| "signed" approval overstated | confirmed | worded as typed, hash-tied approval, not a cryptographic signature |
+| fold factors presented as noise factors | confirmed | marked nominal (gate counts) everywhere |
+| exp-ZNE RMSE shown beside 45-observable RMSEs | confirmed | n = 36 / 38 of 45 stated, marked not comparable |
+| coverage 0.83-0.98 without uncertainty | confirmed | "± 0.05 (30 replicates)" added |
+| account vs window confounded; CI conditional on stationary readout | confirmed | stated in report and limitations |
+| re-run `reproduce_all.py` in the repository | not adopted | no export code change; the clean-room run regenerates everything |
+| put the final verification log inside the zip | not adopted | an archive cannot contain the log of its own verification; recorded outside it |
+| pending collaborator invite | rulebook 5.2.3 asks for "invited or added" | recorded as PASS (invited); acceptance remains the organisers' |
+

@@ -56,14 +56,14 @@ Total (detailed / PDF-rate): 99 s / 180 s of a 600 s allocation (cap 420 s).
 
 1. Each teammate saves their own Open Plan credentials with `QiskitRuntimeService.save_account`; never in code or logs.
 2. `qtrust live-check --account N`: `service.backend('ibm_fez', use_fractional_gates=True)`; recompile every circuit on the LIVE target, compare depths with this table, re-run all gates (stops if rzz is unavailable).
-3. `qtrust preregister`, then BOTH teammates sign `prereg/APPROVAL.md` (names, date, current sha). The organisers said the mentor reviews after the answer is screened, so this signed pre-registration replaces a pre-hardware mentor review.
+3. `qtrust preregister`, then BOTH teammates sign `prereg/APPROVAL.md` (names, date, current sha). The organisers said the mentor reviews after the answer is screened, so this pre-registration with typed approval replaces a pre-hardware mentor review.
 4. Pilot job only (`qtrust submit --job 1_pilot`: P18 calibration + Jt 0, 0.4 in both compilations); `qtrust fetch`; the measured `job.usage()` rescales every later estimate; then 2_forward and 3_zne.
 5. Account 2 repeats the identical frozen manifest in a later calibration window (drift check).
 
 ## Executed (2026-10-30 / 2026-10-31)
 1. Each teammate saved their own Open Plan credentials locally; nothing was written to the repository.
 2. `qtrust live-check --account N` passed on both accounts (ibm_fez, 156 qubits, fractional RZZ available, no compiled depth growth; 28 circuits recompiled on the live target, max 2q depth 150).
-3. `qtrust preregister` (sha `5360308738170cc5410562cb971a3050`, 2026-10-30 08:18:57 UTC); both teammates signed `prereg/APPROVAL.md` on 2026-10-30.
+3. `qtrust preregister` (sha `5360308738170cc5410562cb971a3050`, 2026-10-30 08:18:57 UTC); both teammates typed their names into `prereg/APPROVAL.md` on 2026-10-30.
 4. Account 1: pilot, forward, ZNE (10:43-10:55 UTC on 30 Oct). Account 2: identical logical manifest (07:10-07:15 UTC on 31 Oct).
 5. Measured usage: 19 + 45 + 37 = **101 s per account, 202 s in total**, against the estimates of 114.9 s per account made before submission (table above is the earlier dry-run model: 99 s detailed / 180 s PDF rate).
    Per-job estimates, usage, job ids and per-circuit gate counts and depths: `resources.csv` (`hardware_job`, `hardware_circuit`), `reports/HARDWARE_PROVENANCE.md`.

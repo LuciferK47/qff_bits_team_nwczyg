@@ -28,5 +28,7 @@ What the results do **not** show, in the order a skeptical reader should check.
 10. **Not done:** the optional disturbance-spreading (echo) extension; any GPU run; the P40c benchmark; a third calibration window; a full backend-properties archive.
 11. **Job verification scope:** IBM's records confirm that the six job ids exist, completed on ibm_fez and report the archived usage (`job_verification.json`, run by each account owner). They do not
     re-verify the measurement counts themselves, which are the values saved by `qtrust fetch`.
-12. **Repository access:** the collaborator invitation for `AresTheWarGod42` is pending acceptance by the organisers.
-13. **AI assistance:** an AI assistant wrote most of the code, tests and draft reports; the authors directed the work, ran the hardware and signed the approval. Every check is a re-runnable test.
+12. **Estimator health:** 69 hardware estimates are non-finite (37 `mitigation_failed` + 32 `no_reference`, all exponential-ZNE sign-change fits) and 30 more lack an interval (`ESTIMATOR_HEALTH.md`). The frozen statuses were not changed.
+    Account and calibration window are confounded (the two runs are ~20 h apart), and the 95 % intervals assume a stationary per-qubit readout model.
+13. **Repository access:** the collaborator invitation for `AresTheWarGod42` is pending acceptance by the organisers.
+14. **AI assistance:** an AI assistant wrote most of the code, tests and draft reports; the authors directed the work, ran the hardware and gave the typed, hash-tied approval. Every check is a re-runnable test.

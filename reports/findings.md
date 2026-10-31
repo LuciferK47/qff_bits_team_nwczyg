@@ -65,9 +65,9 @@ Analysis: `qtrust analyse-hardware --accounts 1,2 --B 2000` (frozen verdicts, `r
 diagnostics (`reports/*.csv`, `src/qtrust/hwanalysis.py`) that never change a verdict. Exact references: P18 at Jt 0, 0.4, 0.8, 1, 2, 3; P40 only at Jt 0 and 0.4.
 
 **4.1 ZNE failed.** The model chosen on Jt 0.4/1.0 was `linear` on both accounts. Held-out (Jt 0.8, P18, all 45 catalogue observables) RMSE, account 1 / account 2:
-raw 0.094 / 0.077, readout 0.092 / 0.085, **linear (selected) 0.118 / 0.096**, exp 0.095 / 0.107, richardson 0.191 / 0.083. The selected model is worse than the raw estimate on both accounts and above the
+raw 0.094 / 0.077, readout 0.092 / 0.085, **linear (selected) 0.118 / 0.096**, exp 0.095 / 0.107 (only 36 / 38 of the 45 observables have a finite fit, so not comparable), richardson 0.191 / 0.083. The selected model is worse than the raw estimate on both accounts and above the
 pre-declared 0.05 limit, so no ZNE row is `supported` (`reports/hardware_heldout_zne.csv`, `figures/hardware_zne_heldout.png`). In the rehearsal (simulated independent noise) ZNE helped; this device did not behave that way.
-The folds are nominal 3x/5x noise factors; their effective noise amplification was not measured.
+The folds are nominal 3x/5x noise factors (gate counts); their effective noise amplification was not measured.
 
 **4.2 Readout independence.** Account 1 passed everywhere (P18 maximum |z| 3.00, P40 1.81). **Account 2 failed on P18** at one pair: logical 0-4 = physical 16-23, z = +6.66 (Bonferroni p < 1e-6 over the 18 tested
 edges); no other P18 pair exceeds 2.7 and P40 stays below 2.3. The excess sits in the all-zeros calibration state (z = 10.3) and is absent in the all-ones state (z = -0.6). On account 1 one checkerboard state

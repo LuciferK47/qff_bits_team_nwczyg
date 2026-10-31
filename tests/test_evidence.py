@@ -1,4 +1,4 @@
-"""Frozen hardware evidence: raw counts, QPY files, job records and the signed pre-registration must never change.
+"""Frozen hardware evidence: raw counts, QPY files, job records and the pre-registration with its typed, hash-tied approval must never change.
 
 The fixture constants below describe the two executed runs (6 jobs, 56 circuit executions); they live in the test only."""
 import csv

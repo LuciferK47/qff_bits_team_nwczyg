@@ -12,7 +12,7 @@ on 18 qubits classical MPS is more accurate than the hardware; at 40 qubits noth
 Start with `reports/FINAL_SCIENTIFIC_REPORT.md`; requirement-by-requirement evidence is in `reports/SUBMISSION_COMPLIANCE.md`, limits in `reports/LIMITATIONS.md`, reproduction in `reports/REPRODUCIBILITY.md`, hardware records in `reports/HARDWARE_PROVENANCE.md`.
 `results.csv` (15 108 rows), `resources.csv` and `metadata.json` include the hardware data; `raw/hardware/` holds the lossless counts and compiled circuits.
 
-> **Status (31 Oct 2026).** Offline pipeline at the frozen **J·δt = 0.1**; hardware executed after a signed pre-registration (sha `5360308738170cc5410562cb971a3050`) and passing live checks;
+> **Status (31 Oct 2026).** Offline pipeline at the frozen **J·δt = 0.1**; hardware executed after a pre-registration with a typed, hash-tied approval (sha `5360308738170cc5410562cb971a3050`) and passing live checks;
 > analysis in `reports/findings.md` §4. Offline data come from the `FakeFez` snapshot (labelled *offline, NOT live*); noisy-simulation results are labelled `simulated_noisy` and can never be `supported`.
 > IBM-side confirmation: each account owner ran the read-only `qtrust verify-jobs`; all six job ids were found on IBM with status DONE on ibm_fez and the archived usage (`raw/hardware/account*/job_verification.json`).
 
@@ -91,7 +91,7 @@ Documents: `reports/FINAL_SCIENTIFIC_REPORT.md`, `SUBMISSION_COMPLIANCE.md`, `RE
 `manifest` only compiles and estimates. Submission lives in `src/qtrust/submit.py` and is never run automatically; `submit` refuses unless:
 1. `python -m qtrust.cli preregister` has hashed the policy, configs, analysis code and planned circuits, and nothing has changed since;
 2. `prereg/APPROVAL.md` carries that sha, two different approver names and a date (the organisers said the mentor reviews after screening, so
-   this signed pre-registration is our pre-hardware gate);
+   this pre-registration with typed approval is our pre-hardware gate);
 3. the account has a passing `live-check` (credentials saved by the user with `QiskitRuntimeService.save_account`, never in code, logs or the archive;
    `ibm_fez` must expose fractional gates; the offline fractional RZZ calibration is an **assumption**);
 4. the pilot job was submitted and fetched first, and the job fits the 420 s per-account cap using the measured `job.usage()`.
@@ -102,7 +102,7 @@ Qiskit, Qiskit Aer, qiskit-ibm-runtime (FoldRzzAngle, FakeFez), `pauli-prop` (IB
 **AI use disclosure.** An AI assistant (Claude) was used extensively for implementation work: writing code, tests, scripts and draft reports.
 After that first implementation, the authors directed the changes that followed (for example freezing J·δt = 0.1, the
 pre-registration and two-person approval gate, the two-account hardware plan and the choice of what to submit). The authors chose the problem setup
-and the policies, ran every hardware job themselves on their own IBM accounts, signed the pre-hardware approval,
+and the policies, ran every hardware job themselves on their own IBM accounts, gave the typed, hash-tied pre-hardware approval (two names tied to the pre-registration hash; not a cryptographic signature),
 and are responsible for the submission. Every check listed above is a test in `tests/` that can be re-run (`pytest`).
 
 **Review and corrections.** An earlier version of this project was audited, and the audit found real problems (for example NaN mitigation

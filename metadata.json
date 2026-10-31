@@ -778,5 +778,5 @@
   },
   "note": "Job ids and usage are the values saved by `qtrust fetch`; independent confirmation against IBM's service is recorded separately by `qtrust verify-jobs` and is not implied by this file."
  },
- "ai_assistance": "An AI assistant (Claude, via Claude Code) was used extensively for implementation (code, tests, scripts, draft reports); the authors directed the changes, ran every hardware job on their own accounts and signed the pre-hardware approval. Third-party packages: Qiskit, Qiskit Aer, qiskit-ibm-runtime, pauli-prop (IBM), quimb, numpy, scipy, pandas, networkx, matplotlib, psutil."
+ "ai_assistance": "An AI assistant (Claude, via Claude Code) was used extensively for implementation (code, tests, scripts, draft reports); the authors directed the changes, ran every hardware job on their own accounts and gave the typed, hash-tied pre-hardware approval. Third-party packages: Qiskit, Qiskit Aer, qiskit-ibm-runtime, pauli-prop (IBM), quimb, numpy, scipy, pandas, networkx, matplotlib, psutil."
 }

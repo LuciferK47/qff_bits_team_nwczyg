@@ -26,7 +26,7 @@ detailed time model rescaled by the pilot's measured usage (19 s). Usage is the 
 - Patches: **P18** (18 qubits, exact references available) and **P40** (40 qubits, 41 couplings, all kept). The physical qubits are identical on both accounts
   (`metadata.json` -> `hardware.accounts.*.live_check`). P18 uses physical qubits 16, 20-26, 36, 37, 40-46, 56.
 - Per patch: four structured readout calibrations (all-0, all-1, two checkerboards of the bipartition), forward circuits at the frozen J·dt = 0.1,
-  and for ZNE the folded circuits (fold 1 = 3x and fold 2 = 5x noise factor, barriers prevent cancellation). A CZ-compiled twin of P18 Jt 0.4 is kept only for the compilation comparison.
+  and for ZNE the folded circuits (fold 1 and fold 2 have 3x and 5x the two-qubit gates; these are **nominal** noise factors, not measured noise scalings; barriers prevent cancellation). A CZ-compiled twin of P18 Jt 0.4 is kept only for the compilation comparison.
 - Compiled on the **live** target of each account's window. The logical manifest is identical; the compiled binaries are not (their SHA-256 prefixes differ between
   accounts because the live calibration data differ). Per executed circuit: 2q gate count and depth in `resources.csv` (`hardware_circuit` rows); maximum compiled
   two-qubit depth **150** (ceiling 300). `tests/test_export.py` checks that fold 1 and fold 2 keep exactly 3x and 5x the two-qubit gates of the unfolded circuit.
@@ -34,13 +34,14 @@ detailed time model rescaled by the pilot's measured usage (19 s). Usage is the 
 
 ## Approval and pre-registration
 Pre-registration `prereg/prereg.json` was created 2026-10-30 08:18:57 UTC and hashes the trust policy, configs, analysis code and the planned circuits
-(`prereg_sha 5360308738170cc5410562cb971a3050`). `prereg/APPROVAL.md` carries the sha, both teammates' names and the date 2026-10-30; `qtrust submit`
-refuses without it. All six jobs record this sha. The first hardware job was submitted two and a half hours after the pre-registration. The signed approval still
+(`prereg_sha 5360308738170cc5410562cb971a3050`). `prereg/APPROVAL.md` carries the sha, both teammates' names and the date 2026-10-30 (typed consent tied to the hash; it is **not** a cryptographic signature); `qtrust submit`
+refuses without it. All six jobs record this sha. The first hardware job was submitted two and a half hours after the pre-registration. The approval (sha-tied) still
 verifies today (`tests/test_evidence.py`), i.e. no pre-registered file changed after sign-off. Analysis and export code added later (`export`, `schema`, `figures`,
 `hwanalysis`, `hwdata`, `verify`) is **not** pre-registered; it reads the frozen results and never alters a frozen verdict.
 
 ## Immutable evidence
-`reports/evidence_hashes.csv` lists the SHA-256 of every file under `raw/hardware/account{1,2}/` and `prereg/` (68 files). `tests/test_evidence.py`
+`reports/evidence_hashes.csv` (frozen, 68 files) lists the SHA-256 of the raw counts, job records, live checks and QPY files under `raw/hardware/account{1,2}/` and of `prereg/`. The two post-execution IBM verification records
+(`job_verification.json`, created on 2026-10-31 after the ledger was written) are covered by the separate, append-only `reports/job_verification_hashes.csv`; together the two ledgers cover every file under `raw/hardware/account{1,2}/`. `tests/test_evidence.py`
 fails if any of them changes and re-derives 6 jobs / 56 executions / 720 896 shots / 202 s from the raw counts.
 
 ## What is and is not independently confirmed

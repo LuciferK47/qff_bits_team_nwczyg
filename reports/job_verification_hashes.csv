@@ -1,0 +1,3 @@
+path,sha256,bytes,checked_utc,ledger_recorded_utc,note
+raw/hardware/account1/job_verification.json,512069c56a88cad41aaf28fe0f151e5f510a2bdf99d6ac06f4dd8be4839a29bb,1407,2026-10-31T11:26:49+00:00,2026-10-31T14:06:31Z,"post-execution IBM-side verification record, run read-only by the account owner; supplementary to evidence_hashes.csv (which is unchanged)"
+raw/hardware/account2/job_verification.json,7ef4c09b943a9ab1e4e93a8735e72fe53628eaf5e0ffcd5f0b0355efc9ceba6b,1461,2026-10-31T11:30:50+00:00,2026-10-31T14:06:31Z,"post-execution IBM-side verification record, run read-only by the account owner; supplementary to evidence_hashes.csv (which is unchanged)"

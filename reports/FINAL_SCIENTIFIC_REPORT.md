@@ -28,21 +28,23 @@ to Jt = 0.5; MPS agrees across χ to 1e-4 at Jt = 1.0 (stability, not validation
 
 ## 4. Hardware protocol
 Backend `ibm_fez`, fractional RZZ via the live target, SamplerV2 Batch, twirling and dynamical decoupling off (IBM lists Pauli twirling, PEA-based ZNE and PEC as unsupported with fractional gates; TREX is supported), 16 384 shots per forward/folded circuit and 4 x 4096 shots of structured
-readout calibration per patch. P18 forward at Jt 0, 0.4, 0.8, 1, 2, 3; P40 at 0, 0.4, 1, 2, 3; ZNE by **manual** global folding (fold 1 = 3x, fold 2 = 5x, barriers preserve the pairs; tests confirm 3x/5x two-qubit counts) on P18 at Jt 0.4/0.8/1.0 and P40 at 1.0.
-Maximum compiled two-qubit depth 150 (ceiling 300). Pre-registration (policy, configs, analysis code, circuits; sha `5360308738170cc5410562cb971a3050`) and a two-person signed approval preceded every job; a pilot job fixed the usage rate.
+readout calibration per patch. P18 forward at Jt 0, 0.4, 0.8, 1, 2, 3; P40 at 0, 0.4, 1, 2, 3; ZNE by **manual** global folding (fold 1 and 2 carry 3x and 5x the two-qubit gates, barriers preserve the pairs; the factors 3 and 5 are **nominal**: the effective noise amplification was not measured) on P18 at Jt 0.4/0.8/1.0 and P40 at 1.0.
+Maximum compiled two-qubit depth 150 (ceiling 300). Pre-registration (policy, configs, analysis code, circuits; sha `5360308738170cc5410562cb971a3050`) and a two-person typed approval tied to that hash (not a cryptographic signature) preceded every job; a pilot job fixed the usage rate.
 Details, job ids and times: `HARDWARE_PROVENANCE.md`.
 
 ## 5. Mitigation and uncertainty
 Readout: independent asymmetric per-qubit assignment errors from four structured calibrations, corrected moments (never clipped), with an independence z-test on every coupled pair. ZNE: models linear / Richardson / exponential, model selected on
 Jt 0.4 and 1.0 by a rule fixed in code, validated at the unused Jt 0.8, disqualified if > 5 % of fits fail. Intervals: joint multinomial bootstrap (B = 2000) of every block including calibration and folds, recomputing all moments together; an interval is reported only
 if >= 99 % of replicates are finite. Verdict (`supported` / `inconsistent` / `inconclusive` / `mitigation_failed` / `no_reference`) needs a reference, a finite estimate, a resolved signal, agreement within 0.05 and passing systematics (readout gate, held-out ZNE, cross-account drift); simulated data are never `supported`.
-Estimator check on the exact distribution: bias <= 0.0013, bootstrap coverage 0.83-0.98 (30 replicates per observable).
+Estimator check on the exact distribution: bias <= 0.0013, bootstrap coverage 0.83-0.98 (30 replicates per observable, so each value is uncertain by about ±0.05).
+The 95 % intervals contain shot noise and calibration resampling only and are conditional on a stationary, per-qubit readout model; they do not cover drift, correlated readout or the uncertainty of the ZNE noise factor.
+Estimator health (`ESTIMATOR_HEALTH.md`): 69 of 4 230 hardware estimates are non-finite (37 `mitigation_failed`, 32 `no_reference`, all exponential-ZNE sign-change fits) and 30 more have a finite estimate but no interval; "no validated reference" and "estimator failed" are independent axes and the frozen statuses are unchanged.
 
 ## 6. Results
 Held-out ZNE, readout, drift, class accuracy and P40: see `findings.md` §4 with figures `hardware_*.png`. Key numbers:
-- Held-out RMSE (P18, Jt 0.8, 45 observables), account 1 / 2: raw 0.094 / 0.077; readout 0.092 / 0.085; selected linear ZNE 0.118 / 0.096; limit 0.05.
+- Held-out RMSE (P18, Jt 0.8, 45 observables), account 1 / 2: raw 0.094 / 0.077; readout 0.092 / 0.085; selected linear ZNE 0.118 / 0.096; limit 0.05 (exponential 0.095 / 0.107 is over only 36 / 38 of the 45 observables with a finite fit and is not comparable).
 - Readout independence: account 2, P18, physical pair 16-23 (logical 0-4), z = +6.66 against the pre-specified 4; account 1 maximum 3.00.
-- Drift: 650 of 2 115 matched estimates beyond 4 shot-noise SEs (correlated comparisons); largest z-scores in Jt = 0 circuits; median absolute difference 0.027.
+- Drift: 650 of 2 115 matched estimates beyond 4 shot-noise SEs (correlated comparisons; account and calibration window are confounded, so this is drift between windows ~20 h apart, not an effect of the account); largest z-scores in Jt = 0 circuits; median absolute difference 0.027.
 - P18 readout-corrected, Jt >= 0.4, within 0.05 of exact: m 0.61, C 0.69, G 0.85, κ 0.93 (always-0 predictor: 0.33, 0.20, 0.20, 0.60); RMSE 0.100 / 0.073 / 0.037 / 0.025.
 - Resources: 6 jobs, 202 s reported usage of 600 s, 56 executions, 720 896 shots.
 
