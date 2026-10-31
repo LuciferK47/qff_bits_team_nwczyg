@@ -16,14 +16,15 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from . import schema
+from . import hwdata, schema
 from .classical.bench import host_info
 from .params import Params, load_params
 
 ROOT = Path(__file__).resolve().parents[2]
 SEED = 20261029
-AI_DISCLOSURE = ("Written with AI assistance (Claude, via Claude Code) under human direction; the team must be able to "
-                 "explain and reproduce every check. Third-party packages: Qiskit, Qiskit Aer, qiskit-ibm-runtime, "
+AI_DISCLOSURE = ("An AI assistant (Claude, via Claude Code) was used extensively for implementation (code, tests, scripts, draft "
+                 "reports); the authors directed the changes, ran every hardware job on their own accounts and signed the "
+                 "pre-hardware approval. Third-party packages: Qiskit, Qiskit Aer, qiskit-ibm-runtime, "
                  "pauli-prop (IBM), quimb, numpy, scipy, pandas, networkx, matplotlib, psutil.")
 
 
@@ -85,6 +86,7 @@ def results_table(raw: Path, prm: Params) -> pd.DataFrame:
                              estimate=r.estimate, ci_low=_nan(r.ci_low), ci_high=_nan(r.ci_high), reference=r.reference,
                              reference_kind=r.reference_kind, validation_status=r.trust_status_simulated, source="simulated_noisy",
                              execution_block="rehearsal", notes=note))
+    rows += hwdata.hardware_result_rows(raw, prm, _row)                     # real ibm_fez data, both accounts
     return pd.DataFrame(rows, columns=schema.RESULTS_COLUMNS)
 
 
@@ -114,8 +116,9 @@ def resources_table(raw: Path, prm: Params) -> pd.DataFrame:
                          "setting": r.variant, "error_status": "dry_run_ok" if r.isa_ok else "isa_failed", "compiled_2q_count": r.n_2q,
                          "compiled_2q_depth": r.depth_2q, "shots": r.shots, "experiment_id": r.experiment_id})
         for job, v in json.loads((mdir / "manifest_usage.json").read_text()).items():
-            rows.append({**blank, "kind": "job_estimate", "dt": prm.dt, "method": job, "error_status": "dry_run_not_submitted",
+            rows.append({**blank, "kind": "job_estimate", "dt": prm.dt, "method": job, "error_status": "pre_submission_estimate",
                          "shots": v["executions"], "estimated_qpu_s": v["detailed_s"]})
+    rows += hwdata.hardware_resource_rows(raw, phys, blank)                 # six executed jobs + 56 executed circuits
     return pd.DataFrame(rows, columns=schema.RESOURCES_COLUMNS)
 
 
@@ -137,12 +140,17 @@ def metadata(raw: Path, prm: Params) -> dict:
     if mc.exists():
         circuits = {r.circuit: dict(qpy_sha256_16=r.qpy_sha, experiment_id=r.experiment_id, depth_2q=int(r.depth_2q)) for r in pd.read_csv(mc).itertuples()}
     from .rehearsal import INDEPENDENCE_Z_MAX, MAX_FIT_FAILURE_RATE, MODELS
+    hw, ids = hwdata.hardware_metadata(raw)
     from .trust import load_policy
     return dict(
         created_utc=datetime.now(timezone.utc).isoformat(timespec="seconds"), frozen_dt=prm.dt,
         hamiltonian=dict(J=prm.J, hx=prm.hx, hz=prm.hz), python=sys.version.split()[0], platform=platform.platform(), host=host_info(),
         packages=pk, seeds=dict(global_seed=SEED, bootstrap_seed=SEED),
-        backend="ibm_fez topology from the FakeFez snapshot — OFFLINE, NOT LIVE (no live backend was queried)",
+        backend=dict(
+            live=(f"ibm_fez, queried live and executed on 2026-10-30/31 from two Open Plan accounts (see `hardware`)" if hw else
+                  "none: no live backend was queried"),
+            offline_snapshot="ibm_fez topology and noise from the FakeFez snapshot, OFFLINE, used only for pre-hardware dry runs and "
+                             "the simulated rehearsal"),
         snapshot=dict(file=str(snap.relative_to(raw.parent)), sha256=hashlib.sha256(snap.read_bytes()).hexdigest(),
                       source=json.loads(snap.read_text())["source"]),
         patches=patches, circuits=circuits, policy=load_policy(),
@@ -150,7 +158,9 @@ def metadata(raw: Path, prm: Params) -> dict:
                         zne_models=list(MODELS), zne_selection="calibration times only; held-out time evaluated separately",
                         max_fit_failure_rate=MAX_FIT_FAILURE_RATE, independence_z_max=INDEPENDENCE_Z_MAX,
                         bootstrap="joint multinomial resampling of every block incl. calibration, 2000 replicates (rehearsal)"),
-        qpu="none submitted", job_ids=[], ai_assistance=AI_DISCLOSURE)
+        qpu=(f"executed: {hw['n_jobs']} jobs / {hw['n_executions']} circuit executions on ibm_fez, "
+             f"{hw['total_reported_usage_s']:.0f} s reported usage" if hw else "none submitted"),
+        job_ids=ids, hardware=hw, ai_assistance=AI_DISCLOSURE)
 
 
 def build_all(raw: Path | None = None, out: Path | None = None, config: Path | None = None):
@@ -161,6 +171,7 @@ def build_all(raw: Path | None = None, out: Path | None = None, config: Path | N
     schema.require_valid(schema.validate_results(res, prm.dt), "results.csv")
     schema.require_valid(schema.validate_resources(rsc), "resources.csv")
     schema.require_valid(schema.validate_metadata(meta), "metadata.json")
+    schema.require_valid(schema.cross_check(res, rsc, meta), "results/resources/metadata consistency")
     res.to_csv(out / "results.csv", index=False)
     rsc.to_csv(out / "resources.csv", index=False)
     (out / "metadata.json").write_text(json.dumps(meta, indent=1, default=str))

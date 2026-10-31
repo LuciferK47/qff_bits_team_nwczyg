@@ -44,8 +44,15 @@ def validate_results(df: pd.DataFrame, frozen_dt: float) -> list[str]:
     _bad(df, ~df.validation_status.isin(STATUSES), "unknown validation_status", out)
     _bad(df, (df.validation_status == "supported") & (df.source != "hardware"), "'supported' on non-hardware data", out)
     fin = df.estimate.apply(lambda x: x is not None and math.isfinite(x))
-    _bad(df, ~fin & ~df.validation_status.isin({"mitigation_failed"}), "non-finite estimate without mitigation_failed", out)
-    _bad(df, fin & (df.validation_status == "mitigation_failed") & df.source.eq("hardware"), "finite estimate marked failed", out)
+    # a failed estimator is mitigation_failed; where the exact reference does not exist the frozen trust rule reports no_reference first,
+    # and the reason survives in `notes` (hardware rows), so a non-finite value is never a verdict about accuracy
+    nofail_ok = df.validation_status.eq("mitigation_failed") | (df.validation_status.eq("no_reference") & df.reference_kind.eq("none"))
+    _bad(df, ~fin & ~nofail_ok, "non-finite estimate without mitigation_failed", out)
+    _bad(df, ~fin & df.source.eq("hardware") & df.notes.fillna("").str.contains(r"failed_reason=(?:nan|None)(?:;|$)"),
+         "non-finite hardware estimate without a recorded failure reason", out)
+    # finite point but no interval (too few valid bootstrap replicates) is also mitigation_failed by policy
+    _bad(df, fin & df.validation_status.eq("mitigation_failed") & df.source.eq("hardware") & df.ci_low.notna(),
+         "finite estimate with an interval marked failed", out)
     has_ref = df.reference.apply(lambda x: x is not None and math.isfinite(x))
     _bad(df, has_ref & ~df.reference_kind.isin(EXACT_KINDS | {"classical_stability"}), "reference present but kind not recognised", out)
     _bad(df, ~has_ref & (df.reference_kind != "none"), "no reference but reference_kind != 'none'", out)
@@ -56,6 +63,10 @@ def validate_results(df: pd.DataFrame, frozen_dt: float) -> list[str]:
     _bad(df, df.ci_low.notna() & ~both | df.ci_high.notna() & ~both, "only one interval endpoint present", out)
     _bad(df, ~df.physical_id.astype(str).str.fullmatch(r"[0-9a-f]{16}"), "physical_id is not a 16-hex id", out)
     _bad(df, df.observable.isna() | df.method.isna(), "missing observable/method", out)
+    hw = df.source.eq("hardware")
+    _bad(df, hw & (df.related_job_id.fillna("") == ""), "hardware row without a related_job_id", out)
+    _bad(df, hw & (df.reference_kind == "none") & df.validation_status.isin({"supported", "inconsistent"}),
+         "hardware verdict 'supported'/'inconsistent' without a reference", out)
     return out
 
 
@@ -76,6 +87,13 @@ def validate_resources(df: pd.DataFrame) -> list[str]:
     est = df[df.kind == "job_estimate"]
     _bad(est, est.estimated_qpu_s.isna(), "job estimate without estimated_qpu_s", out)
     _bad(df, df.observed_qpu_s.notna() & df.job_id.isna(), "observed QPU usage without a job id", out)
+    hj = df[df.kind == "hardware_job"]
+    _bad(hj, hj.job_id.isna() | hj.observed_qpu_s.isna() | hj.estimated_qpu_s.isna() | hj.shots.isna(),
+         "hardware_job row without job id / observed usage / pre-submission estimate / shots", out)
+    hc = df[df.kind == "hardware_circuit"]
+    _bad(hc, hc.job_id.isna() | hc.compiled_2q_count.isna() | hc.compiled_2q_depth.isna() | hc.shots.isna(),
+         "hardware_circuit row without job id / gate count / depth / shots", out)
+    _bad(hc, hc.compiled_2q_depth > 300, "executed circuit above the 300 two-qubit-depth ceiling", out)
     return out
 
 
@@ -87,8 +105,39 @@ def validate_metadata(d: dict) -> list[str]:
     for pat, name in ((r"/home/\w+", "local home path"), (r"(?i)(api[_-]?key|token)\s*[:=]\s*['\"]?\w{12,}", "credential-like string")):
         if re.search(pat, blob):
             out.append(f"metadata contains a {name}")
-    if d.get("job_ids") and d.get("qpu") == "none submitted":
+    ids, qpu = d.get("job_ids") or [], str(d.get("qpu", ""))
+    if ids and qpu == "none submitted":
         out.append("job ids present although qpu == 'none submitted'")
+    if not ids and qpu.startswith("executed"):
+        out.append("qpu says executed but job_ids is empty")
+    if ids and not d.get("hardware"):
+        out.append("job ids present but no hardware provenance block")
+    if ids and isinstance(d.get("backend"), dict) and str(d["backend"].get("live", "")).lower().startswith("none"):
+        out.append("backend.live says no live backend although jobs were executed")
+    if ids and "NOT LIVE" in repr(d.get("backend")).replace("OFFLINE, used only", ""):
+        out.append("backend presented as offline although jobs were executed")
+    return out
+
+
+def cross_check(res: pd.DataFrame, rsc: pd.DataFrame, meta: dict) -> list[str]:
+    """results.csv, resources.csv and metadata.json must tell the same hardware story."""
+    out: list[str] = []
+    ids = set(meta.get("job_ids") or [])
+    hw_rows = res[res.source == "hardware"]
+    hj = rsc[rsc.kind == "hardware_job"]
+    if bool(len(hw_rows)) != bool(ids) or bool(len(hj)) != bool(ids):
+        out.append(f"hardware presence differs: results {len(hw_rows)} rows, resources {len(hj)} jobs, metadata {len(ids)} ids")
+    if set(hj.job_id.dropna()) != ids:
+        out.append("job ids in resources.csv differ from metadata.json")
+    used = {j for cell in hw_rows.related_job_id.dropna() for j in str(cell).split(";") if j}
+    if not used <= ids:
+        out.append("results.csv references job ids absent from metadata.json")
+    tot = meta.get("hardware", {}) and meta["hardware"].get("total_reported_usage_s")
+    if ids and abs(float(hj.observed_qpu_s.sum()) - float(tot)) > 1e-6:
+        out.append("observed usage in resources.csv differs from metadata.json")
+    key = ["graph_id", "N", "method", "observable", "site_indices", "approximation_setting"]
+    if len(hw_rows) and hw_rows.duplicated(key).any():
+        out.append("duplicate hardware result rows")
     return out
 
 

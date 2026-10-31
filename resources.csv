@@ -28,18 +28,18 @@ classical,P40,69e6b78287585c1e,40.0,0.1,pauli_prop,coarse,ok,ok,178.435014963150
 classical,P40,69e6b78287585c1e,40.0,0.1,pauli_prop,fine,timed_out,timed_out_killed,1200.4704818725586,11389.52,7171108864.0,13.0,12.0,262144.0,1.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,0ef1beb12f1fb911,
 classical,P40,69e6b78287585c1e,40.0,0.1,pauli_prop,medium,ok,ok,670.9240252971649,6414.72,3055935488.0,13.0,12.0,32768.0,3.0,12th Gen Intel(R) Core(TM) i7-1255U,12.0,none used,,,,,,,7b4dc204c6f84e69,
 compile,P18,d8d2727881dd5868,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,db7924fcf8512b2e
-compile,P18,d8d2727881dd5868,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,5f5c6a393cad7819
-compile,P18,d8d2727881dd5868,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,a761618fe21eacfb
+compile,P18,d8d2727881dd5868,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,d5e4fd1aa1556416
+compile,P18,d8d2727881dd5868,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,b622f439a664557e
 compile,P18,d8d2727881dd5868,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,08936640c336fa97
 compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,0.0,0.0,16384.0,,,,,13ee50eba10babb3
 compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,72.0,12.0,16384.0,,,,,9daa83d83f066a9e
-compile,P18,d8d2727881dd5868,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,144.0,24.0,16384.0,,,,,70c128c48b0f01dc
+compile,P18,d8d2727881dd5868,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,144.0,24.0,16384.0,,,,,c44774839e9ff6c5
 compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,144.0,24.0,16384.0,,,,,f811664c4049cec7
 compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,180.0,30.0,16384.0,,,,,336793e85df36689
 compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,360.0,60.0,16384.0,,,,,a139625b2cb8af44
 compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,540.0,90.0,16384.0,,,,,173f14d5e6bce724
 compile,P40,69e6b78287585c1e,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,d12317a5660cd1fc
-compile,P40,69e6b78287585c1e,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,f48fd8718f744111
+compile,P40,69e6b78287585c1e,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,43fa16c1f19604e5
 compile,P40,69e6b78287585c1e,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,acf294ef7fa0671f
 compile,P40,69e6b78287585c1e,,0.1,compile,cz,dry_run_ok,,,,,,,,,,,,0.0,0.0,4096.0,,,,,760583b01970dc6c
 compile,P40,69e6b78287585c1e,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,0.0,0.0,16384.0,,,,,aa00b284b7f95a3d
@@ -55,6 +55,68 @@ compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,540.0
 compile,P18,d8d2727881dd5868,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,900.0,150.0,16384.0,,,,,3c6390daf92f9ee0
 compile,P40,69e6b78287585c1e,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,1230.0,90.0,16384.0,,,,,d532976b9c2fbd25
 compile,P40,69e6b78287585c1e,,0.1,compile,fractional,dry_run_ok,,,,,,,,,,,,2050.0,150.0,16384.0,,,,,3a838352798f5834
-job_estimate,,,,0.1,1_pilot,,dry_run_not_submitted,,,,,,,,,,,,,,65536.0,18.557703168,,,,
-job_estimate,,,,0.1,2_forward,,dry_run_not_submitted,,,,,,,,,,,,,,163840.0,43.919741952,,,,
-job_estimate,,,,0.1,3_zne,,dry_run_not_submitted,,,,,,,,,,,,,,131072.0,36.282668032000004,,,,
+job_estimate,,,,0.1,1_pilot,,pre_submission_estimate,,,,,,,,,,,,,,65536.0,18.557703168,,,,
+job_estimate,,,,0.1,2_forward,,pre_submission_estimate,,,,,,,,,,,,,,163840.0,43.919741952,,,,
+job_estimate,,,,0.1,3_zne,,pre_submission_estimate,,,,,,,,,,,,,,131072.0,36.282668032000004,,,,
+hardware_job,,,,,1_pilot,account1,completed,completed,,,,,,,,IBM ibm_fez (QPU),,,,,65536.0,32.768,19.0,dbi79j6ne4hc73be22d0,,
+hardware_job,,,,,2_forward,account1,completed,completed,,,,,,,,IBM ibm_fez (QPU),,,,,163840.0,44.96650741385542,45.0,dbi7cc6ne4hc73be2600,,
+hardware_job,,,,,3_zne,account1,completed,completed,,,,,,,,IBM ibm_fez (QPU),,,,,131072.0,37.14741454625255,37.0,dbi7e6ene4hc73be28b0,,
+hardware_circuit,P18,d8d2727881dd5868,,,cz,account1:P18_cal0,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbi79j6ne4hc73be22d0,8148d4fc253f8870,db7924fcf8512b2e
+hardware_circuit,P18,d8d2727881dd5868,,,cz,account1:P18_cal1,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbi79j6ne4hc73be22d0,d609478ed22cb51b,d5e4fd1aa1556416
+hardware_circuit,P18,d8d2727881dd5868,,,cz,account1:P18_cal2,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbi79j6ne4hc73be22d0,06babe1ddaded5cb,a761618fe21eacfb
+hardware_circuit,P18,d8d2727881dd5868,,,cz,account1:P18_cal3,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbi79j6ne4hc73be22d0,0bd8767b8d92a22d,08936640c336fa97
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account1:P18_Jt0.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,16384.0,,,dbi79j6ne4hc73be22d0,058a5d70182690f5,13ee50eba10babb3
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account1:P18_Jt0.4_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,72.0,12.0,16384.0,,,dbi79j6ne4hc73be22d0,525ca0c2c22f9456,398118b60411f6b8
+hardware_circuit,P18,d8d2727881dd5868,,,cz,account1:P18_Jt0.4_cz,executed,,,,,,,,,IBM ibm_fez (QPU),,,72.0,12.0,16384.0,,,dbi79j6ne4hc73be22d0,17a38318702e7a89,68a8ef805acc8bf3
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account1:P18_Jt0.8_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,144.0,24.0,16384.0,,,dbi7cc6ne4hc73be2600,09f9c70a34108fdd,7075b8ff61456d6a
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account1:P18_Jt1.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,180.0,30.0,16384.0,,,dbi7cc6ne4hc73be2600,5291dba996fb20de,c31cfce25aa66f99
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account1:P18_Jt2.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,360.0,60.0,16384.0,,,dbi7cc6ne4hc73be2600,4f0da4d9383eeac0,56d932ed141d626f
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account1:P18_Jt3.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,540.0,90.0,16384.0,,,dbi7cc6ne4hc73be2600,f481dfbd096f24fe,c3d8cd3a62f85246
+hardware_circuit,P40,69e6b78287585c1e,,,cz,account1:P40_cal0,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbi7cc6ne4hc73be2600,5080fe89481d15c4,b0210a6ad16bbffa
+hardware_circuit,P40,69e6b78287585c1e,,,cz,account1:P40_cal1,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbi7cc6ne4hc73be2600,3c29c6432edd23a4,43fa16c1f19604e5
+hardware_circuit,P40,69e6b78287585c1e,,,cz,account1:P40_cal2,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbi7cc6ne4hc73be2600,62881f6128dfc8cc,acf294ef7fa0671f
+hardware_circuit,P40,69e6b78287585c1e,,,cz,account1:P40_cal3,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbi7cc6ne4hc73be2600,edd137a024c54f47,8bf7dfb3c1109682
+hardware_circuit,P40,69e6b78287585c1e,,,fractional,account1:P40_Jt0.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,16384.0,,,dbi7cc6ne4hc73be2600,ff731e510f14e729,aa00b284b7f95a3d
+hardware_circuit,P40,69e6b78287585c1e,,,fractional,account1:P40_Jt0.4_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,164.0,12.0,16384.0,,,dbi7cc6ne4hc73be2600,82f906bda6a3357d,1f5adae62f119841
+hardware_circuit,P40,69e6b78287585c1e,,,fractional,account1:P40_Jt1.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,410.0,30.0,16384.0,,,dbi7cc6ne4hc73be2600,9c422bd76375eb8e,2af413549f7c40c7
+hardware_circuit,P40,69e6b78287585c1e,,,fractional,account1:P40_Jt2.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,820.0,60.0,16384.0,,,dbi7cc6ne4hc73be2600,b9aefd756d445902,3412bb6ae612045e
+hardware_circuit,P40,69e6b78287585c1e,,,fractional,account1:P40_Jt3.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,1230.0,90.0,16384.0,,,dbi7cc6ne4hc73be2600,4968e784f48ac357,c978cf3dd7987432
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account1:P18_Jt0.4_fold1,executed,,,,,,,,,IBM ibm_fez (QPU),,,216.0,36.0,16384.0,,,dbi7e6ene4hc73be28b0,1813ac9539fe9098,f2e1451982728fbd
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account1:P18_Jt0.4_fold2,executed,,,,,,,,,IBM ibm_fez (QPU),,,360.0,60.0,16384.0,,,dbi7e6ene4hc73be28b0,bd90fb0fef56f053,401037e163de71ba
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account1:P18_Jt0.8_fold1,executed,,,,,,,,,IBM ibm_fez (QPU),,,432.0,72.0,16384.0,,,dbi7e6ene4hc73be28b0,c00bd4a9f698f0d8,67abc895491ccf25
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account1:P18_Jt0.8_fold2,executed,,,,,,,,,IBM ibm_fez (QPU),,,720.0,120.0,16384.0,,,dbi7e6ene4hc73be28b0,53ab73533026ce9a,f377897b3a38b82e
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account1:P18_Jt1.0_fold1,executed,,,,,,,,,IBM ibm_fez (QPU),,,540.0,90.0,16384.0,,,dbi7e6ene4hc73be28b0,ebbf0764ca08b336,48e2453b3cd0cace
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account1:P18_Jt1.0_fold2,executed,,,,,,,,,IBM ibm_fez (QPU),,,900.0,150.0,16384.0,,,dbi7e6ene4hc73be28b0,8a728a578200557a,fc5fdb3933417120
+hardware_circuit,P40,69e6b78287585c1e,,,fractional,account1:P40_Jt1.0_fold1,executed,,,,,,,,,IBM ibm_fez (QPU),,,1230.0,90.0,16384.0,,,dbi7e6ene4hc73be28b0,7076fef16cdfda5f,3868e531af4ac3e4
+hardware_circuit,P40,69e6b78287585c1e,,,fractional,account1:P40_Jt1.0_fold2,executed,,,,,,,,,IBM ibm_fez (QPU),,,2050.0,150.0,16384.0,,,dbi7e6ene4hc73be28b0,4a1bd6a0e8871679,ad3505546b96b9ea
+hardware_job,,,,,1_pilot,account2,completed,completed,,,,,,,,IBM ibm_fez (QPU),,,,,65536.0,32.768,19.0,dbip8mune4hc73bf3skg,,
+hardware_job,,,,,2_forward,account2,completed,completed,,,,,,,,IBM ibm_fez (QPU),,,,,163840.0,44.96650741385542,45.0,dbip9io1h92s7383vpqg,,
+hardware_job,,,,,3_zne,account2,completed,completed,,,,,,,,IBM ibm_fez (QPU),,,,,131072.0,37.14741454625255,37.0,dbipaa8hoj4c73b6nsg0,,
+hardware_circuit,P18,d8d2727881dd5868,,,cz,account2:P18_cal0,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbip8mune4hc73bf3skg,fd8ae99605c4a2d8,db7924fcf8512b2e
+hardware_circuit,P18,d8d2727881dd5868,,,cz,account2:P18_cal1,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbip8mune4hc73bf3skg,c2a7c0b772901242,d5e4fd1aa1556416
+hardware_circuit,P18,d8d2727881dd5868,,,cz,account2:P18_cal2,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbip8mune4hc73bf3skg,f319e518e1d44c00,b622f439a664557e
+hardware_circuit,P18,d8d2727881dd5868,,,cz,account2:P18_cal3,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbip8mune4hc73bf3skg,0bd8767b8d92a22d,08936640c336fa97
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account2:P18_Jt0.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,16384.0,,,dbip8mune4hc73bf3skg,058a5d70182690f5,13ee50eba10babb3
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account2:P18_Jt0.4_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,72.0,12.0,16384.0,,,dbip8mune4hc73bf3skg,48c161d9c327f355,5b8d74ad74bc4341
+hardware_circuit,P18,d8d2727881dd5868,,,cz,account2:P18_Jt0.4_cz,executed,,,,,,,,,IBM ibm_fez (QPU),,,72.0,12.0,16384.0,,,dbip8mune4hc73bf3skg,fb2aba3ea381c8bf,9c09f7b68de77b13
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account2:P18_Jt0.8_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,144.0,24.0,16384.0,,,dbip9io1h92s7383vpqg,d4ee4528f8143799,2b42177e283ea071
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account2:P18_Jt1.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,180.0,30.0,16384.0,,,dbip9io1h92s7383vpqg,aed8b556888b3f55,0243feb9b8d56d16
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account2:P18_Jt2.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,360.0,60.0,16384.0,,,dbip9io1h92s7383vpqg,ed4b88bb3ee3f73f,b52cf8993ba178fe
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account2:P18_Jt3.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,540.0,90.0,16384.0,,,dbip9io1h92s7383vpqg,531797f70dc0d7ac,328f69ff21c9ff99
+hardware_circuit,P40,69e6b78287585c1e,,,cz,account2:P40_cal0,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbip9io1h92s7383vpqg,5080fe89481d15c4,d12317a5660cd1fc
+hardware_circuit,P40,69e6b78287585c1e,,,cz,account2:P40_cal1,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbip9io1h92s7383vpqg,3c29c6432edd23a4,43fa16c1f19604e5
+hardware_circuit,P40,69e6b78287585c1e,,,cz,account2:P40_cal2,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbip9io1h92s7383vpqg,62881f6128dfc8cc,a9d91b7e0f76413b
+hardware_circuit,P40,69e6b78287585c1e,,,cz,account2:P40_cal3,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,4096.0,,,dbip9io1h92s7383vpqg,c256e3325d22259e,760583b01970dc6c
+hardware_circuit,P40,69e6b78287585c1e,,,fractional,account2:P40_Jt0.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,0.0,0.0,16384.0,,,dbip9io1h92s7383vpqg,ff731e510f14e729,aa00b284b7f95a3d
+hardware_circuit,P40,69e6b78287585c1e,,,fractional,account2:P40_Jt0.4_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,164.0,12.0,16384.0,,,dbip9io1h92s7383vpqg,b8d4f61502465a63,21f1037093ce90d8
+hardware_circuit,P40,69e6b78287585c1e,,,fractional,account2:P40_Jt1.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,410.0,30.0,16384.0,,,dbip9io1h92s7383vpqg,50cce7ee9f32930f,a709a1234112ee80
+hardware_circuit,P40,69e6b78287585c1e,,,fractional,account2:P40_Jt2.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,820.0,60.0,16384.0,,,dbip9io1h92s7383vpqg,41dafefcedf95413,0afd2358ece50cd7
+hardware_circuit,P40,69e6b78287585c1e,,,fractional,account2:P40_Jt3.0_fractional,executed,,,,,,,,,IBM ibm_fez (QPU),,,1230.0,90.0,16384.0,,,dbip9io1h92s7383vpqg,7174bc48f7cdfdd5,246c38cf8fbca629
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account2:P18_Jt0.4_fold1,executed,,,,,,,,,IBM ibm_fez (QPU),,,216.0,36.0,16384.0,,,dbipaa8hoj4c73b6nsg0,909a2fd2db773f70,d69acd0e39cb6e0c
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account2:P18_Jt0.4_fold2,executed,,,,,,,,,IBM ibm_fez (QPU),,,360.0,60.0,16384.0,,,dbipaa8hoj4c73b6nsg0,fd7c27f78493e6ba,e6752804c23c6d1c
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account2:P18_Jt0.8_fold1,executed,,,,,,,,,IBM ibm_fez (QPU),,,432.0,72.0,16384.0,,,dbipaa8hoj4c73b6nsg0,8504ff711f2785b7,cf88d1d8f4d1a229
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account2:P18_Jt0.8_fold2,executed,,,,,,,,,IBM ibm_fez (QPU),,,720.0,120.0,16384.0,,,dbipaa8hoj4c73b6nsg0,57ad3f3eaba3a2bc,d1eb522d930d8e93
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account2:P18_Jt1.0_fold1,executed,,,,,,,,,IBM ibm_fez (QPU),,,540.0,90.0,16384.0,,,dbipaa8hoj4c73b6nsg0,bdc744d4bef0a0dd,e81cb7909f2d3fda
+hardware_circuit,P18,d8d2727881dd5868,,,fractional,account2:P18_Jt1.0_fold2,executed,,,,,,,,,IBM ibm_fez (QPU),,,900.0,150.0,16384.0,,,dbipaa8hoj4c73b6nsg0,6e21e324fd069110,7fe574811173a54f
+hardware_circuit,P40,69e6b78287585c1e,,,fractional,account2:P40_Jt1.0_fold1,executed,,,,,,,,,IBM ibm_fez (QPU),,,1230.0,90.0,16384.0,,,dbipaa8hoj4c73b6nsg0,335923a96a0574bb,fb823c2bf76fd3d1
+hardware_circuit,P40,69e6b78287585c1e,,,fractional,account2:P40_Jt1.0_fold2,executed,,,,,,,,,IBM ibm_fez (QPU),,,2050.0,150.0,16384.0,,,dbipaa8hoj4c73b6nsg0,331bf7994071d01e,96afc4cbeaddd710

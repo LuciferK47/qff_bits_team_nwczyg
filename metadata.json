@@ -1,5 +1,5 @@
 {
- "created_utc": "2026-10-30T08:07:16+00:00",
+ "created_utc": "2026-10-31T10:39:06+00:00",
  "frozen_dt": 0.1,
  "hamiltonian": {
   "J": 1.0,
@@ -7,12 +7,12 @@
   "hz": -0.6
  },
  "python": "3.12.15",
- "platform": "Linux-7.2.10-100.fc43.x86_64-x86_64-with-glibc2.42",
+ "platform": "Linux-7.2.13-100.fc43.x86_64-x86_64-with-glibc2.42",
  "host": {
   "cpu": "12th Gen Intel(R) Core(TM) i7-1255U",
   "logical_cores": 12,
   "gpu": "none used",
-  "platform": "Linux-7.2.10-100.fc43.x86_64-x86_64-with-glibc2.42",
+  "platform": "Linux-7.2.13-100.fc43.x86_64-x86_64-with-glibc2.42",
   "python": "3.12.15"
  },
  "packages": {
@@ -31,7 +31,10 @@
   "global_seed": 20261029,
   "bootstrap_seed": 20261029
  },
- "backend": "ibm_fez topology from the FakeFez snapshot \u2014 OFFLINE, NOT LIVE (no live backend was queried)",
+ "backend": {
+  "live": "ibm_fez, queried live and executed on 2026-10-30/31 from two Open Plan accounts (see `hardware`)",
+  "offline_snapshot": "ibm_fez topology and noise from the FakeFez snapshot, OFFLINE, used only for pre-hardware dry runs and the simulated rehearsal"
+ },
  "snapshot": {
   "file": "raw/backend_snapshots/fakefez_snapshot.json",
   "sha256": "445537f0362fd5f730a23a79ab87f072878346e9a41073c70b2e3ede98088cef",
@@ -230,13 +233,13 @@
    "depth_2q": 0
   },
   "P18_cal1": {
-   "qpy_sha256_16": "d609478ed22cb51b",
-   "experiment_id": "5f5c6a393cad7819",
+   "qpy_sha256_16": "c2a7c0b772901242",
+   "experiment_id": "d5e4fd1aa1556416",
    "depth_2q": 0
   },
   "P18_cal2": {
-   "qpy_sha256_16": "f319e518e1d44c00",
-   "experiment_id": "a761618fe21eacfb",
+   "qpy_sha256_16": "06babe1ddaded5cb",
+   "experiment_id": "b622f439a664557e",
    "depth_2q": 0
   },
   "P18_cal3": {
@@ -255,8 +258,8 @@
    "depth_2q": 12
   },
   "P18_Jt0.4_cz": {
-   "qpy_sha256_16": "11cc432dde82ae1d",
-   "experiment_id": "70c128c48b0f01dc",
+   "qpy_sha256_16": "c46a36cf96e5f1e0",
+   "experiment_id": "c44774839e9ff6c5",
    "depth_2q": 24
   },
   "P18_Jt0.8_fractional": {
@@ -285,8 +288,8 @@
    "depth_2q": 0
   },
   "P40_cal1": {
-   "qpy_sha256_16": "3c29c6432edd23a4",
-   "experiment_id": "f48fd8718f744111",
+   "qpy_sha256_16": "9856966f91acdadd",
+   "experiment_id": "43fa16c1f19604e5",
    "depth_2q": 0
   },
   "P40_cal2": {
@@ -404,7 +407,376 @@
   "independence_z_max": 4.0,
   "bootstrap": "joint multinomial resampling of every block incl. calibration, 2000 replicates (rehearsal)"
  },
- "qpu": "none submitted",
- "job_ids": [],
- "ai_assistance": "Written with AI assistance (Claude, via Claude Code) under human direction; the team must be able to explain and reproduce every check. Third-party packages: Qiskit, Qiskit Aer, qiskit-ibm-runtime, pauli-prop (IBM), quimb, numpy, scipy, pandas, networkx, matplotlib, psutil."
+ "qpu": "executed: 6 jobs / 56 circuit executions on ibm_fez, 202 s reported usage",
+ "job_ids": [
+  "dbi79j6ne4hc73be22d0",
+  "dbi7cc6ne4hc73be2600",
+  "dbi7e6ene4hc73be28b0",
+  "dbip8mune4hc73bf3skg",
+  "dbip9io1h92s7383vpqg",
+  "dbipaa8hoj4c73b6nsg0"
+ ],
+ "hardware": {
+  "backend": "ibm_fez",
+  "accounts": {
+   "account1": {
+    "live_check": {
+     "checked_utc": "2026-10-30T10:38:21Z",
+     "backend": "ibm_fez",
+     "num_qubits": 156,
+     "fractional_available": true,
+     "backend_rep_delay_s": 0.00025,
+     "any_depth_grew": false,
+     "P18_physical_nodes": [
+      16,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      36,
+      37,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      56
+     ],
+     "P40_physical_nodes": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      16,
+      17,
+      18,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      29,
+      30,
+      31,
+      36,
+      37,
+      38,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      56,
+      60,
+      61,
+      62,
+      63,
+      64
+     ]
+    },
+    "jobs": {
+     "1_pilot": {
+      "job_id": "dbi79j6ne4hc73be22d0",
+      "submitted_utc": "2026-10-30T10:43:24Z",
+      "fetched_utc": "2026-10-30T10:44:31Z",
+      "prereg_sha": "5360308738170cc5410562cb971a3050",
+      "estimated_s": 32.768,
+      "reported_usage_s": 19.0,
+      "shots": 65536,
+      "executions": 7,
+      "labels": [
+       "P18_cal0",
+       "P18_cal1",
+       "P18_cal2",
+       "P18_cal3",
+       "P18_Jt0.0_fractional",
+       "P18_Jt0.4_fractional",
+       "P18_Jt0.4_cz"
+      ],
+      "qpy_sha256_16": {
+       "P18_cal0": "8148d4fc253f8870",
+       "P18_cal1": "d609478ed22cb51b",
+       "P18_cal2": "06babe1ddaded5cb",
+       "P18_cal3": "0bd8767b8d92a22d",
+       "P18_Jt0.0_fractional": "058a5d70182690f5",
+       "P18_Jt0.4_fractional": "525ca0c2c22f9456",
+       "P18_Jt0.4_cz": "17a38318702e7a89"
+      }
+     },
+     "2_forward": {
+      "job_id": "dbi7cc6ne4hc73be2600",
+      "submitted_utc": "2026-10-30T10:49:20Z",
+      "fetched_utc": "2026-10-30T10:51:51Z",
+      "prereg_sha": "5360308738170cc5410562cb971a3050",
+      "estimated_s": 44.96650741385542,
+      "reported_usage_s": 45.0,
+      "shots": 163840,
+      "executions": 13,
+      "labels": [
+       "P18_Jt0.8_fractional",
+       "P18_Jt1.0_fractional",
+       "P18_Jt2.0_fractional",
+       "P18_Jt3.0_fractional",
+       "P40_cal0",
+       "P40_cal1",
+       "P40_cal2",
+       "P40_cal3",
+       "P40_Jt0.0_fractional",
+       "P40_Jt0.4_fractional",
+       "P40_Jt1.0_fractional",
+       "P40_Jt2.0_fractional",
+       "P40_Jt3.0_fractional"
+      ],
+      "qpy_sha256_16": {
+       "P18_Jt0.8_fractional": "09f9c70a34108fdd",
+       "P18_Jt1.0_fractional": "5291dba996fb20de",
+       "P18_Jt2.0_fractional": "4f0da4d9383eeac0",
+       "P18_Jt3.0_fractional": "f481dfbd096f24fe",
+       "P40_cal0": "5080fe89481d15c4",
+       "P40_cal1": "3c29c6432edd23a4",
+       "P40_cal2": "62881f6128dfc8cc",
+       "P40_cal3": "edd137a024c54f47",
+       "P40_Jt0.0_fractional": "ff731e510f14e729",
+       "P40_Jt0.4_fractional": "82f906bda6a3357d",
+       "P40_Jt1.0_fractional": "9c422bd76375eb8e",
+       "P40_Jt2.0_fractional": "b9aefd756d445902",
+       "P40_Jt3.0_fractional": "4968e784f48ac357"
+      }
+     },
+     "3_zne": {
+      "job_id": "dbi7e6ene4hc73be28b0",
+      "submitted_utc": "2026-10-30T10:53:13Z",
+      "fetched_utc": "2026-10-30T10:55:04Z",
+      "prereg_sha": "5360308738170cc5410562cb971a3050",
+      "estimated_s": 37.14741454625255,
+      "reported_usage_s": 37.0,
+      "shots": 131072,
+      "executions": 8,
+      "labels": [
+       "P18_Jt0.4_fold1",
+       "P18_Jt0.4_fold2",
+       "P18_Jt0.8_fold1",
+       "P18_Jt0.8_fold2",
+       "P18_Jt1.0_fold1",
+       "P18_Jt1.0_fold2",
+       "P40_Jt1.0_fold1",
+       "P40_Jt1.0_fold2"
+      ],
+      "qpy_sha256_16": {
+       "P18_Jt0.4_fold1": "1813ac9539fe9098",
+       "P18_Jt0.4_fold2": "bd90fb0fef56f053",
+       "P18_Jt0.8_fold1": "c00bd4a9f698f0d8",
+       "P18_Jt0.8_fold2": "53ab73533026ce9a",
+       "P18_Jt1.0_fold1": "ebbf0764ca08b336",
+       "P18_Jt1.0_fold2": "8a728a578200557a",
+       "P40_Jt1.0_fold1": "7076fef16cdfda5f",
+       "P40_Jt1.0_fold2": "4a1bd6a0e8871679"
+      }
+     }
+    }
+   },
+   "account2": {
+    "live_check": {
+     "checked_utc": "2026-10-31T07:03:13Z",
+     "backend": "ibm_fez",
+     "num_qubits": 156,
+     "fractional_available": true,
+     "backend_rep_delay_s": 0.00025,
+     "any_depth_grew": false,
+     "P18_physical_nodes": [
+      16,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      36,
+      37,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      56
+     ],
+     "P40_physical_nodes": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      16,
+      17,
+      18,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      29,
+      30,
+      31,
+      36,
+      37,
+      38,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      56,
+      60,
+      61,
+      62,
+      63,
+      64
+     ]
+    },
+    "jobs": {
+     "1_pilot": {
+      "job_id": "dbip8mune4hc73bf3skg",
+      "submitted_utc": "2026-10-31T07:10:19Z",
+      "fetched_utc": "2026-10-31T07:11:50Z",
+      "prereg_sha": "5360308738170cc5410562cb971a3050",
+      "estimated_s": 32.768,
+      "reported_usage_s": 19.0,
+      "shots": 65536,
+      "executions": 7,
+      "labels": [
+       "P18_cal0",
+       "P18_cal1",
+       "P18_cal2",
+       "P18_cal3",
+       "P18_Jt0.0_fractional",
+       "P18_Jt0.4_fractional",
+       "P18_Jt0.4_cz"
+      ],
+      "qpy_sha256_16": {
+       "P18_cal0": "fd8ae99605c4a2d8",
+       "P18_cal1": "c2a7c0b772901242",
+       "P18_cal2": "f319e518e1d44c00",
+       "P18_cal3": "0bd8767b8d92a22d",
+       "P18_Jt0.0_fractional": "058a5d70182690f5",
+       "P18_Jt0.4_fractional": "48c161d9c327f355",
+       "P18_Jt0.4_cz": "fb2aba3ea381c8bf"
+      }
+     },
+     "2_forward": {
+      "job_id": "dbip9io1h92s7383vpqg",
+      "submitted_utc": "2026-10-31T07:12:10Z",
+      "fetched_utc": "2026-10-31T07:13:25Z",
+      "prereg_sha": "5360308738170cc5410562cb971a3050",
+      "estimated_s": 44.96650741385542,
+      "reported_usage_s": 45.0,
+      "shots": 163840,
+      "executions": 13,
+      "labels": [
+       "P18_Jt0.8_fractional",
+       "P18_Jt1.0_fractional",
+       "P18_Jt2.0_fractional",
+       "P18_Jt3.0_fractional",
+       "P40_cal0",
+       "P40_cal1",
+       "P40_cal2",
+       "P40_cal3",
+       "P40_Jt0.0_fractional",
+       "P40_Jt0.4_fractional",
+       "P40_Jt1.0_fractional",
+       "P40_Jt2.0_fractional",
+       "P40_Jt3.0_fractional"
+      ],
+      "qpy_sha256_16": {
+       "P18_Jt0.8_fractional": "d4ee4528f8143799",
+       "P18_Jt1.0_fractional": "aed8b556888b3f55",
+       "P18_Jt2.0_fractional": "ed4b88bb3ee3f73f",
+       "P18_Jt3.0_fractional": "531797f70dc0d7ac",
+       "P40_cal0": "5080fe89481d15c4",
+       "P40_cal1": "3c29c6432edd23a4",
+       "P40_cal2": "62881f6128dfc8cc",
+       "P40_cal3": "c256e3325d22259e",
+       "P40_Jt0.0_fractional": "ff731e510f14e729",
+       "P40_Jt0.4_fractional": "b8d4f61502465a63",
+       "P40_Jt1.0_fractional": "50cce7ee9f32930f",
+       "P40_Jt2.0_fractional": "41dafefcedf95413",
+       "P40_Jt3.0_fractional": "7174bc48f7cdfdd5"
+      }
+     },
+     "3_zne": {
+      "job_id": "dbipaa8hoj4c73b6nsg0",
+      "submitted_utc": "2026-10-31T07:13:44Z",
+      "fetched_utc": "2026-10-31T07:14:56Z",
+      "prereg_sha": "5360308738170cc5410562cb971a3050",
+      "estimated_s": 37.14741454625255,
+      "reported_usage_s": 37.0,
+      "shots": 131072,
+      "executions": 8,
+      "labels": [
+       "P18_Jt0.4_fold1",
+       "P18_Jt0.4_fold2",
+       "P18_Jt0.8_fold1",
+       "P18_Jt0.8_fold2",
+       "P18_Jt1.0_fold1",
+       "P18_Jt1.0_fold2",
+       "P40_Jt1.0_fold1",
+       "P40_Jt1.0_fold2"
+      ],
+      "qpy_sha256_16": {
+       "P18_Jt0.4_fold1": "909a2fd2db773f70",
+       "P18_Jt0.4_fold2": "fd7c27f78493e6ba",
+       "P18_Jt0.8_fold1": "8504ff711f2785b7",
+       "P18_Jt0.8_fold2": "57ad3f3eaba3a2bc",
+       "P18_Jt1.0_fold1": "bdc744d4bef0a0dd",
+       "P18_Jt1.0_fold2": "6e21e324fd069110",
+       "P40_Jt1.0_fold1": "335923a96a0574bb",
+       "P40_Jt1.0_fold2": "331bf7994071d01e"
+      }
+     }
+    }
+   }
+  },
+  "n_jobs": 6,
+  "n_executions": 56,
+  "total_shots": 720896,
+  "total_reported_usage_s": 202.0,
+  "team_limit_s": 600,
+  "prereg_sha": "5360308738170cc5410562cb971a3050",
+  "sampler": "SamplerV2 in Batch mode; gate and measurement twirling off; dynamical decoupling off; no PEA/PEC (fractional gates); manual global-fold ZNE at 1x/3x/5x; asymmetric readout correction from 4 structured calibrations",
+  "timestamps_source": "saved job records (submitted/fetched); IBM-side timestamps appear only after `qtrust verify-jobs`",
+  "verification": {
+   "account1": "not externally verified (run `qtrust verify-jobs`)",
+   "account2": "not externally verified (run `qtrust verify-jobs`)"
+  },
+  "note": "Job ids and usage are the values saved by `qtrust fetch`; independent confirmation against IBM's service is recorded separately by `qtrust verify-jobs` and is not implied by this file."
+ },
+ "ai_assistance": "An AI assistant (Claude, via Claude Code) was used extensively for implementation (code, tests, scripts, draft reports); the authors directed the changes, ran every hardware job on their own accounts and signed the pre-hardware approval. Third-party packages: Qiskit, Qiskit Aer, qiskit-ibm-runtime, pauli-prop (IBM), quimb, numpy, scipy, pandas, networkx, matplotlib, psutil."
 }
