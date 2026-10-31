@@ -1,0 +1,57 @@
+{
+ "1_pilot": {
+  "job_id": "dbip8mune4hc73bf3skg",
+  "submitted_utc": "2026-10-31T07:10:19Z",
+  "prereg_sha": "5360308738170cc5410562cb971a3050",
+  "estimated_s": 32.768,
+  "labels": [
+   "P18_cal0",
+   "P18_cal1",
+   "P18_cal2",
+   "P18_cal3",
+   "P18_Jt0.0_fractional",
+   "P18_Jt0.4_fractional",
+   "P18_Jt0.4_cz"
+  ],
+  "backend": "ibm_fez"
+ },
+ "2_forward": {
+  "job_id": "dbip9io1h92s7383vpqg",
+  "submitted_utc": "2026-10-31T07:12:10Z",
+  "prereg_sha": "5360308738170cc5410562cb971a3050",
+  "estimated_s": 44.96650741385542,
+  "labels": [
+   "P18_Jt0.8_fractional",
+   "P18_Jt1.0_fractional",
+   "P18_Jt2.0_fractional",
+   "P18_Jt3.0_fractional",
+   "P40_cal0",
+   "P40_cal1",
+   "P40_cal2",
+   "P40_cal3",
+   "P40_Jt0.0_fractional",
+   "P40_Jt0.4_fractional",
+   "P40_Jt1.0_fractional",
+   "P40_Jt2.0_fractional",
+   "P40_Jt3.0_fractional"
+  ],
+  "backend": "ibm_fez"
+ },
+ "3_zne": {
+  "job_id": "dbipaa8hoj4c73b6nsg0",
+  "submitted_utc": "2026-10-31T07:13:44Z",
+  "prereg_sha": "5360308738170cc5410562cb971a3050",
+  "estimated_s": 37.14741454625255,
+  "labels": [
+   "P18_Jt0.4_fold1",
+   "P18_Jt0.4_fold2",
+   "P18_Jt0.8_fold1",
+   "P18_Jt0.8_fold2",
+   "P18_Jt1.0_fold1",
+   "P18_Jt1.0_fold2",
+   "P40_Jt1.0_fold1",
+   "P40_Jt1.0_fold2"
+  ],
+  "backend": "ibm_fez"
+ }
+}
