@@ -26,7 +26,7 @@ U_N = S(δt)^N,  S = F(δt/2) B(δt) F(δt/2)           second-order split, froz
 | Question | Answer on this device, in these two windows, with our 0.05 tolerance |
 |---|---|
 | Does zero-noise extrapolation help? | **No.** It failed its pre-declared held-out check on both accounts: selected linear model RMSE **0.118 / 0.096** vs raw **0.094 / 0.077** (limit 0.05). |
-| Is readout correction trustworthy? | Mostly. Account 2 **violates the independence assumption** at one physical pair (16-23, z = +6.66 vs limit 4); the cause is not established. |
+| Is readout correction trustworthy? | Its assumption holds except at one pair: account 2 **violates readout independence** at physical pair 16-23 (z = +6.66 vs limit 4; cause not established). But it barely helps: held-out RMSE (P18, Jt 0.8) goes 0.094 → 0.092 on account 1 and **worsens** 0.077 → 0.085 on account 2, the window where the assumption broke. Most of the error is gate noise, not readout. |
 | Is the device stable between windows? | No. 650 of 2 115 matched estimates differ by more than 4 shot-noise SEs (correlated comparisons, so not 650 independent failures; account and calibration window are confounded). |
 | Classical approximation or hardware noise? | 18 qubits: **hardware noise** is the binding limit (MPS χ256 within 0.017 of exact to Jt 5). 40 qubits: neither is validated beyond Jt = 0.5. |
 | Do 4-site statistics fail first? | Not in accuracy. They become **unresolvable** earlier (κ signal 0.001-0.03 vs interval half-width 0.015). A predictor that always answers 0 is competitive for κ, so agreement fractions are not fidelity. |

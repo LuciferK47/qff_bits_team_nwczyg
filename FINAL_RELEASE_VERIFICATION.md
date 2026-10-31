@@ -2,14 +2,14 @@
 
 Recorded 2026-10-31 (UTC times). This file is deliberately not inside `TEAM-NWCZYG.zip`: an archive cannot contain the record of its own verification.
 
-**Archive:** `TEAM-NWCZYG.zip`, 462 files, 9 522 711 bytes, SHA-256 `26127042f32baa1aedadf2d7c54d4e50c1ec10b50d111f980b52766124413dc1` (rebuilt after the README redesign with 3-D figures and diagrams and the merged AI-disclosure wording; supersedes `ee890667…` and `ead45048…`, verified earlier in `logs/verify_release5.log` and `verify_release4.log`) (identical for `dist/` and the repository root copy; the Release asset is uploaded from the same file).
+**Archive:** `TEAM-NWCZYG.zip`, 463 files, 9 523 404 bytes, SHA-256 `3841c2be70f7f8e7990e6489b3bdabd7fcf4d9d43a91417e5ba1e814671c8fc5` (final rebuild after the README readout-row clarification; supersedes `26127042…` (`logs/verify_release6.log`), `ee890667…` and `ead45048…`) (identical for `dist/` and the repository root copy; the Release asset is uploaded from the same file).
 **Environment:** Python 3.12 (fresh venv from `requirements.lock`), Linux.
 
 | step | command | result |
 |---|---|---|
 | full tests in the repo | `python -m pytest -q` | PASS, exit 0 (`logs/pytest_final4.log`) |
-| build | `python scripts/build_zip.py` | PASS: 462 files, 5 sanitized, no missing/forbidden |
-| clean-room check of this exact archive | `scripts/verify_release.sh dist/TEAM-NWCZYG.zip` | PASS, exit 0, 2026-10-31 17:13:03-17:19:41 UTC (`logs/verify_release6.log`); full tests and offline reproduction |
+| build | `python scripts/build_zip.py` | PASS: 463 files, 5 sanitized, no missing/forbidden |
+| clean-room check of this exact archive | `scripts/verify_release.sh dist/TEAM-NWCZYG.zip` | PASS, exit 0, 2026-10-31 17:35:31-17:43:00 UTC (`logs/verify_release7.log`); full tests and offline reproduction |
 | independent checker v2 | `python scripts/independent_checks_v2.py . <outdir>` | PASS 18/18 (archive equals repository for every non-log file) |
 | home-path scan of text files in the zip | grep `/home/kushagrasingh` | 0 hits; no `.venv`, `.git`, `.env` |
 
