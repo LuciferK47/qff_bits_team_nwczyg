@@ -46,8 +46,8 @@ fails if any of them changes and re-derives 6 jobs / 56 executions / 720 896 sho
 ## What is and is not independently confirmed
 - **Confirmed locally:** shot totals, label sets, hashes, usage sums, consistency of `results.csv` / `resources.csv` / `metadata.json` (tests).
 - **Observed by the team on the IBM dashboard:** job `dbi79j6ne4hc73be22d0` shown as Completed on ibm_fez in Batch mode, 19 s usage (account 1 screenshot).
-- **Not confirmed by this repository alone:** that IBM's service executed the other jobs. `qtrust verify-jobs --account N` (read-only) looks each job id up with the owner's
-  saved account and writes `raw/hardware/accountN/job_verification.json` (IBM-reported status, backend, usage, timestamps). `metadata.json` reports the verification state
-  of each account as "not externally verified" until that file exists and matches. No credential is ever written to it.
+- **Confirmed against IBM's own records (2026-10-31):** each account owner ran the read-only `qtrust verify-jobs --account N`, which looks every archived job id up with their saved account and writes
+  `raw/hardware/accountN/job_verification.json`. Result: all six jobs found, status `DONE`, backend `ibm_fez`, IBM-reported usage 19 / 45 / 37 s on both accounts, equal to the archived usage (account 1 checked 11:26:49 UTC,
+  account 2 11:30:50 UTC). The files also carry IBM's created / running / finished timestamps. No credential is written to them. `metadata.json` records the verification state per account.
 - **Calibration data at run time** are summarised by the live-check record (checked time, qubit count, couplings used, per-pair CZ error of the first pairs); the full backend
   properties were not archived.

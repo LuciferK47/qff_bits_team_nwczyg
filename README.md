@@ -14,7 +14,7 @@ Start with `reports/FINAL_SCIENTIFIC_REPORT.md`; requirement-by-requirement evid
 
 > **Status (31 Oct 2026).** Offline pipeline at the frozen **J·δt = 0.1**; hardware executed after a signed pre-registration (sha `5360308738170cc5410562cb971a3050`) and passing live checks;
 > analysis in `reports/findings.md` §4. Offline data come from the `FakeFez` snapshot (labelled *offline, NOT live*); noisy-simulation results are labelled `simulated_noisy` and can never be `supported`.
-> IBM-side confirmation of the job ids is recorded by `qtrust verify-jobs` (read-only, run by each account owner) and is **not** implied by this repository alone.
+> IBM-side confirmation: each account owner ran the read-only `qtrust verify-jobs`; all six job ids were found on IBM with status DONE on ibm_fez and the archived usage (`raw/hardware/account*/job_verification.json`).
 
 ## Team
 **TEAM-NWCZYG** (BITS Pilani, Goa Campus × IBM Qiskit Fall Fest 2026, Advanced track, Problem B):

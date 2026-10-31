@@ -1,5 +1,5 @@
 {
- "created_utc": "2026-10-31T10:58:44+00:00",
+ "created_utc": "2026-10-31T11:34:39+00:00",
  "frozen_dt": 0.1,
  "hamiltonian": {
   "J": 1.0,
@@ -773,8 +773,8 @@
   "sampler": "SamplerV2 in Batch mode; gate and measurement twirling off; dynamical decoupling off; no PEA/PEC (fractional gates); manual global-fold ZNE at 1x/3x/5x; asymmetric readout correction from 4 structured calibrations",
   "timestamps_source": "saved job records (submitted/fetched); IBM-side timestamps appear only after `qtrust verify-jobs`",
   "verification": {
-   "account1": "not externally verified (run `qtrust verify-jobs`)",
-   "account2": "not externally verified (run `qtrust verify-jobs`)"
+   "account1": "verified against IBM records",
+   "account2": "verified against IBM records"
   },
   "note": "Job ids and usage are the values saved by `qtrust fetch`; independent confirmation against IBM's service is recorded separately by `qtrust verify-jobs` and is not implied by this file."
  },

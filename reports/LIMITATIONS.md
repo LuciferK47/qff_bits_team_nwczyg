@@ -26,7 +26,7 @@ What the results do **not** show, in the order a skeptical reader should check.
 9. **Statistical intervals are shot noise (plus calibration resampling) only.** They do not contain drift, correlated readout, or the calibration changing between the
    calibration circuits and the forward circuits.
 10. **Not done:** the optional disturbance-spreading (echo) extension; any GPU run; the P40c benchmark; a third calibration window; a full backend-properties archive.
-11. **Not independently authenticated here:** that IBM's service executed all six jobs. The saved job ids, usage and counts are internally consistent; `qtrust verify-jobs` records
-    IBM's own view and has to be run by the account owners. The first pilot job was seen as Completed on the IBM dashboard.
+11. **Job verification scope:** IBM's records confirm that the six job ids exist, completed on ibm_fez and report the archived usage (`job_verification.json`, run by each account owner). They do not
+    re-verify the measurement counts themselves, which are the values saved by `qtrust fetch`.
 12. **Repository access:** the collaborator invitation for `AresTheWarGod42` is pending acceptance by the organisers.
 13. **AI assistance:** an AI assistant wrote most of the code, tests and draft reports; the authors directed the work, ran the hardware and signed the approval. Every check is a re-runnable test.

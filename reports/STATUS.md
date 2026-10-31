@@ -27,7 +27,6 @@ Offline data: exact numerics, classical approximations, FakeFez snapshot (offlin
 - Cause of the account-2 readout-independence failure on P18 (not investigated); hardware at P40 beyond Jt 0.4 (no reference); any third calibration window.
 - GPU work (exact P40 references beyond Jt = 0.5, higher-χ MPS): blocked on organiser access.
 - P40c benchmark; optional echo experiment.
-- IBM-side confirmation of the six job ids (`qtrust verify-jobs`, run by the account owners; see HARDWARE_PROVENANCE.md).
 - Acceptance of the collaborator invitation by `AresTheWarGod42` (organisers).
 
 ## Release checklist (in order)

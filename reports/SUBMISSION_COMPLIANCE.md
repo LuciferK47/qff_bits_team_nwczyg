@@ -44,7 +44,7 @@ Each line item of the problem statement ("When can we trust a quantum simulation
 | Further organiser instructions followed | HUMAN | none were received by the team; the organisers did not answer the team's questions. |
 
 ## Human-only checklist (cannot be done by the code)
-- [ ] Each teammate runs `python -m qtrust.cli verify-jobs --account N` and pushes `raw/hardware/accountN/job_verification.json` (IBM-side confirmation of the job ids).
+- [x] Each teammate ran `python -m qtrust.cli verify-jobs --account N` and pushed `raw/hardware/accountN/job_verification.json` (IBM-side confirmation: 6/6 jobs DONE, usage matches; 2026-10-31).
 - [ ] `AresTheWarGod42` has accepted the collaborator invitation (Settings -> Collaborators).
 - [ ] The repository is still **Private**.
 - [ ] The last commit on `main` is the final one and was pushed before 11:59 PM IST; the Release `final-submission` contains `TEAM-NWCZYG.zip`.
