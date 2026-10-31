@@ -141,7 +141,7 @@ classical timings are for one laptop CPU; the optional disturbance-spreading ext
 ## Reused packages and AI assistance
 Qiskit, Qiskit Aer, qiskit-ibm-runtime (FoldRzzAngle, FakeFez), `pauli-prop` (IBM), `quimb`, numpy/scipy/pandas/networkx/matplotlib.
 
-**AI use disclosure.** An AI assistant (Claude) was used extensively for implementation work: writing code, tests, scripts and draft reports.
+**AI use disclosure.** An AI assistant (Claude) was used  for implementation work: tests, scripts and draft reports.
 After that first implementation, the authors directed the changes that followed (for example freezing J·δt = 0.1, the pre-registration and two-person approval gate, the two-account hardware plan and the choice of what to submit). The authors chose the problem setup
 and the policies, ran every hardware job themselves on their own IBM accounts, gave the typed, hash-tied pre-hardware approval, and are responsible for the submission. Every check listed above is a test in `tests/` that can be re-run (`pytest`).
 
