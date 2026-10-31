@@ -1,0 +1,21 @@
+...................................F
+=================================== FAILURES ===================================
+_______________ test_every_frozen_file_matches_its_recorded_hash _______________
+
+    def test_every_frozen_file_matches_its_recorded_hash():
+        rows = list(csv.DictReader((ROOT / "reports" / "evidence_hashes.csv").open()))
+        assert len(rows) >= 60
+        bad = []
+        for r in rows:
+            p = ROOT / r["path"]
+            if not p.exists() or hashlib.sha256(p.read_bytes()).hexdigest() != r["sha256"]:
+                bad.append(r["path"])
+>       assert not bad, f"frozen evidence changed or missing: {bad[:5]}"
+E       AssertionError: frozen evidence changed or missing: ['raw/hardware/account2/jobs.json', 'raw/hardware/account2/live_check.json']
+E       assert not ['raw/hardware/account2/jobs.json', 'raw/hardware/account2/live_check.json']
+
+tests/test_evidence.py:31: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_evidence.py::test_every_frozen_file_matches_its_recorded_hash
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+exit=1

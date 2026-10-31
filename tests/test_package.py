@@ -53,3 +53,19 @@ def test_archive_never_contains_zip_files_so_a_committed_team_zip_cannot_nest_it
     from qtrust import package
     files = package.collect(Path(__file__).resolve().parents[1])
     assert files and not [f for f in files if f.suffix == ".zip"]
+
+
+def test_build_preserves_crlf_of_text_files(tmp_path):
+    """Frozen hardware evidence saved on Windows has CRLF line endings; the archive must keep them byte for byte."""
+    import zipfile
+    from qtrust import package
+    root = tmp_path / "proj"
+    (root / "configs").mkdir(parents=True); (root / "src").mkdir(); (root / "raw").mkdir()
+    (root / "configs/team.yaml").write_text("team_name: T\n")
+    for name in ("README.md", "requirements.lock", "results.csv", "resources.csv", "metadata.json"):
+        (root / name).write_text("x\n")
+    (root / "src/a.py").write_text("a = 1\n")
+    (root / "raw/jobs.json").write_bytes(b'{\r\n "a": 1\r\n}\r\n')
+    target, info = package.build(root, out_dir=tmp_path / "out")
+    with zipfile.ZipFile(target) as z:
+        assert z.read("raw/jobs.json") == b'{\r\n "a": 1\r\n}\r\n'

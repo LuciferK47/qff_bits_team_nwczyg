@@ -55,7 +55,7 @@ def build(root: Path = ROOT, out_dir: Path | None = None, team_name: str | None 
         for f in collect(root):
             rel = f.relative_to(root).as_posix()
             if f.suffix in TEXT_SUFFIX or f.name in (".env.example", ".gitignore"):
-                text = f.read_text(errors="replace")
+                text = f.read_bytes().decode("utf-8", errors="replace")      # bytes, not read_text(): keep CRLF of files saved on Windows (frozen evidence is hash-checked)
                 clean = sanitize(text) if f.suffix in (".log", ".json", ".csv", ".txt") or f.name.endswith(".md") else text
                 n_sanitized += clean != text
                 bad = scan(clean) if f.suffix not in (".py",) else [p for p in scan(text) if p != "local home path"]
