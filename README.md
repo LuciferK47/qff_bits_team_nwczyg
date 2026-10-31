@@ -15,6 +15,7 @@ second-order split `U_N = S(δt)^N`, `S = F(δt/2) B(δt) F(δt/2)` (BITS Goa ×
 
 ## Team
 **TEAM-NWCZYG** (BITS Pilani, Goa Campus × IBM Qiskit Fall Fest 2026, Advanced track, Problem B):
+
 | member | QFF registration ID | email |
 |---|---|---|
 | Kushagra Singh (team leader) | QFF-D63728 | offkushagrasingh47@gmail.com |
