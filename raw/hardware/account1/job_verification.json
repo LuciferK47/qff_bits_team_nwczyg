@@ -1,0 +1,55 @@
+{
+ "account": 1,
+ "checked_utc": "2026-10-31T11:26:49+00:00",
+ "jobs": {
+  "1_pilot": {
+   "job_id": "dbi79j6ne4hc73be22d0",
+   "archived_backend": "ibm_fez",
+   "archived_usage_s": 19.0,
+   "found": true,
+   "ibm_status": "DONE",
+   "ibm_backend": "ibm_fez",
+   "ibm_usage_s": 19.0,
+   "ibm_timestamps": {
+    "created": "2026-10-30T10:43:24.281681Z",
+    "finished": "2026-10-30T10:43:48.902831Z",
+    "running": "2026-10-30T10:43:26.284322Z"
+   },
+   "backend_matches": true,
+   "usage_matches": true
+  },
+  "2_forward": {
+   "job_id": "dbi7cc6ne4hc73be2600",
+   "archived_backend": "ibm_fez",
+   "archived_usage_s": 45.0,
+   "found": true,
+   "ibm_status": "DONE",
+   "ibm_backend": "ibm_fez",
+   "ibm_usage_s": 45.0,
+   "ibm_timestamps": {
+    "created": "2026-10-30T10:49:20.079448Z",
+    "finished": "2026-10-30T10:50:17.247712Z",
+    "running": "2026-10-30T10:49:21.664562Z"
+   },
+   "backend_matches": true,
+   "usage_matches": true
+  },
+  "3_zne": {
+   "job_id": "dbi7e6ene4hc73be28b0",
+   "archived_backend": "ibm_fez",
+   "archived_usage_s": 37.0,
+   "found": true,
+   "ibm_status": "DONE",
+   "ibm_backend": "ibm_fez",
+   "ibm_usage_s": 37.0,
+   "ibm_timestamps": {
+    "created": "2026-10-30T10:53:13.590038Z",
+    "finished": "2026-10-30T10:53:58.512284Z",
+    "running": "2026-10-30T10:53:14.846122Z"
+   },
+   "backend_matches": true,
+   "usage_matches": true
+  }
+ },
+ "all_verified": true
+}
