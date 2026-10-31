@@ -209,11 +209,189 @@ def exact_overview(pids=("P12", "P18", "P24"), dt: float | None = None):
         plt.close(fig)
 
 
+# ------------------------------------------------------------------ real hardware (ibm_fez, two accounts); offline from raw/hardware
+ACC = {1: "#1b7837", 2: "#762a83"}
+HWNOTE = ("source: IBM ibm_fez, accounts 1 (30 Oct) and 2 (31 Oct), pre-registered manifest; exact = fixed Trotter circuit at J·dt=0.1; "
+          "intervals = joint bootstrap B=2000")
+
+
+def _hw():
+    f = RAW / "hardware" / "hardware_results.csv"
+    return pd.read_csv(f) if f.exists() else None
+
+
+def hw_trajectories(pid: str = "P18"):
+    h = _hw()
+    if h is None:
+        return
+    dt = _dt(); ex = pd.read_csv(RAW / "exact" / f"{pid}_trotter_kernel_dt{dt}.csv"); patch = json.loads((RAW / "patches" / f"{pid}.json").read_text())
+    cl = patch["clusters"][0]; key = "-".join(map(str, sorted(cl)))
+    sel = {"M": [""], "m": [str(cl[0])], "C": ["-".join(map(str, sorted((cl[0], cl[1]))))], "G": [key], "kappa": [key]}
+    fig, ax = plt.subplots(1, 5, figsize=(17, 3.8))
+    for a, (k, title) in zip(ax, [("M", "mean magnetisation M")] + [(c, t) for c, t in CLASSES]):
+        s_ = sel[k][0]
+        e = ex[(ex.observable == k) & (ex.sites.fillna("").astype(str) == s_)].sort_values("Jt")
+        a.plot(e.Jt, e.value, "k-", lw=1.3, label="exact")
+        for acct in (1, 2):
+            for meth, mk, off in (("raw", "o", -0.04), ("readout", "s", 0.04)):
+                d = h[(h.graph_id == pid) & (h.account == acct) & (h.method == meth) & (h.observable == k) & (h.sites.fillna("").astype(str) == s_)].sort_values("Jt")
+                if len(d):
+                    a.errorbar(d.Jt + off + (0.02 if acct == 2 else 0), d.estimate, yerr=[d.estimate - d.ci_low, d.ci_high - d.estimate], fmt=mk, ms=3,
+                               color=ACC[acct], alpha=.85 if meth == "readout" else .45, lw=.8, label=f"acct {acct} {meth}")
+        a.axhline(0, c="k", lw=.4); a.set_xlabel("Jt"); a.set_title(f"{title}\n{'' if not s_ else 'sites ' + s_}", fontsize=8)
+    ax[0].legend(fontsize=6, ncol=2)
+    fig.suptitle(f"{pid} on ibm_fez: raw and readout-corrected estimates with 95% intervals vs the exact fixed circuit (predeclared cluster {key})", fontsize=9)
+    _save(fig, f"hardware_{pid}_trajectories.png", HWNOTE)
+
+
+def hw_class_error():
+    f = ROOT / "reports" / "hardware_class_table.csv"
+    if not f.exists():
+        return
+    t = pd.read_csv(f); t = t[(t.graph_id == "P18") & (t.method == "readout")]
+    fig, ax = plt.subplots(1, 4, figsize=(15, 3.7), sharey=True)
+    for a, (k, title) in zip(ax, CLASSES):
+        for acct in (1, 2):
+            g = t[(t.observable == k) & (t.account == acct)].sort_values("Jt")
+            a.plot(g.Jt, g.median_abs_error, "o-", color=ACC[acct], ms=3, label=f"acct {acct}: median |error|")
+            a.plot(g.Jt, g.median_ci_halfwidth, ":", color=ACC[acct], label=f"acct {acct}: median CI half-width")
+        g = t[(t.observable == k) & (t.account == 1)].sort_values("Jt")
+        a.plot(g.Jt, g.median_abs_reference, "k--", lw=1, label="median |exact value| (signal)")
+        a.axhline(0.05, c="r", ls=":", lw=1); a.set_title(title, fontsize=9); a.set_xlabel("Jt"); a.set_yscale("symlog", linthresh=1e-3)
+    ax[0].set_ylabel("absolute quantity (symlog)"); ax[0].legend(fontsize=5.5)
+    fig.suptitle("P18 hardware, readout-corrected: error vs signal size vs interval width by class (red = 0.05 policy tolerance). "
+                 "A class is unresolvable where its signal falls below the interval width, not necessarily where its error is large", fontsize=8.5)
+    _save(fig, "hardware_class_error_vs_signal.png", HWNOTE)
+
+
+def hw_zne_heldout():
+    f = ROOT / "reports" / "hardware_heldout_zne.csv"
+    if not f.exists():
+        return
+    t = pd.read_csv(f); order = ["raw", "readout", "zne_linear", "zne_exp", "zne_richardson"]
+    fig, ax = plt.subplots(figsize=(7.5, 3.9)); w = .38
+    for i, acct in enumerate((1, 2)):
+        g = t[t.account == acct].set_index("method").reindex(order)
+        xs = np.arange(len(order)) + (i - .5) * w
+        ax.bar(xs, g.rmse, w, color=ACC[acct], label=f"account {acct}")
+        for x, (m, r) in zip(xs, g.iterrows()):
+            if r.selected:
+                ax.text(x, r.rmse, "selected", rotation=90, fontsize=6, ha="center", va="bottom")
+    ax.axhline(0.05, c="r", ls=":", label="pre-declared limit 0.05"); ax.set_xticks(range(len(order))); ax.set_xticklabels([o.replace("zne_", "ZNE ") for o in order])
+    ax.set_ylabel("held-out RMSE vs exact\n(P18, Jt = 0.8, 45 observables)"); ax.legend(fontsize=7)
+    ax.set_title("ZNE FAILED its held-out check on both accounts (selected model is worse than the raw estimate)", fontsize=9)
+    _save(fig, "hardware_zne_heldout.png", HWNOTE)
+
+
+def hw_drift():
+    f = RAW / "hardware" / "drift_account2_vs_1.csv"
+    if not f.exists():
+        return
+    d = pd.read_csv(f); d = d[d.method.isin(["raw", "readout"])]
+    fig, ax = plt.subplots(1, 2, figsize=(10.5, 4.4))
+    for a, pid in zip(ax, ("P18", "P40")):
+        g = d[d.graph_id == pid]
+        a.scatter(g.estimate_1[~g.drift_flag], g.estimate_2[~g.drift_flag], s=6, c="#999999", label="|z| <= 4")
+        a.scatter(g.estimate_1[g.drift_flag], g.estimate_2[g.drift_flag], s=8, c="#d95f02", label="|z| > 4 (flagged)")
+        a.plot([-1, 1], [-1, 1], "k-", lw=.6); a.set_xlabel("account 1 estimate"); a.set_ylabel("account 2 estimate"); a.set_title(f"{pid} (raw and readout rows)", fontsize=9)
+    ax[0].legend(fontsize=7)
+    fig.suptitle(f"Window-to-window drift: {int(d.drift_flag.sum())}/{len(d)} raw/readout comparisons exceed 4 shot-noise SEs. "
+                 "The comparisons share circuits and calibrations (correlated), so this is not 650 independent tests", fontsize=8.5)
+    _save(fig, "hardware_drift.png", HWNOTE)
+
+
+def hw_readout_z():
+    f = ROOT / "reports" / "readout_independence.csv"
+    if not f.exists():
+        return
+    t = pd.read_csv(f); t = t[t.patch == "P18"]
+    fig, ax = plt.subplots(1, 2, figsize=(12, 3.8), sharey=True)
+    for a, acct in zip(ax, (1, 2)):
+        g = t[t.account == acct].sort_values("abs_z", ascending=False)
+        cols = ["#d95f02" if e else ACC[acct] for e in g.exceeds_prespecified_4]
+        a.bar(range(len(g)), g.abs_z, color=cols)
+        a.set_xticks(range(len(g))); a.set_xticklabels(g.physical_pair, rotation=90, fontsize=6)
+        a.axhline(4, c="r", ls=":"); a.set_title(f"account {acct}: |z| per coupled pair (physical qubits)", fontsize=9)
+    ax[0].set_ylabel("|z| of flip correlation (calibration states)")
+    fig.suptitle("P18 readout independence: only physical pair 16-23 on account 2 exceeds the pre-specified |z| < 4 (mechanism not established)", fontsize=9)
+    _save(fig, "hardware_readout_independence.png", HWNOTE)
+
+
+def hw_resources():
+    f = RAW.parent / "resources.csv"
+    if not f.exists():
+        return
+    r = pd.read_csv(f); j = r[r.kind == "hardware_job"]; c = r[r.kind == "hardware_circuit"]
+    if not len(j):
+        return
+    fig, ax = plt.subplots(1, 2, figsize=(12, 3.8))
+    lab = [f"{s[-1]}:{m[0]}" for s, m in zip(j.setting, j.method)]
+    x = np.arange(len(j)); ax[0].bar(x - .2, j.estimated_qpu_s, .4, label="estimate before submission"); ax[0].bar(x + .2, j.observed_qpu_s, .4, label="reported usage")
+    ax[0].set_xticks(x); ax[0].set_xticklabels([f"acct {s[-1]}\n{m}" for s, m in zip(j.setting, j.method)], fontsize=7); ax[0].set_ylabel("QPU seconds")
+    ax[0].set_title(f"six jobs: {j.observed_qpu_s.sum():.0f} s reported of the 600 s team limit", fontsize=9); ax[0].legend(fontsize=7)
+    ax[1].hist(c.compiled_2q_depth, bins=range(0, 170, 10), color="#4575b4"); ax[1].axvline(100, c="orange", ls=":", label="aim 100"); ax[1].axvline(300, c="r", ls=":", label="ceiling 300")
+    ax[1].set_xlabel("compiled two-qubit depth"); ax[1].set_ylabel("executed circuits"); ax[1].legend(fontsize=7)
+    ax[1].set_title(f"56 executed circuits, max depth {int(c.compiled_2q_depth.max())}", fontsize=9)
+    _save(fig, "hardware_resources.png", "source: resources.csv hardware_job / hardware_circuit rows (saved job usage; live-compiled QPY files)")
+
+
+def hw_p40():
+    h = _hw()
+    if h is None:
+        return
+    dt = _dt(); runs = _runs(RAW / f"classical_dt{dt}", "P40")
+    fig, ax = plt.subplots(1, 4, figsize=(15, 3.7))
+    summ = {"m": ("mean m_i", lambda d: d.estimate.mean()), "C": ("mean |C_ij|", lambda d: d.estimate.abs().mean()),
+            "G": ("max |G|", lambda d: d.estimate.abs().max()), "kappa": ("max |κ|", lambda d: d.estimate.abs().max())}
+    for a, (k, (title, fn)) in zip(ax, summ.items()):
+        for r in runs:
+            if r["setting"] in ("chi256", "medium") and len(r["_df"]):
+                g = r["_df"][r["_df"].observable == k].groupby("Jt").apply(fn, include_groups=False)
+                a.plot(g.index, g.values, "-", color=COL.get(r["setting"]), lw=1, label=f"{r['method']}:{r['setting']} (approximation)")
+        for acct in (1, 2):
+            d = h[(h.graph_id == "P40") & (h.account == acct) & (h.method == "readout") & (h.observable == k)]
+            g = d.groupby("Jt").apply(fn, include_groups=False)
+            a.plot(g.index, g.values, "o", ms=4, color=ACC[acct], label=f"hardware acct {acct} readout")
+        a.axvspan(0.45, a.get_xlim()[1], color="#eeeeee", alpha=.5, zorder=0); a.set_title(title, fontsize=9); a.set_xlabel("Jt")
+    ax[0].legend(fontsize=6)
+    fig.suptitle("P40: hardware vs classical approximations. NO exact reference beyond Jt = 0.5 (grey): disagreement there cannot say which side is right", fontsize=9)
+    _save(fig, "hardware_P40_vs_classical_unvalidated.png", HWNOTE + "; approximations are unvalidated in the grey range")
+
+
+def hz_reversal():
+    f = RAW / "exact" / "P12_hz_reversal_dt0.1.csv"
+    if not f.exists():
+        return
+    d = pd.read_csv(f); fig, a = plt.subplots(figsize=(5.8, 3.6))
+    a.plot(d.Jt, d.M, "o-", label=f"hz = {d.hz.iloc[0]}"); a.plot(d.Jt, d.M_reversed, "s--", label=f"hz = {d.hz_reversed.iloc[0]} (reversed)")
+    a.set_xlabel("Jt"); a.set_ylabel("M(t)"); a.legend(); a.axhline(0, c="k", lw=.4)
+    a.set_title(f"P12, exact fixed circuit: reversing hz changes M by up to {d.contrast.abs().max():.2f}", fontsize=9)
+    _save(fig, "hz_reversal_P12.png", "source: exact numpy kernel at J·dt=0.1 (offline); same J, hx, dt, only the sign of hz differs")
+
+
+def cumulant_bias_fig():
+    f = ROOT / "reports" / "cumulant_bias_exact.csv"
+    if not f.exists():
+        return
+    t = pd.read_csv(f); fig, ax = plt.subplots(1, 2, figsize=(11, 3.8))
+    for jt, g in t.groupby("Jt"):
+        ax[0].plot(g.observable, g.max_abs_bias, "o-", label=f"Jt={jt}"); ax[1].plot(g.observable, g.bootstrap_coverage, "o-", label=f"Jt={jt}")
+    ax[0].set_ylabel("max |mean bias| over observables"); ax[0].set_yscale("log"); ax[1].axhline(0.95, c="r", ls=":"); ax[1].set_ylabel("coverage of 95% bootstrap interval")
+    ax[1].set_ylim(0.5, 1.02); ax[0].legend(fontsize=7)
+    fig.suptitle("Estimator check on the EXACT P18 distribution (16 384 shots, no noise): finite-shot bias and bootstrap coverage by class", fontsize=9)
+    _save(fig, "cumulant_bias_exact.png", "source: sampling the exact fixed-circuit distribution; validates the estimator, not the device")
+
+
+def hardware_figures():
+    hw_trajectories("P18"); hw_class_error(); hw_zne_heldout(); hw_drift(); hw_readout_z(); hw_resources(); hw_p40()
+
+
 def all_figures():
     trotter_errors(); exact_overview()
     for pid in ("P12", "P18", "P24"):
         trajectories(pid)
     classical_accuracy(); p40_predictions(); resources()
+    hardware_figures(); hz_reversal(); cumulant_bias_fig()
     for pid in ("P12",):
         rehearsal(pid)
 

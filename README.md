@@ -4,14 +4,17 @@ Validated Trotterised mixed-field Ising dynamics on IBM heavy-hex device patches
 `H = -J Σ_E Z_i Z_j - Σ_i (h_x X_i + h_z Z_i)`, `J=1, h_x=1.25, h_z=-0.60`, start `|0…0⟩`,
 second-order split `U_N = S(δt)^N`, `S = F(δt/2) B(δt) F(δt/2)` (BITS Goa × IBM Qiskit Fall Fest, Problem B).
 
-> **Status (31 Oct 2026).** The offline pipeline is implemented and tested at the frozen **J·δt = 0.1**: exact references,
-> classical baselines under hard 20-minute budgets, a simulated mitigation rehearsal, and an approval-gated hardware path.
-> **Hardware:** after the signed pre-registration (sha `5360308738170cc5410562cb971a3050`) and passing live checks on `ibm_fez`, each of the two teammates ran the identical
-> 28-circuit manifest on their own Open Plan account (101 s of QPU time each, about 20 h apart; raw counts in `raw/hardware/account1/` and `account2/`).
-> Results are in `reports/findings.md` §4: ZNE did not pass its held-out check and is never `supported`; 31 % of matched estimates drift beyond 4 standard
-> errors between the two windows; account 2's readout-independence gate failed on P18. No claim is made beyond those measured results.
-> Offline data come from the `FakeFez` snapshot (labelled *offline, NOT live*); noisy-simulation results are labelled `simulated_noisy` and can never be `supported`.
-> See `reports/STATUS.md`, `reports/findings.md`, `reports/validation.md` and `reports/audit_response.md`.
+## One-paragraph summary
+We validate the fixed Trotter circuit exactly (Trotter error <= 0.014, circuit = Aer = independent kernel), benchmark MPS and Pauli propagation under a hard 20-minute budget, and run the same pre-registered
+28-circuit manifest on `ibm_fez` from two independent accounts about 20 h apart (6 jobs, 720 896 shots, **202 s** of QPU time). Findings: **ZNE failed its pre-declared held-out check on both accounts**
+(selected model RMSE 0.118 / 0.096 vs raw 0.094 / 0.077); 31 % of matched estimates drift beyond shot noise between the windows and one physical pair (16-23) violates the readout-independence assumption in the second window;
+on 18 qubits classical MPS is more accurate than the hardware; at 40 qubits nothing is validated beyond Jt = 0.5; four-site statistics are not less accurate than one-site means but become unresolvable at 16 384 shots earlier. No quantum advantage is claimed.
+Start with `reports/FINAL_SCIENTIFIC_REPORT.md`; requirement-by-requirement evidence is in `reports/SUBMISSION_COMPLIANCE.md`, limits in `reports/LIMITATIONS.md`, reproduction in `reports/REPRODUCIBILITY.md`, hardware records in `reports/HARDWARE_PROVENANCE.md`.
+`results.csv` (15 108 rows), `resources.csv` and `metadata.json` include the hardware data; `raw/hardware/` holds the lossless counts and compiled circuits.
+
+> **Status (31 Oct 2026).** Offline pipeline at the frozen **J·δt = 0.1**; hardware executed after a signed pre-registration (sha `5360308738170cc5410562cb971a3050`) and passing live checks;
+> analysis in `reports/findings.md` §4. Offline data come from the `FakeFez` snapshot (labelled *offline, NOT live*); noisy-simulation results are labelled `simulated_noisy` and can never be `supported`.
+> IBM-side confirmation of the job ids is recorded by `qtrust verify-jobs` (read-only, run by each account owner) and is **not** implied by this repository alone.
 
 ## Team
 **TEAM-NWCZYG** (BITS Pilani, Goa Campus × IBM Qiskit Fall Fest 2026, Advanced track, Problem B):
@@ -59,14 +62,20 @@ Offline:
 | `python scripts/reproduce_all.py` | regenerate `results.csv`, `resources.csv`, `metadata.json` and every figure from saved data under `raw/` |
 | `scripts/run_queue.sh` | the sequential offline queue used to produce the saved results |
 
+Analysis of the saved hardware data (offline): `python -m qtrust.cli analyse-hardware --accounts 1,2 --B 2000` (pre-registered pipeline) and
+`python -c "from qtrust import hwanalysis as H; H.run_all()"` (post-hoc diagnostics: readout independence per pair, class table, held-out ZNE, drift cases, estimator bias).
+
 Contact IBM Quantum (run by a human, only after the approval gate below): `preregister`, `live-check --account N`,
-`submit --account N --job {1_pilot,2_forward,3_zne}`, `fetch --account N`, `analyse-hardware --accounts 1,2`.
+`submit --account N --job {1_pilot,2_forward,3_zne}`, `fetch --account N`, and the read-only `verify-jobs --account N`
+(records IBM's own status and usage for the archived job ids).
 
 ## Layout
 `src/qtrust/` — `graph` (patches, edge colouring, light cones), `circuits`, `exact` (independent numpy kernel, sparse
 `expm_multiply`, light-cone exact), `moments` (1–4-site moments, two independent κ formulas), `classical/{pauli,mps,bench}`,
 `mitigation` (readout, ZNE folding), `bootstrap`, `trust` (policy), `hardware`/`manifest` (compile + dry run), `rehearsal`,
-`figures`, `validate`. `configs/trust_policy.yaml` was written **before** any hardware data existed.
+`figures`, `validate`; hardware: `submit` (gated submission, analysis), `hwdata` (hardware rows for the exports), `hwanalysis` (post-hoc diagnostics), `verify` (read-only job check).
+`configs/trust_policy.yaml` was written **before** any hardware data existed.
+Documents: `reports/FINAL_SCIENTIFIC_REPORT.md`, `SUBMISSION_COMPLIANCE.md`, `REPRODUCIBILITY.md`, `HARDWARE_PROVENANCE.md`, `LIMITATIONS.md`.
 
 ## What is verified (see `tests/`)
 * Field unitary exact for **both signs of h_x and h_z**; bond sign `RZZ(-2Jδt)` checked against `expm`; wrong signs are detected.

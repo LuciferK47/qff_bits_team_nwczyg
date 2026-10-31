@@ -1,9 +1,10 @@
 # Findings: when can we trust each kind of statistic? (offline phase)
 
-**Scope.** Everything here is offline: exact numerics, classical approximations, and noisy *simulation*. **No hardware data exist yet**, so no
-statement below says anything about the real device. Numbers are measured values from `raw/` (details and commands in `reports/validation.md`).
-Setting: Trotterised mixed-field Ising, J·δt = 0.1 (frozen), heavy-hex patches P12/P18/P24/P40 of ibm_fez (offline snapshot, not live).
+**Scope.** Sections 1-3 are offline (exact numerics, classical approximations, noisy *simulation*); section 4 is **real hardware** (ibm_fez, two accounts, 30-31 Oct 2026);
+section 5 answers the three questions of the problem statement. Numbers are measured values from `raw/`, `results.csv` and `reports/*.csv` (details and commands in
+`reports/validation.md`, `REPRODUCIBILITY.md`). Setting: Trotterised mixed-field Ising, J·δt = 0.1 (frozen), heavy-hex patches P12/P18/P24/P40 of ibm_fez.
 Observable classes: m (1-site), M (mean m), C (2-site edge covariance), G (4-site raw), κ (4-site fourth cumulant).
+Provenance of each number: **offline simulation** (`exact_numerics`, `simulated_noisy`), **approximate classical** (MPS / Pauli propagation), **IBM ibm_fez account 1** (30 Oct), **IBM ibm_fez account 2** (31 Oct).
 
 ## 1. Classical approximability (best available method vs exact fixed circuit, max |error| over the class)
 Best of {MPS χ ≤ 256, Pauli propagation coarse/medium/fine} that finished the time within the 20-minute hard limit.
@@ -33,7 +34,7 @@ to approximate classically in these runs; one patch and one method family only, 
 - At Jt ≥ 2 the methods disagree (χ32 vs χ64: 0.058; MPS χ32 vs Pauli medium: 0.085 at Jt = 2, 0.24 at Jt = 3). No P40 prediction at Jt ≥ 2 is trustworthy
   (`figures/P40_predictions_unvalidated.png`).
 
-## 3. Mitigation in simulation (P12, `simulated_noisy`; no hardware)
+## 3. Mitigation in simulation (P12, `simulated_noisy`; NOT hardware)
 Held-out time Jt = 0.8, model picked on Jt = 0.4, 1.0 only:
 - Readout correction reduces RMSE modestly (0.042 → 0.038 CZ; 0.022 → 0.018 fractional).
 - ZNE with the pre-selected model reduces it further (CZ richardson 0.0175; fractional linear 0.0087), with 0.90 / 0.97 interval coverage and no failed fits for the selected model.
@@ -58,34 +59,55 @@ Held-out time Jt = 0.8, model picked on Jt = 0.4, 1.0 only:
   validates the *pipeline*, not the device.
 
 ## 4. Hardware (two accounts, ibm_fez; measured 2026-10-30 and 2026-10-31)
-Pre-registered manifest (sha `5360308738170cc5410562cb971a3050`): 28 circuits in 3 jobs per account, 101 s measured QPU usage each, all shots returned.
-Account 1 ran on 30 Oct 10:43 UTC, account 2 (identical manifest, run by the second teammate on their own account) on 31 Oct 07:10 UTC, about 20 h later.
-Analysis: `qtrust analyse-hardware --accounts 1,2 --B 2000` (`logs/analyse_hardware_acct12.log`; rows in `raw/hardware/hardware_results.csv`, drift in
-`raw/hardware/drift_account2_vs_1.csv`). Exact references exist for P18 at Jt 0, 0.4, 0.8, 1, 2, 3 and for P40 only at Jt 0 and 0.4; P40 at larger Jt is `no_reference`.
-The account-1-only analysis written earlier is superseded by this section. Everything is one device and two calibration windows.
+Pre-registered manifest (sha `5360308738170cc5410562cb971a3050`): 28 circuit executions in 3 jobs per account, 202 s reported usage in total (101 s each), 720 896 shots, all returned.
+Account 1 ran on 30 Oct 10:43 UTC, account 2 (identical logical manifest, own account) on 31 Oct 07:10 UTC, about 20 h later. Job ids and times: `HARDWARE_PROVENANCE.md`.
+Analysis: `qtrust analyse-hardware --accounts 1,2 --B 2000` (frozen verdicts, `raw/hardware/hardware_results.csv`, included in `results.csv` as `source = hardware`) plus post-hoc, descriptive
+diagnostics (`reports/*.csv`, `src/qtrust/hwanalysis.py`) that never change a verdict. Exact references: P18 at Jt 0, 0.4, 0.8, 1, 2, 3; P40 only at Jt 0 and 0.4.
 
-- **Drift between the two windows is real.** Of 2 115 matched estimates, 650 (31 %) differ by more than 4 standard errors (median |z| 2.35, max 68.6). The absolute
-  differences are modest (median 0.027; by class: m 0.039, M 0.024, C 0.022, G 0.023, κ 0.013; largest 1.43). The standard errors are shot-noise bootstrap
-  errors only, so they understate window-to-window variation. By pre-declared rule these rows are demoted from `supported` to `inconclusive`.
-  Flagged share by method: raw 243/720, readout 213/720, ZNE exp 49/225, linear 94/225, richardson 51/225.
-- **Readout independence gate.** Passed for account 1 on all circuits. For **account 2 it failed on every P18 circuit** (it passed on P40). Independent-readout
-  correction is therefore not admissible for account 2's P18 data under our own rule, and those rows cannot be `supported`. We did not investigate which qubit pair triggered it.
-- **ZNE did not help, on either account.** The model selected on calibration times Jt 0.4/1.0 was `linear` on both. Held-out (Jt 0.8, P18, all observables) RMSE for account 1 / account 2:
-  raw 0.094 / 0.077, readout 0.092 / 0.085, linear 0.118 / 0.096 (selected), exp 0.095 / 0.107, richardson 0.191 / 0.083. The selected model is worse than the unmitigated estimate on both
-  accounts and above the pre-declared limit (0.05), so **no ZNE row is `supported`** (0 on both accounts). The simulated rehearsal, where ZNE helped, does not describe this device for ZNE.
-- **Raw and readout-corrected, after the drift and independence demotions.** `supported` raw / readout rows: account 1 192 / 225 (down from 247 / 271 before the drift check), account 2 89 / 103.
-  Pooled over both accounts and both methods (rows with an exact reference), the `supported` fraction falls with evolution time: 269/540 at Jt 0, 224/540 at 0.4, then 32/180, 23/180, 32/180, 29/180 at Jt 0.8, 1, 2, 3
-  (P18 only from Jt 0.8). By class: C 311/760, m 228/752, G 42/128, κ 26/128, M 2/32. These fractions mix patches and times and are not a ranking of how hard each class is.
-  RMS error vs exact, raw (account 1 / 2): 0.076 / 0.066; readout-corrected 0.072 / 0.055.
-- **P40.** Measured, but references exist only at Jt ≤ 0.4, so nothing beyond that is validated.
-- **What this supports:** unmitigated or readout-corrected hardware statistics on P18/P40 agree with exact references within the policy tolerance for short evolution (Jt ≲ 0.4) and in a
-  minority of cases at Jt ≥ 0.8; after the drift check no hardware statistic at Jt ≥ 0.8 is `supported` in most cases, and ZNE adds nothing. **Not claimed:** any longer-time or P40 result,
-  any cause of the account-2 readout failure, and any generalisation beyond this device and these two windows.
+**4.1 ZNE failed.** The model chosen on Jt 0.4/1.0 was `linear` on both accounts. Held-out (Jt 0.8, P18, all 45 catalogue observables) RMSE, account 1 / account 2:
+raw 0.094 / 0.077, readout 0.092 / 0.085, **linear (selected) 0.118 / 0.096**, exp 0.095 / 0.107, richardson 0.191 / 0.083. The selected model is worse than the raw estimate on both accounts and above the
+pre-declared 0.05 limit, so no ZNE row is `supported` (`reports/hardware_heldout_zne.csv`, `figures/hardware_zne_heldout.png`). In the rehearsal (simulated independent noise) ZNE helped; this device did not behave that way.
+The folds are nominal 3x/5x noise factors; their effective noise amplification was not measured.
 
-## 5. What we can honestly claim now
-1. A validated, reproducible pipeline (circuits, exact references, classical baselines with honest resource limits, mitigation with held-out checks, multi-gate trust policy) exists and is tested.
-2. On patches up to 24 qubits the tested classical methods reproduce the exact fixed-circuit statistics to ≤ 0.02 for Jt ≤ 2 (to Jt = 5 on P12, and on P18 only
-   with MPS χ = 256, which used 1163 s of the 1200 s limit). Beyond Jt = 2 on P24 none did within the limit. Hardware results in the validated window should be
-   compared against the exact reference, not a classical guess.
-3. On P40, classical numbers are exact only to Jt = 0.5, stable to Jt = 1.0 and unreliable beyond; hardware at P40 Jt ≥ 2 would have **no trusted reference**.
-4. We make **no claim** about whether the quantum device is more or less trustworthy than the classical methods until hardware data are analysed.
+**4.2 Readout independence.** Account 1 passed everywhere (P18 maximum |z| 3.00, P40 1.81). **Account 2 failed on P18** at one pair: logical 0-4 = physical 16-23, z = +6.66 (Bonferroni p < 1e-6 over the 18 tested
+edges); no other P18 pair exceeds 2.7 and P40 stays below 2.3. The excess sits in the all-zeros calibration state (z = 10.3) and is absent in the all-ones state (z = -0.6). On account 1 one checkerboard state
+alone reaches z = 5.0 for physical pair 25-26 while the pooled statistic (the pre-specified one) is 3.0, so pair-level structure is not unique to account 2. The mechanism is not established
+(`reports/readout_independence.csv`, `figures/hardware_readout_independence.png`). By the pre-declared rule account 2's P18 rows cannot be `supported`; this was not altered.
+
+**4.3 Drift.** 650 of 2 115 matched estimates differ by more than 4 shot-noise SEs between the windows (raw 243/720, readout 213/720, ZNE 194/675); they are correlated, not independent tests. The drift is concentrated in a few
+qubits and pairs rather than uniform: the two largest z-scores (69, 63) are Jt = 0 circuits on P40 (qubit 38: m = 0.98 vs 0.52), i.e. a readout or preparation change, not dynamics; and on account 1 the P18 edge covariance C(1-2)
+(physical 20-21) is far from the exact value at Jt 0.8-1.0 (-0.19 and -0.40 against +0.13 and +0.07) while account 2 is close (0.07 and -0.04). Median absolute window-to-window difference 0.027 (`reports/hardware_drift_cases.csv`, `figures/hardware_drift.png`).
+
+**4.4 Accuracy by class (P18, readout-corrected, both accounts, Jt >= 0.4; `reports/hardware_class_table.csv`, `figures/hardware_class_error_vs_signal.png`).**
+Support fractions are *not* used to rank classes (the readout gate and drift demotions remove whole accounts and times). Instead, with the 0.05 policy tolerance:
+
+| class | n | within 0.05 of exact | an always-0 predictor would be within 0.05 | RMSE hardware | RMSE always-0 | signal resolved (CI excludes 0 or |exact| >= 0.05) |
+|---|---:|---:|---:|---:|---:|---:|
+| m (1-site) | 180 | 0.61 | 0.33 | 0.100 | 0.318 | 0.91 |
+| C (edge) | 180 | 0.69 | 0.20 | 0.073 | 0.163 | 0.99 |
+| G (4-site raw) | 40 | 0.85 | 0.20 | 0.037 | 0.121 | 0.92 |
+| κ (4-site cumulant) | 40 | 0.93 | 0.60 | 0.025 | 0.084 | 0.60 |
+
+Median relative error is about 0.2-0.3 for every class. The four-site statistics are *not less accurate* in absolute or relative terms than the one-site means here; they are less **resolvable**: their exact values are small
+(|κ| about 0.001 at Jt 0.4 and 0.01-0.03 at Jt 2-3) while the 95 % half-width is about 0.015 with 16 384 shots, so κ is unresolved at Jt 0.4 (0 of 8 observables) and in 25-75 % of cases at Jt 2-3.
+
+**4.5 Estimator check (exact case).** Sampling the exact P18 distribution with the hardware shot count (200 repetitions, Jt 0.4/0.8/1.0) and applying the pipeline's raw-moment estimator gives a mean bias of at most 0.0013 in
+absolute value for every class (shot-noise SD 0.002-0.008), and a percentile-bootstrap coverage of the 95 % interval of 0.83-0.98 (mean 0.92; only 30 replicates per observable, so each coverage value is uncertain by about
++-0.05) (`reports/cumulant_bias_exact.csv`). The estimator is therefore not the source of the hardware errors; the intervals are, if anything, slightly narrow.
+
+**4.6 P40.** Measured at 40 qubits; exact references only at Jt 0 and 0.4, where median errors are 0.002-0.046 (m max 0.65, one qubit). Beyond Jt 0.5 the hardware numbers are `no_reference`.
+
+## 5. What we can honestly claim
+Answers to the three questions of the problem statement, each limited to this device, these two windows, these patches and the 0.05 / 0.02 policy tolerances:
+
+1. **Do four-qubit statistics become unreliable before single-qubit averages?** Not in accuracy: on P18 the 4-site G and κ are within tolerance more often than m and C, and their relative errors are similar
+   (about 0.2-0.3). They become *unresolvable* with 16 384 shots earlier, because their signal is small; that is a statement about resolution, not about hardware fidelity. Near-zero κ is `inconclusive` by rule.
+   The data are one patch with exact references and two windows, so no general ordering is claimed.
+2. **Does classical approximation or hardware noise limit the trustworthy sizes and times?** On 18 qubits the classical methods are the more accurate ones (MPS chi 256 within 0.017 of exact to Jt = 5, using 1163 of the 1200 s
+   budget), while the hardware median error is 0.03-0.06 and ZNE did not improve it; so hardware noise (and drift) is the limit there. At 24 qubits MPS stops converging within the budget beyond Jt = 2 and Pauli
+   propagation is at 0.014-0.071, comparable to hardware. At 40 qubits no method is validated beyond Jt = 0.5 (MPS agrees across bond dimension to Jt = 1.0, which is stability, not validation), so the limit there is the missing reference.
+3. **Trotter error.** Circuit vs exp(-iHt) <= 0.014 (P12, P18) and dt vs dt/2 <= 0.010 up to P24 at J·δt = 0.1, separate from classical truncation error and from hardware noise (all hardware comparisons use the fixed circuit).
+
+What hardware supports: readout-corrected statistics agree with the exact fixed circuit within 0.05 for short evolution (Jt <= 0.4) and in a majority of 4-site cases later; one-site means and edge covariances exceed it in
+about 40 % and 30 % of cases for Jt >= 0.4; ZNE adds nothing; a few qubits and pairs dominate the failures. **Not claimed:** quantum advantage, any statement beyond Jt = 0.5 at 40 qubits, any cause of the account-2 readout failure,
+any ordering of classes beyond these numbers. See `LIMITATIONS.md`.

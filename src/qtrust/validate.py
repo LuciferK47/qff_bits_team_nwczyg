@@ -93,6 +93,17 @@ def aer_crosscheck(patch: Patch, prm: Params, Ns=(0, 2, 5, 10, 15)) -> pd.DataFr
     return pd.DataFrame(rows)
 
 
+def hz_reversal_table(patch: Patch, prm: Params, Jt_list=JT) -> pd.DataFrame:
+    """Step 2 item 3: exact M(t) of the fixed circuit at the table value of hz and with hz reversed (same J, hx, dt)."""
+    a = observables_over_time(patch, prm, Jt_list)
+    b = observables_over_time(patch, prm.with_hz(-prm.hz), Jt_list)
+    rows = [dict(graph_id=patch.pid, n=patch.n, dt=prm.dt, N=prm.steps(t), Jt=t, hz=prm.hz, hz_reversed=-prm.hz,
+                 M=a[t][("M", ())], M_reversed=b[t][("M", ())]) for t in Jt_list]
+    out = pd.DataFrame(rows)
+    out["contrast"] = out.M - out.M_reversed
+    return out
+
+
 # ------------------------------------------------------------------ level statistics (optional item 4)
 def _site_field(tau: float, prm: Params, hz_scale: float) -> np.ndarray:
     return exact._field_matrix(tau, prm.__class__(prm.J, prm.hx, prm.hz * hz_scale, prm.dt))

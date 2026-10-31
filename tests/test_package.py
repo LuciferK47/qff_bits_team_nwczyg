@@ -46,3 +46,10 @@ def test_scan_ignores_empty_placeholders_but_catches_real_tokens():
     assert scan("QISKIT_IBM_TOKEN=\nQISKIT_IBM_INSTANCE=\n") == []
     assert scan("QISKIT_IBM_TOKEN=abcd1234abcd1234abcd")
     assert scan('api_key: "A1b2C3d4E5f6G7h8I9"')
+
+
+def test_archive_never_contains_zip_files_so_a_committed_team_zip_cannot_nest_itself():
+    from pathlib import Path
+    from qtrust import package
+    files = package.collect(Path(__file__).resolve().parents[1])
+    assert files and not [f for f in files if f.suffix == ".zip"]

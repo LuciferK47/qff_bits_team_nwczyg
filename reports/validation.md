@@ -33,11 +33,15 @@ Aer statevector of the actual Qiskit circuit vs the numpy kernel: max amplitude 
 (`raw/exact/P{12,18}_aer_check_dt0.1.csv`).
 
 ## 3. Level statistics (optional item)
-Mean gap ratio ⟨r⟩ (`reports/level_statistics_diagnosis.csv`, 12-site chain, hz=0 Floquet unitary, 4096 levels):
-full spectrum **0.413**; inside the four (parity, mirror) symmetry sectors **0.381, 0.400, 0.390, 0.390** (commutator norm ≈ 2e-14,
-so the sectors are exact). The PDF's integrable reference is ≈ 0.39 (Poisson 0.386). Reading: the excess in the full spectrum
-comes largely from superposing independent sectors; each sector is consistent with Poisson. This is a partial
-explanation from one system size, not a proof. The earlier 0.43 figure was from a different degeneracy handling and is superseded.
+At the table parameters and the frozen J·δt = 0.1 (`raw/exact/level_statistics_dt0.1.csv`, 12 qubits, 4096 levels): P12 tree with hz scaled on one site ⟨r⟩ = **0.523**;
+12-site chain with hz scaled on the end site 0.524 (the statement expects about 0.53); 12-site chain with hz = 0 (integrable control) 0.413 for the full spectrum
+(expected about 0.39). At J·δt = 0.2 (exploratory) the three values were 0.518 / 0.520 / 0.428.
+Diagnosis of the hz = 0 excess (`reports/level_statistics_diagnosis.csv`): inside the four (parity, mirror) symmetry sectors ⟨r⟩ = **0.381, 0.400, 0.390, 0.390** (commutator norm ≈ 2e-14,
+so the sectors are exact); superposing independent sectors raises the full-spectrum value. Each sector is consistent with Poisson (0.386). This is a partial explanation from one system size, not a proof.
+
+## 3b. Reversed hz (Step 2 item 3)
+`raw/exact/P12_hz_reversal_dt0.1.csv`, `figures/hz_reversal_P12.png`: exact M(t) of the fixed circuit on P12 with hz = -0.6 and hz = +0.6 (same J, hx, δt). The contrast
+M(-0.6) - M(+0.6) is 0 at Jt = 0, -0.08 at 0.4, -0.60 at 1, -0.64 at 2, -0.54 at 3, -0.71 at 4 and -0.59 at 5: the sign of hz matters strongly, as it must.
 
 ## 4. Classical methods vs exact (budget 20 min hard per run, supervised child process)
 Source: `raw/classical_dt0.1/*.json|csv`; status/wall/peak-tree-RSS from the supervisor. "max err" is the worst observable error
@@ -92,8 +96,11 @@ Readout-independence gate: passes on the independent-noise rehearsal (worst |z| 
 on edge 0–5 it trips at |z| = 176 while every other edge stays below 1.4 (`raw/noisy_sim_dt0.1/P12_correlated_readout_control.json`).
 Limits: the noise model is calibration-derived and independent by construction; a pass here says the code works, not that the real device is independent.
 
-## 6. Hardware dry run
-`reports/hardware_manifest.md`: all circuits compile for the FakeFez target, ISA checks pass, measure map is clbit i ← physical nodes[i],
-maximum compiled 2-qubit depth 150 (ceiling 300, none above the 250 headroom flag), estimated usage 99 s (detailed model) /
-180 s (PDF 0.5 ms/shot rate) in total against a 420 s working cap. **Fractional-gate timing is an assumption** (copied from CZ) until
-`qtrust live-check` runs against the live backend. Live check and hardware jobs were run later (2026-10-30/31; see `findings.md` §4). **NOT EXECUTED:** GPU runs.
+## 6. Hardware: dry run, live check and execution
+Dry run (`reports/hardware_manifest.md`, historical): every circuit compiled for the FakeFez target with fractional-gate timing **assumed** equal to CZ; ISA checks passed, measure map clbit i ← physical nodes[i],
+maximum compiled two-qubit depth 150 (ceiling 300). Live check (`raw/hardware/account{1,2}/live_check.json`): ibm_fez with fractional RZZ available, recompiled circuits did not grow in depth.
+Executed on 2026-10-30/31: 6 jobs, 56 circuit executions, 720 896 shots, 202 s reported usage (`HARDWARE_PROVENANCE.md`); results in `findings.md` §4.
+
+## 7. Estimator check on the exact case
+`reports/cumulant_bias_exact.csv`: sampling the exact P18 distribution at the hardware shot count (200 repetitions per time) and applying the pipeline's raw-moment estimator, the mean bias of every class is at most 0.0013 in absolute value
+(shot-noise SD 0.002-0.008); percentile-bootstrap coverage of the 95 % interval 0.83-0.98 (30 replicates per observable). Validates the estimator, not the device.

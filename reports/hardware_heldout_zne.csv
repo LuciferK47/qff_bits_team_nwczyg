@@ -1,0 +1,11 @@
+account,method,selected,n_observables,n_finite,rmse,mean_signed_error,max_abs_error,limit,passes_predeclared_limit,predicate
+1,raw,False,45,45,0.09394782673132396,-0.00574410749339735,0.30130403159673924,0.05,False,"P18, Jt=0.8, all catalogue observables (m, M, C, G, kappa), exact reference exists"
+1,readout,False,45,45,0.09168029265043581,-0.003862872709708838,0.3226929800208297,0.05,False,"P18, Jt=0.8, all catalogue observables (m, M, C, G, kappa), exact reference exists"
+1,zne_exp,False,45,36,0.09451408689402017,0.010469018898735178,0.3386251069625319,0.05,False,"P18, Jt=0.8, all catalogue observables (m, M, C, G, kappa), exact reference exists"
+1,zne_linear,True,45,45,0.11756819398562607,0.0018714546476699598,0.5738967970332498,0.05,False,"P18, Jt=0.8, all catalogue observables (m, M, C, G, kappa), exact reference exists"
+1,zne_richardson,False,45,45,0.1914307088189365,-0.07258229955724751,0.8254639207460387,0.05,False,"P18, Jt=0.8, all catalogue observables (m, M, C, G, kappa), exact reference exists"
+2,raw,False,45,45,0.07721597635357065,-0.0007840416130605493,0.3454545419734949,0.05,False,"P18, Jt=0.8, all catalogue observables (m, M, C, G, kappa), exact reference exists"
+2,readout,False,45,45,0.08482900745593434,0.0030412889091583116,0.41488176864107595,0.05,False,"P18, Jt=0.8, all catalogue observables (m, M, C, G, kappa), exact reference exists"
+2,zne_exp,False,45,38,0.10711496898894939,0.005720179766276226,0.5402223770144254,0.05,False,"P18, Jt=0.8, all catalogue observables (m, M, C, G, kappa), exact reference exists"
+2,zne_linear,True,45,45,0.09550608838046584,-0.003609164369607435,0.4975189860652116,0.05,False,"P18, Jt=0.8, all catalogue observables (m, M, C, G, kappa), exact reference exists"
+2,zne_richardson,False,45,45,0.08344479367873922,0.009842000186962675,0.41233327649892737,0.05,False,"P18, Jt=0.8, all catalogue observables (m, M, C, G, kappa), exact reference exists"
