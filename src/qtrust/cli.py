@@ -142,6 +142,14 @@ def cmd_fetch(args):
     print(json.dumps(fetch(_service(), args.account), indent=1))
 
 
+def cmd_verify_jobs(args):
+    """READ-ONLY: look the archived job ids up on IBM with your saved account and record what IBM reports."""
+    from .verify import verify_jobs
+    rep = verify_jobs(_service(), args.account)
+    print(json.dumps({"all_verified": rep["all_verified"], **{k: {x: v.get(x) for x in ("ibm_status", "ibm_usage_s", "archived_usage_s", "found")}
+                                                                for k, v in rep["jobs"].items()}}, indent=1))
+
+
 def cmd_analyse_hardware(args):
     from .submit import analyse_hardware
     df = analyse_hardware(ROOT, accounts=tuple(int(a) for a in args.accounts.split(",")), B=args.B)
@@ -163,6 +171,7 @@ def main():
     s = sub.add_parser("submit"); s.add_argument("--account", type=int, required=True)
     s.add_argument("--job", required=True, choices=["1_pilot", "2_forward", "3_zne"]); s.set_defaults(f=cmd_submit)
     f = sub.add_parser("fetch"); f.add_argument("--account", type=int, required=True); f.set_defaults(f=cmd_fetch)
+    v = sub.add_parser("verify-jobs"); v.add_argument("--account", type=int, required=True); v.set_defaults(f=cmd_verify_jobs)
     h = sub.add_parser("analyse-hardware"); h.add_argument("--accounts", default="1"); h.add_argument("--B", type=int, default=2000)
     h.set_defaults(f=cmd_analyse_hardware)
     args = ap.parse_args(); args.f(args)

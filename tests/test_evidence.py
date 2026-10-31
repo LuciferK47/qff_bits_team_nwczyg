@@ -53,3 +53,25 @@ def test_six_jobs_56_executions_720896_shots_202_seconds():
             shots += sum(sum(c.values()) for c in res["counts"].values())
     assert (jobs, labels, shots, usage) == (6, 56, 720_896, 202.0)
     assert usage < 600
+
+
+def test_verify_jobs_is_read_only_and_flags_mismatch(tmp_path):
+    import shutil
+    from types import SimpleNamespace
+    from qtrust import verify
+    root = tmp_path
+    shutil.copytree(HW / "account1", root / "raw/hardware/account1", ignore=shutil.ignore_patterns("circuits"))
+    recs = json.loads((root / "raw/hardware/account1/jobs.json").read_text())
+    use = {r["job_id"]: json.loads((root / f"raw/hardware/account1/{n}_results.json").read_text())["usage_s"] for n, r in recs.items()}
+
+    class Svc:
+        def __init__(self, shift=0.0): self.shift = shift
+        def job(self, jid):
+            return SimpleNamespace(status=lambda: SimpleNamespace(name="DONE"), usage=lambda: use[jid] + self.shift,
+                                   backend=lambda: SimpleNamespace(name="ibm_fez"), metrics=lambda: {"timestamps": {"finished": "t"}})
+    before = {p.name: p.read_bytes() for p in (root / "raw/hardware/account1").glob("*_results.json")}
+    ok = verify.verify_jobs(Svc(), 1, root)
+    assert ok["all_verified"] and (root / "raw/hardware/account1/job_verification.json").exists()
+    assert before == {p.name: p.read_bytes() for p in (root / "raw/hardware/account1").glob("*_results.json")}
+    assert not verify.verify_jobs(Svc(shift=5.0), 1, root)["all_verified"]
+    assert "token" not in (root / "raw/hardware/account1/job_verification.json").read_text().lower()
