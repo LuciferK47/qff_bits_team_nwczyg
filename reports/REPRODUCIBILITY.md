@@ -48,7 +48,8 @@ The log of the last run is `logs/verify_release.log`.
 python -m qtrust.cli analyse-hardware --accounts 1,2 --B 2000      # reads raw/hardware, writes hardware_results.csv + drift table
 python -c "from qtrust import hwanalysis as H; H.run_all()"         # readout diagnostic, class table, held-out ZNE, drift cases, estimator bias
 ```
-These use the pre-registered analysis code and a fixed bootstrap seed. They take on the order of tens of minutes on a laptop CPU.
+These use the pre-registered analysis code and a fixed bootstrap seed. They take on the order of an hour on a laptop CPU. Checked on 2026-10-31: re-running `analyse-hardware --accounts 1,2 --B 2000`
+from the raw counts into a scratch copy reproduced all 4 230 rows of `hardware_results.csv` (same columns, values equal within 1e-9, identical trust statuses) and all 2 115 drift comparisons (identical drift flags).
 The `qtrust submit`, `fetch`, `live-check` and `verify-jobs` commands contact IBM and are **not** part of reproduction.
 
 ## What is not reproducible offline
