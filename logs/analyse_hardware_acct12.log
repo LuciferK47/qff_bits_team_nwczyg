@@ -1,0 +1,26 @@
+graph_id  method          trust_status     
+P18       raw             inconclusive         322
+                          inconsistent         123
+                          supported             95
+          readout         inconclusive         331
+                          inconsistent          99
+                          supported            110
+          zne_exp         inconclusive         177
+                          inconsistent          38
+                          mitigation_failed     55
+          zne_linear      inconclusive         218
+                          inconsistent          52
+          zne_richardson  inconclusive         221
+                          inconsistent          49
+P40       raw             inconclusive         131
+                          inconsistent          43
+                          no_reference         540
+                          supported            186
+          readout         inconclusive         114
+                          inconsistent          28
+                          no_reference         540
+                          supported            218
+          zne_exp         no_reference         180
+          zne_linear      no_reference         180
+          zne_richardson  no_reference         180
+exit=0

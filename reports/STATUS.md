@@ -1,7 +1,7 @@
 # Project status: "When can we trust a quantum simulation?" (Problem B)
 
-Date: 2026-10-30. Team: TEAM-NWCZYG. Target backend: `ibm_fez`. Account 1 hardware data exist (28 circuits, 101 s, `raw/hardware/account1/`); **single-account analysis in `findings.md` §4 (ZNE failed its held-out gate); the account-2 repeat is NOT yet run.**
-All data are offline: exact numerics, classical approximations, FakeFez snapshot (offline, NOT live), and `simulated_noisy` runs (calibration-derived noise, not hardware).
+Date: 2026-10-31. Team: TEAM-NWCZYG. Target backend: `ibm_fez`. Hardware data exist for both accounts (28 circuits, 101 s each); analysis in `findings.md` §4 (ZNE failed its held-out gate; 31 % of matched estimates drift between the two windows; account 2's readout-independence gate failed on P18).
+Offline data: exact numerics, classical approximations, FakeFez snapshot (offline, NOT live), and `simulated_noisy` runs (calibration-derived noise, not hardware). Hardware data: `raw/hardware/`.
 
 ## Decisions fixed
 - **J·δt = 0.1** (frozen). δt = 0.2 results are kept only as exploratory under `raw/exploratory_dt0.2/`.
@@ -23,8 +23,7 @@ All data are offline: exact numerics, classical approximations, FakeFez snapshot
 - Exports (`results.csv`, `resources.csv`, `metadata.json`) schema-validated; figures regenerated from saved data.
 
 ## Not done / NOT EXECUTED
-- Live check against `ibm_fez` (needs your account); fractional-gate availability unknown; fractional timing in the dry run is an **assumption**.
-- Any hardware job; hardware analysis; class-by-class hardware trust map.
+- Cause of the account-2 readout-independence failure on P18 (not investigated); hardware at P40 beyond Jt 0.4 (no reference); any third calibration window.
 - GPU work (exact P40 references beyond Jt = 0.5, higher-χ MPS): blocked on organiser access.
 - P40c benchmark; optional echo experiment.
 - Clean-environment rebuild from the zip (`scripts/verify_release.sh` needs network for pinned wheels): run before submission.

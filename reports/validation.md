@@ -1,4 +1,4 @@
-# Validation report (offline; no QPU job was submitted)
+# Validation report (offline sections; the hardware results are in findings.md §4)
 
 Frozen parameters: J=1, hx=1.25, hz=-0.60, **J·δt = 0.1**, start |0…0⟩, second-order split. Every number below comes
 from a saved file under `raw/` (path given) or from the test suite. Data sources are labelled: `exact_numerics`,
@@ -96,4 +96,4 @@ Limits: the noise model is calibration-derived and independent by construction; 
 `reports/hardware_manifest.md`: all circuits compile for the FakeFez target, ISA checks pass, measure map is clbit i ← physical nodes[i],
 maximum compiled 2-qubit depth 150 (ceiling 300, none above the 250 headroom flag), estimated usage 99 s (detailed model) /
 180 s (PDF 0.5 ms/shot rate) in total against a 420 s working cap. **Fractional-gate timing is an assumption** (copied from CZ) until
-`qtrust live-check` runs against the live backend. **NOT EXECUTED:** live check, pilot, any hardware job, GPU runs.
+`qtrust live-check` runs against the live backend. Live check and hardware jobs were run later (2026-10-30/31; see `findings.md` §4). **NOT EXECUTED:** GPU runs.

@@ -1,7 +1,7 @@
 # Response to the repository audit (IBM_quant_audit_package)
 
 Status as of 2026-10-30. "Evidence" points to a test, a saved file or a report section. Anything not done is marked **NOT DONE** or
-**NOT EXECUTED** with the reason. No QPU job has been submitted; no hardware result exists.
+**NOT EXECUTED** with the reason. Update 2026-10-31: the hardware runs (two accounts, 28 circuits each) have since been executed under the signed pre-registration; their analysis is in `findings.md` §4. Rows below that say NOT EXECUTED describe the state when the audit was answered, unless marked otherwise.
 
 | item | finding | fix | evidence | status |
 |---|---|---|---|---|
@@ -21,7 +21,7 @@ Status as of 2026-10-30. "Evidence" points to a test, a saved file or a report s
 
 ## Audit "work left" list
 Gate 0 (1–4): done. Gate 1 (5–8): 5, 6, 8 done in simulation/offline; 7 partly (compact graph found, not benchmarked). Gate 2 (9–10): code written
-(`live-check`, pilot gate, usage rescaling); **NOT EXECUTED**, waits for the team's accounts and written approval. Gate 3 (11–12): **NOT EXECUTED**; no hardware
+(`live-check`, pilot gate, usage rescaling); **executed on 2026-10-30/31** (live check, pilot, forward and ZNE jobs on both accounts; see `findings.md` §4). Gate 3 (11–12): **NOT EXECUTED**; no hardware
 data, so no class-by-class hardware comparison exists.
 
 ## Changes made after the audit that the audit did not ask for

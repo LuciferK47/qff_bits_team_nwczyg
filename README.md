@@ -4,11 +4,12 @@ Validated Trotterised mixed-field Ising dynamics on IBM heavy-hex device patches
 `H = -J Σ_E Z_i Z_j - Σ_i (h_x X_i + h_z Z_i)`, `J=1, h_x=1.25, h_z=-0.60`, start `|0…0⟩`,
 second-order split `U_N = S(δt)^N`, `S = F(δt/2) B(δt) F(δt/2)` (BITS Goa × IBM Qiskit Fall Fest, Problem B).
 
-> **Status (30 Oct 2026).** The offline pipeline is implemented and tested at the frozen **J·δt = 0.1**: exact references,
+> **Status (31 Oct 2026).** The offline pipeline is implemented and tested at the frozen **J·δt = 0.1**: exact references,
 > classical baselines under hard 20-minute budgets, a simulated mitigation rehearsal, and an approval-gated hardware path.
-> **Hardware:** after the signed pre-registration (sha `5360308738170cc5410562cb971a3050`) and a passing live check on `ibm_fez` (fractional gates available),
-> account 1 ran all 28 planned circuits (3 jobs, 101 s of QPU time; raw counts in `raw/hardware/account1/`). The single-account analysis is in `reports/findings.md` §4
-> (ZNE did not pass its held-out check and is never `supported`; raw/readout verdicts are provisional because the **account-2 repeat for the drift check has NOT been run**).
+> **Hardware:** after the signed pre-registration (sha `5360308738170cc5410562cb971a3050`) and passing live checks on `ibm_fez`, each of the two teammates ran the identical
+> 28-circuit manifest on their own Open Plan account (101 s of QPU time each, about 20 h apart; raw counts in `raw/hardware/account1/` and `account2/`).
+> Results are in `reports/findings.md` §4: ZNE did not pass its held-out check and is never `supported`; 31 % of matched estimates drift beyond 4 standard
+> errors between the two windows; account 2's readout-independence gate failed on P18. No claim is made beyond those measured results.
 > Offline data come from the `FakeFez` snapshot (labelled *offline, NOT live*); noisy-simulation results are labelled `simulated_noisy` and can never be `supported`.
 > See `reports/STATUS.md`, `reports/findings.md`, `reports/validation.md` and `reports/audit_response.md`.
 
@@ -16,6 +17,8 @@ second-order split `U_N = S(δt)^N`, `S = F(δt/2) B(δt) F(δt/2)` (BITS Goa ×
 **TEAM-NWCZYG** (BITS Pilani, Goa Campus × IBM Qiskit Fall Fest 2026, Advanced track, Problem B):
 - Kushagra Singh
 - Krutik Rana
+
+GitHub accounts that committed to this repository: `LuciferK47` (repository owner), `Krut27`.
 
 ## What is the quantum-computing component?
 The object under study is a Trotterised quantum many-body circuit (mixed-field Ising model on IBM heavy-hex qubit patches). The project asks

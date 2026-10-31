@@ -57,25 +57,30 @@ Held-out time Jt = 0.8, model picked on Jt = 0.4, 1.0 only:
 - **Caveat that limits all of this:** the noise model is calibration-derived, independent between qubits, and its fractional-gate error is an assumption. It
   validates the *pipeline*, not the device.
 
-## 4. Hardware (account 1 only; measured on ibm_fez, 2026-10-30)
-Pre-registered manifest (sha `5360308738170cc5410562cb971a3050`): 28 circuits in 3 jobs, 101 s measured QPU usage, all shots returned. Analysis:
-`qtrust analyse-hardware --accounts 1 --B 2000` (`logs/analyse_hardware_acct1.log`, rows in `raw/hardware/hardware_results.csv`).
-**Scope limits:** one account and one calibration window, so the cross-account drift gate has NOT been applied and every `supported` below is provisional;
-the account-2 repeat has NOT been run. Exact references exist for P18 at Jt 0, 0.4, 0.8, 1, 2, 3 and for P40 only at Jt 0 and 0.4; P40 at larger Jt has no reference.
+## 4. Hardware (two accounts, ibm_fez; measured 2026-10-30 and 2026-10-31)
+Pre-registered manifest (sha `5360308738170cc5410562cb971a3050`): 28 circuits in 3 jobs per account, 101 s measured QPU usage each, all shots returned.
+Account 1 ran on 30 Oct 10:43 UTC, account 2 (identical manifest, run by the second teammate on their own account) on 31 Oct 07:10 UTC, about 20 h later.
+Analysis: `qtrust analyse-hardware --accounts 1,2 --B 2000` (`logs/analyse_hardware_acct12.log`; rows in `raw/hardware/hardware_results.csv`, drift in
+`raw/hardware/drift_account2_vs_1.csv`). Exact references exist for P18 at Jt 0, 0.4, 0.8, 1, 2, 3 and for P40 only at Jt 0 and 0.4; P40 at larger Jt is `no_reference`.
+The account-1-only analysis written earlier is superseded by this section. Everything is one device and two calibration windows.
 
-- **Raw and readout-corrected estimates.** Of the rows with an exact reference, 247 raw and 271 readout-corrected rows are `supported` (P18 + P40). Fraction of `supported`
-  (raw + readout rows together) falls with time: 200/270 at Jt 0, 160/270 at 0.4, then 41/90, 33/90, 44/90, 40/90 at Jt 0.8, 1, 2, 3 (P18 only from 0.8 on).
-  P18 RMS error vs exact over all observables, raw / readout: m 0.104 / 0.093, C 0.074 / 0.079, G 0.041 / 0.035, κ 0.026 / 0.025, M 0.046 / 0.037.
-  Readout correction changes these only slightly. Median |error| is about 0.02 at Jt 0.4 and 0.03–0.05 beyond, with worst cases up to 0.47 (Jt 1).
-- **ZNE did not help on this hardware.** The model selected on calibration times Jt 0.4/1.0 was `linear`; on the held-out time Jt 0.8 its RMSE over all P18 rows
-  was 0.118 versus 0.094 for the raw estimate, so it failed the pre-declared held-out check (`heldout_rmse_max 0.05`). Consequently **no ZNE row is `supported`**
-  (0 of 135 selected-model rows). exp and richardson were not better (richardson was worst: held-out RMSE 0.19, errors up to 1.5 at Jt 1). In the rehearsal on simulated
-  independent noise ZNE did help, so the simulation's noise model does not describe this device well for ZNE.
-- **Readout independence gate** passed on all calibration pairs, so the independent-readout correction was admissible here.
-- **Class pattern.** Smallest errors are for the 4-site classes (G, κ; RMS 0.03–0.04) and largest for the single-site m (0.09–0.10) and edge C (0.07–0.08). No class
-  ranking beyond these numbers is claimed: one patch with exact references over the whole range, one calibration window.
-- **P40.** The 40-qubit runs were measured, but exact references only cover Jt ≤ 0.5, so only Jt 0 and 0.4 can be checked. Beyond that, the hardware numbers are `no_reference`.
-- **Not claimed:** any statement about the drift between accounts or days, and any hardware statement that depends on the account-2 repeat.
+- **Drift between the two windows is real.** Of 2 115 matched estimates, 650 (31 %) differ by more than 4 standard errors (median |z| 2.35, max 68.6). The absolute
+  differences are modest (median 0.027; by class: m 0.039, M 0.024, C 0.022, G 0.023, κ 0.013; largest 1.43). The standard errors are shot-noise bootstrap
+  errors only, so they understate window-to-window variation. By pre-declared rule these rows are demoted from `supported` to `inconclusive`.
+  Flagged share by method: raw 243/720, readout 213/720, ZNE exp 49/225, linear 94/225, richardson 51/225.
+- **Readout independence gate.** Passed for account 1 on all circuits. For **account 2 it failed on every P18 circuit** (it passed on P40). Independent-readout
+  correction is therefore not admissible for account 2's P18 data under our own rule, and those rows cannot be `supported`. We did not investigate which qubit pair triggered it.
+- **ZNE did not help, on either account.** The model selected on calibration times Jt 0.4/1.0 was `linear` on both. Held-out (Jt 0.8, P18, all observables) RMSE for account 1 / account 2:
+  raw 0.094 / 0.077, readout 0.092 / 0.085, linear 0.118 / 0.096 (selected), exp 0.095 / 0.107, richardson 0.191 / 0.083. The selected model is worse than the unmitigated estimate on both
+  accounts and above the pre-declared limit (0.05), so **no ZNE row is `supported`** (0 on both accounts). The simulated rehearsal, where ZNE helped, does not describe this device for ZNE.
+- **Raw and readout-corrected, after the drift and independence demotions.** `supported` raw / readout rows: account 1 192 / 225 (down from 247 / 271 before the drift check), account 2 89 / 103.
+  Pooled over both accounts and both methods (rows with an exact reference), the `supported` fraction falls with evolution time: 269/540 at Jt 0, 224/540 at 0.4, then 32/180, 23/180, 32/180, 29/180 at Jt 0.8, 1, 2, 3
+  (P18 only from Jt 0.8). By class: C 311/760, m 228/752, G 42/128, κ 26/128, M 2/32. These fractions mix patches and times and are not a ranking of how hard each class is.
+  RMS error vs exact, raw (account 1 / 2): 0.076 / 0.066; readout-corrected 0.072 / 0.055.
+- **P40.** Measured, but references exist only at Jt ≤ 0.4, so nothing beyond that is validated.
+- **What this supports:** unmitigated or readout-corrected hardware statistics on P18/P40 agree with exact references within the policy tolerance for short evolution (Jt ≲ 0.4) and in a
+  minority of cases at Jt ≥ 0.8; after the drift check no hardware statistic at Jt ≥ 0.8 is `supported` in most cases, and ZNE adds nothing. **Not claimed:** any longer-time or P40 result,
+  any cause of the account-2 readout failure, and any generalisation beyond this device and these two windows.
 
 ## 5. What we can honestly claim now
 1. A validated, reproducible pipeline (circuits, exact references, classical baselines with honest resource limits, mitigation with held-out checks, multi-gate trust policy) exists and is tested.
