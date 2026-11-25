@@ -2,14 +2,14 @@
 
 Recorded 2026-10-31 (UTC times). This file is deliberately not inside `TEAM-NWCZYG.zip`: an archive cannot contain the record of its own verification.
 
-**Archive:** `TEAM-NWCZYG.zip`, 463 files, 9 523 404 bytes, SHA-256 `3841c2be70f7f8e7990e6489b3bdabd7fcf4d9d43a91417e5ba1e814671c8fc5` (final rebuild after the README readout-row clarification; supersedes `26127042…` (`logs/verify_release6.log`), `ee890667…` and `ead45048…`) (identical for `dist/` and the repository root copy; the Release asset is uploaded from the same file).
+**Archive:** `TEAM-NWCZYG.zip`, 464 files, 9 524 242 bytes, SHA-256 `06e99dc9de5f5c993c1e503c098ac77d7cdffce1866778d1fc144426a15a13bf` (post-judging correction, 2026-11-25: README readout row and team table, compliance notes; supersedes `3841c2be…`, the archive judged on 2026-10-31, tag `judged-2026-10-31`), `ee890667…` and `ead45048…`) (identical for `dist/` and the repository root copy; the Release asset is uploaded from the same file).
 **Environment:** Python 3.12 (fresh venv from `requirements.lock`), Linux.
 
 | step | command | result |
 |---|---|---|
 | full tests in the repo | `python -m pytest -q` | PASS, exit 0 (`logs/pytest_final4.log`) |
-| build | `python scripts/build_zip.py` | PASS: 463 files, 5 sanitized, no missing/forbidden |
-| clean-room check of this exact archive | `scripts/verify_release.sh dist/TEAM-NWCZYG.zip` | PASS, exit 0, 2026-10-31 17:35:31-17:43:00 UTC (`logs/verify_release7.log`); full tests and offline reproduction |
+| build | `python scripts/build_zip.py` | PASS: 464 files, 5 sanitized, no missing/forbidden |
+| clean-room check of this exact archive | `scripts/verify_release.sh dist/TEAM-NWCZYG.zip` | PASS, exit 0, 2026-10-31 2026-11-25 06:24:56-06:32:55 UTC (`logs/verify_release8.log`; run with `UV_NO_CONFIG=1` because this machine's `/etc/uv/uv.toml` holds a key uv 0.9.18 rejects; no repository or config file was changed); full tests and offline reproduction |
 | independent checker v2 | `python scripts/independent_checks_v2.py . <outdir>` | PASS 18/18 (archive equals repository for every non-log file) |
 | home-path scan of text files in the zip | grep `/home/kushagrasingh` | 0 hits; no `.venv`, `.git`, `.env` |
 

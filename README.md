@@ -26,7 +26,7 @@ U_N = S(δt)^N,  S = F(δt/2) B(δt) F(δt/2)           second-order split, froz
 | Question | Answer on this device, in these two windows, with our 0.05 tolerance |
 |---|---|
 | Does zero-noise extrapolation help? | **No.** It failed its pre-declared held-out check on both accounts: selected linear model RMSE **0.118 / 0.096** vs raw **0.094 / 0.077** (limit 0.05). |
-| Is readout correction trustworthy? | Its assumption holds except at one pair: account 2 **violates readout independence** at physical pair 16-23 (z = +6.66 vs limit 4; cause not established). But it barely helps: held-out RMSE (P18, Jt 0.8) goes 0.094 → 0.092 on account 1 and **worsens** 0.077 → 0.085 on account 2, the window where the assumption broke. Most of the error is gate noise, not readout. |
+| Is readout correction trustworthy? | Its assumption holds except at one pair: account 2 **violates readout independence** at physical pair 16-23 (z = +6.66 vs limit 4; cause not established). But it barely helps: held-out RMSE (P18, Jt 0.8) goes 0.094 → 0.092 on account 1 and **worsens** 0.077 → 0.085 on account 2. After readout correction the error is tiny at Jt = 0 (RMSE 0.007 / 0.003) and large at Jt = 0.8 (0.092 / 0.085), so it builds up during the circuit; we did not isolate its mechanism. On account 2 two qubits (logical 13 and 11) carry about 90 % of the single-site squared error, and the failing pair 16-23 is not among them. |
 | Is the device stable between windows? | No. 650 of 2 115 matched estimates differ by more than 4 shot-noise SEs (correlated comparisons, so not 650 independent failures; account and calibration window are confounded). |
 | Classical approximation or hardware noise? | 18 qubits: **hardware noise** is the binding limit (MPS χ256 within 0.017 of exact to Jt 5). 40 qubits: neither is validated beyond Jt = 0.5. |
 | Do 4-site statistics fail first? | Not in accuracy. They become **unresolvable** earlier (κ signal 0.001-0.03 vs interval half-width 0.015). A predictor that always answers 0 is competitive for κ, so agreement fractions are not fidelity. |
@@ -99,12 +99,12 @@ All heights are measured values from `raw/hardware/hardware_results.csv`; nothin
 
 ## Team
 
-| member | QFF registration ID | email |
+| member | role | GitHub |
 |---|---|---|
-| Kushagra Singh (team leader) | QFF-D63728 | offkushagrasingh47@gmail.com |
-| Krutiksinh Narendrasinh Rana | QFF-591869 | Knrana08@gmail.com |
+| Kushagra Singh | team leader | `LuciferK47` (repository owner) |
+| Krutiksinh Narendrasinh Rana | team member | `Krut27` |
 
-GitHub accounts that committed to this repository: `LuciferK47` (repository owner), `Krut27`.
+Registration IDs and contact details were listed here at submission and were removed after judging, when the repository became public; the organisers hold them.
 
 ## What is the quantum-computing component?
 The object under study is a Trotterised quantum many-body circuit (mixed-field Ising model on IBM heavy-hex qubit patches), run on a real IBM Quantum backend. The project compares, for the same fixed circuit:

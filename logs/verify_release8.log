@@ -1,0 +1,23 @@
+start 2026-11-25T06:24:56Z
+note: UV_NO_CONFIG=1 set for this run only (system /etc/uv/uv.toml has a key uv 0.9.18 rejects: system-certs); no repository or config file changed
+........................................................................ [ 37%]
+........................................................................ [ 74%]
+.................................................                        [100%]
+/tmp/tmp.f7dk0ta5Rc/src/qtrust/figures.py:35: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout(rect=(0, 0.03, 1, 1)); fig.savefig(folder / name, dpi=140); plt.close(fig)
+results.csv: 15108 rows | resources.csv: 121 rows | metadata.json keys: 18
+source                   validation_status
+classical_approximation  exact_reference      7404
+                         no_reference         1260
+exact_numerics           reference            1194
+hardware                 inconclusive         1514
+                         inconsistent          432
+                         mitigation_failed      55
+                         no_reference         1620
+                         supported             609
+simulated_noisy          inconclusive          969
+                         inconsistent           19
+                         mitigation_failed      32
+release verified in /tmp/tmp.f7dk0ta5Rc
+exit=0
+end 2026-11-25T06:32:55Z

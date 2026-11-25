@@ -35,10 +35,10 @@ Each line item of the problem statement ("When can we trust a quantum simulation
 ## QFF rulebook
 | item | status | evidence / note |
 |---|---|---|
-| Private GitHub repository named `qff_bits_<team_name>` | PASS | `qff_bits_team_nwczyg` (registered name TEAM-NWCZYG, lowercase with underscores as the rulebook recommends); private (checked with the GitHub API on 2026-10-31). |
+| Private GitHub repository named `qff_bits_<team_name>` | PASS | `qff_bits_team_nwczyg` (registered name TEAM-NWCZYG, lowercase with underscores as the rulebook recommends); private (checked with the GitHub API on 2026-10-31). After judging the repository was made public and renamed `quantum-trust-boundary` (2026-11-25); the judged state is the tag `judged-2026-10-31`. |
 | Collaborator `AresTheWarGod42` | PASS (invited) / HUMAN (acceptance) | rulebook 5.2 step 3 asks to confirm it "shows as invited or added": the invitation shows as pending. Access takes effect when the organisers accept; not claimed as accepted. |
 | Ready before 31 Oct 2026 11:59 PM IST | HUMAN | final push time is the last commit on `main`. |
-| Repository identifies the project and all members with names and registration details | PASS | README Team table (names, QFF IDs, emails). |
+| Repository identifies the project and all members with names and registration details | PASS | README Team table (names, GitHub accounts). At submission it also listed QFF IDs and emails; these were removed on 2026-11-25 when the repository became public (they remain in earlier commits and the judged tag). |
 | README: overview, quantum component, setup/run | PASS | `README.md`. |
 | Pre-existing vs hackathon work; third-party licences | PASS | README sections "Pre-existing versus hackathon work" and "Reused packages and AI assistance". |
 | Further organiser instructions followed | HUMAN | none were received by the team; the organisers did not answer the team's questions. |
